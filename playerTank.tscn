@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj43p1a8ypeu7"]
+[gd_scene load_steps=7 format=3 uid="uid://dj43p1a8ypeu7"]
 
 [ext_resource type="Texture2D" uid="uid://diw83q4bmsulp" path="res://assets/tankBody.png" id="1_34nvi"]
 [ext_resource type="Script" path="res://player_tank.gd" id="1_tr2t1"]
 [ext_resource type="Texture2D" uid="uid://cu6dqvkjbphha" path="res://assets/tankGun.png" id="2_4jpt4"]
+[ext_resource type="Texture2D" uid="uid://cnekp6gthntey" path="res://assets/bullet.png" id="4_ee6ss"]
+[ext_resource type="Script" path="res://bullet.gd" id="4_jy8hy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3dy1"]
 size = Vector2(95, 68)
@@ -24,3 +26,11 @@ offset = Vector2(0, 16.534)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_o3dy1")
+
+[node name="Bullet" type="CharacterBody2D" parent="."]
+script = ExtResource("4_jy8hy")
+
+[node name="bulletShot" type="Sprite2D" parent="Bullet"]
+position = Vector2(1.36865, 0.25)
+scale = Vector2(0.194915, 0.194915)
+texture = ExtResource("4_ee6ss")
