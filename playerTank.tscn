@@ -15,9 +15,11 @@ script = ExtResource("1_tr2t1")
 texture = ExtResource("1_34nvi")
 
 [node name="tankGun" type="Sprite2D" parent="."]
-position = Vector2(-2.38419e-07, 21)
+position = Vector2(-2.38419e-07, 5.72205e-06)
+rotation = -1.5708
 scale = Vector2(1.27778, 1.27011)
 texture = ExtResource("2_4jpt4")
+offset = Vector2(0, 16.534)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
