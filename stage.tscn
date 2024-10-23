@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://yntndw377gt"]
+
+[ext_resource type="Texture2D" uid="uid://cji81mja43g8w" path="res://assets/background.png" id="1_d3i0p"]
+[ext_resource type="PackedScene" uid="uid://dj43p1a8ypeu7" path="res://playerTank.tscn" id="2_qbigu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2nyg"]
+size = Vector2(1162, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_621pg"]
+size = Vector2(37.5, 650)
+
+[node name="background" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 323)
+scale = Vector2(11.52, 9.22857)
+texture = ExtResource("1_d3i0p")
+metadata/_edit_lock_ = true
+
+[node name="Tank" parent="." instance=ExtResource("2_qbigu")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(572, 0)
+shape = SubResource("RectangleShape2D_e2nyg")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(572, 646)
+shape = SubResource("RectangleShape2D_e2nyg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(1168.25, 323)
+shape = SubResource("RectangleShape2D_621pg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(572, 0)
+shape = SubResource("RectangleShape2D_e2nyg")
