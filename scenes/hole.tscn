@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bibx23kj623up"]
+
+[ext_resource type="Texture2D" uid="uid://530reiticayj" path="res://assets/hole.png" id="1_d2hyt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hslc5"]
+radius = 49.2443
+
+[node name="hole" type="Sprite2D"]
+texture = ExtResource("1_d2hyt")
+
+[node name="hole_body" type="StaticBody2D" parent="."]
+collision_layer = 64
+collision_mask = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hole_body"]
+shape = SubResource("CircleShape2D_hslc5")

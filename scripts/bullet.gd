@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed          = 400 #speed of bullet
 @export var rotation_speed = 1.5 #not needed rn ##OPTION could do curving bullets?
-@export var parent = preload("res://playerTank.tscn"); #create a dummy instance for the bullet to pretend with
+@export var parent = preload("res://scenes/playerTank.tscn"); #create a dummy instance for the bullet to pretend with
 
 var rotation_direction = 0 #not needed rn ##OPTION could do curving bullets?
 var click_position 	   = Vector2() #not needed rn

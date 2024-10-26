@@ -1,30 +1,31 @@
 [gd_scene load_steps=5 format=3 uid="uid://dj43p1a8ypeu7"]
 
-[ext_resource type="Texture2D" uid="uid://diw83q4bmsulp" path="res://assets/tankBody.png" id="1_34nvi"]
-[ext_resource type="Script" path="res://player_tank.gd" id="1_tr2t1"]
-[ext_resource type="Texture2D" uid="uid://cu6dqvkjbphha" path="res://assets/tankGun.png" id="2_4jpt4"]
+[ext_resource type="Script" path="res://scripts/player_tank.gd" id="1_5ejvn"]
+[ext_resource type="Texture2D" uid="uid://diw83q4bmsulp" path="res://assets/tankBody.png" id="2_03woj"]
+[ext_resource type="Texture2D" uid="uid://cu6dqvkjbphha" path="res://assets/tankGun.png" id="3_uio1y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3dy1"]
 size = Vector2(95, 68)
 
 [node name="Tank" type="CharacterBody2D"]
+z_index = 1
 position = Vector2(550, 232)
-collision_mask = 12
-script = ExtResource("1_tr2t1")
+collision_mask = 204
+script = ExtResource("1_5ejvn")
 
 [node name="tankBody" type="Sprite2D" parent="."]
-texture = ExtResource("1_34nvi")
+texture = ExtResource("2_03woj")
 
 [node name="tankGun" type="Sprite2D" parent="."]
 position = Vector2(-2.38419e-07, 5.72205e-06)
 rotation = -1.5708
 scale = Vector2(1.27778, 1.27011)
-texture = ExtResource("2_4jpt4")
+texture = ExtResource("3_uio1y")
 offset = Vector2(0, 16.534)
 
 [node name="fire_loc" type="Node2D" parent="tankGun"]
 position = Vector2(-0.000195479, 54.326)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="tank_body_collision" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_o3dy1")

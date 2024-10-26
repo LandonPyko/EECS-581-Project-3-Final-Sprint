@@ -1,16 +1,21 @@
 extends CharacterBody2D
 
-@export var speed          = 400
-@export var rotation_speed = 3.5
-@export var max_bullets = 5 #OPTION Could make a changeable value for powerups
-@export var max_mines = 1
+@export var speed          := 400
+@export var rotation_speed := 3.5
+@export var max_bullets := 5 #OPTION Could make a changeable value for powerups
+@export var max_mines := 2
+@export var lives := 4
+
+@export var score := 0
+
+
 var cur_bullets := 0 #create var for cur mines and bullets
 var cur_mines := 0   #walrus, := is used to make it only be of the type of its assignment
 					 #in this case, an int. Just an optimization and helps prevent mishaps
 
-@onready var BULLET = preload("res://bullet.tscn")#load the idea of a bullet to this var
+@onready var BULLET = preload("res://scenes/bullet.tscn")#load the idea of a bullet to this var
 												  #so we can make some from this script
-@onready var MINE = preload("res://mine.tscn")
+@onready var MINE = preload("res://scenes/mine.tscn")
 
 var rotation_direction = 0   #Just create it
 var mouse_pos = Vector2(0,0) #set mouse pos to some place, don't matter.
@@ -37,7 +42,7 @@ func _physics_process(delta):
 	move_and_slide() #move tank with physics, wooo
 	
 	##SHOOTING LOGIC
-	if Input.is_action_just_pressed("shoot") && (cur_bullets < 5): #check if want to and can fire
+	if Input.is_action_just_pressed("shoot") && (cur_bullets < max_bullets): #check if want to and can fire
 		cur_bullets = cur_bullets + 1 #increase number of bullets fired
 		#create bullet instance for bullet
 		var bul = BULLET.instantiate()
@@ -47,7 +52,7 @@ func _physics_process(delta):
 		bul.global_position = $tankGun/fire_loc.global_position #move to the fire loc so it pretend to fire from turret
 		#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else
 
-	elif Input.is_action_just_pressed("mine") && (cur_mines < 1):
+	elif Input.is_action_just_pressed("mine") && (cur_mines < max_mines):
 		cur_mines = cur_mines + 1 #increase number of mines placed
 		#create bullet instance for mine
 		var mine = MINE.instantiate()

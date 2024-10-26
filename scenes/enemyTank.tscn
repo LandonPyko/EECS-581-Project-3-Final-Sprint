@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dacmxxndhic6b"]
+
+[ext_resource type="Texture2D" uid="uid://diw83q4bmsulp" path="res://assets/tankBody.png" id="1_alfbm"]
+[ext_resource type="Script" path="res://scenes/enemy_tank.gd" id="1_bl4ox"]
+[ext_resource type="Texture2D" uid="uid://cu6dqvkjbphha" path="res://assets/tankGun.png" id="2_ckxeu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5vn6"]
+size = Vector2(95, 68)
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_bl4ox")
+
+[node name="tankBody" type="Sprite2D" parent="."]
+texture = ExtResource("1_alfbm")
+
+[node name="tankGun" type="Sprite2D" parent="."]
+position = Vector2(-2.38419e-07, 5.72205e-06)
+rotation = -1.5708
+scale = Vector2(1.27778, 1.27011)
+texture = ExtResource("2_ckxeu")
+offset = Vector2(0, 16.534)
+
+[node name="fire_loc" type="Node2D" parent="tankGun"]
+position = Vector2(-0.000195479, 54.326)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_y5vn6")

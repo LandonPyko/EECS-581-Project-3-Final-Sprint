@@ -1,20 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdh35tnsfegva"]
 
-[ext_resource type="Script" path="res://mine.gd" id="1_sab0p"]
-[ext_resource type="Texture2D" uid="uid://meddjwh1ayx" path="res://assets/mine.png" id="2_ups5y"]
-[ext_resource type="Shape2D" uid="uid://bsdw8qoby4dog" path="res://mine_collision.tres" id="3_pi4mb"]
+[ext_resource type="Script" path="res://scripts/mine.gd" id="1_51033"]
+[ext_resource type="Texture2D" uid="uid://meddjwh1ayx" path="res://assets/mine.png" id="2_57b2m"]
+[ext_resource type="Shape2D" uid="uid://bsdw8qoby4dog" path="res://assets/mine_collision.tres" id="3_lmery"]
 
 [node name="mine" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 132
-script = ExtResource("1_sab0p")
+script = ExtResource("1_51033")
 
 [node name="texture" type="Sprite2D" parent="."]
-texture = ExtResource("2_ups5y")
+texture = ExtResource("2_57b2m")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = ExtResource("3_pi4mb")
+shape = ExtResource("3_lmery")
 
 [node name="life_time" type="Timer" parent="."]
 wait_time = 3.0
