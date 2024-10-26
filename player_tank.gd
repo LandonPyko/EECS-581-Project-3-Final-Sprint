@@ -10,6 +10,7 @@ var cur_mines := 0   #walrus, := is used to make it only be of the type of its a
 
 @onready var BULLET = preload("res://bullet.tscn")#load the idea of a bullet to this var
 												  #so we can make some from this script
+@onready var MINE = preload("res://mine.tscn")
 
 var rotation_direction = 0   #Just create it
 var mouse_pos = Vector2(0,0) #set mouse pos to some place, don't matter.
@@ -49,14 +50,9 @@ func _physics_process(delta):
 	elif Input.is_action_just_pressed("mine") && (cur_mines < 1):
 		cur_mines = cur_mines + 1 #increase number of mines placed
 		#create bullet instance for mine
-			#TODO create new scene for mines
-		var mine = BULLET.instantiate()
-		mine.get_node("life_time").wait_time = 5 #change so mine lasts longer than bullet #wont need if new scene
+		var mine = MINE.instantiate()
 		mine.parent = get_parent().get_node("Tank") #set parent to this instance for refrence
 		get_tree().root.add_child(mine) #add to game tree at root
-		mine.type = "mine" #say its a mine bullet
-		mine.get_node("texture").texture = preload("res://assets/mine.png") #change texture to mine
-		mine.get_node("hitbox").shape = preload("res://mine_collision.tres") #change collision to mine
 		mine.global_position = global_position #place at center of tank #TODO Change something with the rendering so tank is on top
 
 

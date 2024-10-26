@@ -310,11 +310,12 @@ position = Vector2(-2, 299)
 shape = SubResource("WorldBoundaryShape2D_va5vj")
 
 [node name="wall" type="Sprite2D" parent="."]
-position = Vector2(798, 300)
+position = Vector2(798, 234)
 texture = ExtResource("5_gim2s")
 
 [node name="wall_body" type="StaticBody2D" parent="wall"]
 collision_layer = 128
+collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall/wall_body"]
 shape = SubResource("RectangleShape2D_x65ua")
