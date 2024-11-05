@@ -15,10 +15,10 @@ var difficulty = "Easy" # For now we'll just set it to easy
 
 const SPEED = 150  # Set your speed constant
 
-func _ready():
-	$MoveTimer.wait_time = 2
-	$MoveTimer.connect("timeout", Callable(self, "_on_MoveTimer_timeout"))  # Connect the timer's timeout signal
-	$MoveTimer.start()
+#func _ready():
+	#$MoveTimer.wait_time = 2
+	#$MoveTimer.connect("timeout", Callable(self, "_on_MoveTimer_timeout"))  # Connect the timer's timeout signal
+	#$MoveTimer.start()
 
 func _physics_process(_delta):
 	move_and_slide() # Called every frame
@@ -29,5 +29,6 @@ func _random_move():
 	velocity.y = randf_range(-1, 1)
 	velocity = velocity.normalized() * SPEED # Normalize and set the speed
 
-func _on_MoveTimer_timeout():
+
+func _on_move_timer_timeout() -> void:
 	_random_move()  # Call random_move to set a new velocity

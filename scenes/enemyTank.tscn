@@ -30,3 +30,6 @@ shape = SubResource("RectangleShape2D_y5vn6")
 
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
