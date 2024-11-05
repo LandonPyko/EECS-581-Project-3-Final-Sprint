@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://yntndw377gt"]
+[gd_scene load_steps=21 format=3 uid="uid://yntndw377gt"]
 
 [ext_resource type="Texture2D" uid="uid://cji81mja43g8w" path="res://assets/background.png" id="1_d3i0p"]
 [ext_resource type="PackedScene" uid="uid://dj43p1a8ypeu7" path="res://scenes/playerTank.tscn" id="2_qbigu"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bj8dje0p13rkd" path="res://scenes/wall.tscn" id="5_5g6iw"]
 [ext_resource type="Texture2D" uid="uid://ip4ro4io80ar" path="res://assets/wall.png" id="5_gim2s"]
 [ext_resource type="PackedScene" uid="uid://bibx23kj623up" path="res://scenes/hole.tscn" id="6_c8k5h"]
+[ext_resource type="PackedScene" uid="uid://dacmxxndhic6b" path="res://scenes/enemyTank.tscn" id="8_s6wob"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xqsv2"]
 texture = ExtResource("3_mvd3e")
@@ -312,3 +313,7 @@ position = Vector2(798, 232)
 position = Vector2(798, 485)
 
 [node name="Tank" parent="." instance=ExtResource("2_qbigu")]
+
+[node name="enemy" parent="." instance=ExtResource("8_s6wob")]
+position = Vector2(269, 442)
+collision_mask = 204

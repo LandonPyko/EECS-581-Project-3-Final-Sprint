@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed          = 400 #speed of bullet
+@export var speed          = 550 #speed of bullet
 @export var rotation_speed = 1.5 #not needed rn ##OPTION could do curving bullets?
 @export var parent = preload("res://scenes/playerTank.tscn"); #create a dummy instance for the bullet to pretend with
 
@@ -22,6 +22,9 @@ func _physics_process(delta):
 		velocity = velocity.bounce(collision.get_normal())
 		global_rotation = velocity.angle()
 		move_and_collide(reflect)
+		
+		# Implement Bullet Collison with other tanks here?
+		
 	else: #otherwise just do normal movement along rotation vector
 		velocity = Vector2(1, 0).rotated(global_rotation) * speed
 	
