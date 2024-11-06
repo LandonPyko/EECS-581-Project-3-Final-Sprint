@@ -73,4 +73,4 @@ func _changecolor(color):
 func _input(event): #get input event if one happens
 	if event is InputEventMouseMotion: #if it is mouse movement
 		#print("Mouse Motion at: ", event.position) #print debug info
-		mouse_pos = event.position #change mouse_pos to new pos
+		mouse_pos = event.global_position #change mouse_pos to new pos

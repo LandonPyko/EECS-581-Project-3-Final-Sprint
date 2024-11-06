@@ -10,6 +10,17 @@
 [ext_resource type="PackedScene" uid="uid://dacmxxndhic6b" path="res://scenes/enemyTank.tscn" id="8_s6wob"]
 [ext_resource type="PackedScene" uid="uid://gt7v2wyfvhcn" path="res://scenes/broken_wall.tscn" id="9_ld0tj"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kelan"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3dor5"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3leyg"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_va5vj"]
+normal = Vector2(1, 0)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xqsv2"]
 texture = ExtResource("3_mvd3e")
 0:0/0 = 0
@@ -254,25 +265,48 @@ sources/0 = SubResource("TileSetAtlasSource_i8fym")
 sources/1 = SubResource("TileSetAtlasSource_r2r75")
 sources/2 = SubResource("TileSetAtlasSource_yi5e7")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kelan"]
-normal = Vector2(0, 1)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3dor5"]
-normal = Vector2(-1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3leyg"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_va5vj"]
-normal = Vector2(1, 0)
-
 [node name="background" type="Node2D"]
-scale = Vector2(1.55096, 1.4446)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(576, 323)
-scale = Vector2(11.52, 9.22857)
+position = Vector2(900, 470)
+scale = Vector2(18, 13.429)
 texture = ExtResource("1_d3i0p")
-metadata/_edit_lock_ = true
+
+[node name="top_wall" type="StaticBody2D" parent="Sprite2D"]
+position = Vector2(-50, -35)
+scale = Vector2(0.0868056, 0.108359)
+collision_layer = 128
+
+[node name="collider" type="CollisionShape2D" parent="Sprite2D/top_wall"]
+position = Vector2(572, 0)
+shape = SubResource("WorldBoundaryShape2D_kelan")
+
+[node name="right_wall" type="StaticBody2D" parent="Sprite2D"]
+position = Vector2(-50, -35)
+scale = Vector2(0.0868056, 0.108359)
+collision_layer = 128
+
+[node name="collider" type="CollisionShape2D" parent="Sprite2D/right_wall"]
+position = Vector2(1153, 323)
+shape = SubResource("WorldBoundaryShape2D_3dor5")
+
+[node name="bottom_wall" type="StaticBody2D" parent="Sprite2D"]
+position = Vector2(-50, -35)
+scale = Vector2(0.0868056, 0.108359)
+collision_layer = 128
+
+[node name="collider" type="CollisionShape2D" parent="Sprite2D/bottom_wall"]
+position = Vector2(572, 646)
+shape = SubResource("WorldBoundaryShape2D_3leyg")
+
+[node name="left_wall" type="StaticBody2D" parent="Sprite2D"]
+position = Vector2(-50, -35)
+scale = Vector2(0.0868056, 0.108359)
+collision_layer = 128
+
+[node name="collider" type="CollisionShape2D" parent="Sprite2D/left_wall"]
+position = Vector2(-2, 299)
+shape = SubResource("WorldBoundaryShape2D_va5vj")
 
 [node name="Level1" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_rspme")
@@ -304,31 +338,3 @@ scale = Vector2(0.3721, 0.4225)
 
 [node name="Level2" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_8brc0")
-
-[node name="top_wall" type="StaticBody2D" parent="."]
-collision_layer = 128
-
-[node name="collider" type="CollisionShape2D" parent="top_wall"]
-position = Vector2(572, 0)
-shape = SubResource("WorldBoundaryShape2D_kelan")
-
-[node name="right_wall" type="StaticBody2D" parent="."]
-collision_layer = 128
-
-[node name="collider" type="CollisionShape2D" parent="right_wall"]
-position = Vector2(1153, 323)
-shape = SubResource("WorldBoundaryShape2D_3dor5")
-
-[node name="bottom_wall" type="StaticBody2D" parent="."]
-collision_layer = 128
-
-[node name="collider" type="CollisionShape2D" parent="bottom_wall"]
-position = Vector2(572, 646)
-shape = SubResource("WorldBoundaryShape2D_3leyg")
-
-[node name="left_wall" type="StaticBody2D" parent="."]
-collision_layer = 128
-
-[node name="collider" type="CollisionShape2D" parent="left_wall"]
-position = Vector2(-2, 299)
-shape = SubResource("WorldBoundaryShape2D_va5vj")
