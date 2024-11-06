@@ -318,6 +318,7 @@ position = Vector2(798, 358)
 position = Vector2(798, 485.692)
 
 [node name="Tank" parent="Level1" instance=ExtResource("2_qbigu")]
+position = Vector2(552, 198)
 my_color = Color(0.792689, 0.539469, 0.300663, 1)
 
 [node name="enemy" parent="Level1" groups=["Enemy"] instance=ExtResource("8_s6wob")]

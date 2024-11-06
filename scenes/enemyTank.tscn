@@ -13,12 +13,10 @@ collision_layer = 2
 script = ExtResource("1_bl4ox")
 
 [node name="tankBody" type="Sprite2D" parent="."]
-position = Vector2(14.5, 10.5)
 scale = Vector2(0.71, 0.7)
 texture = ExtResource("1_alfbm")
 
 [node name="tankGun" type="Sprite2D" parent="."]
-position = Vector2(15, 11)
 rotation = -1.5708
 scale = Vector2(0.815, 0.833)
 texture = ExtResource("2_ckxeu")
@@ -28,7 +26,6 @@ offset = Vector2(0, 16.534)
 position = Vector2(-0.000195479, 54.326)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(15, 11)
 shape = SubResource("RectangleShape2D_y5vn6")
 
 [node name="MoveTimer" type="Timer" parent="."]

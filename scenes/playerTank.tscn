@@ -9,17 +9,14 @@ size = Vector2(65, 46)
 
 [node name="Tank" type="CharacterBody2D"]
 z_index = 1
-position = Vector2(550, 232)
 collision_mask = 206
 script = ExtResource("1_5ejvn")
 
 [node name="tankBody" type="Sprite2D" parent="."]
-position = Vector2(14.5, 10.5)
 scale = Vector2(0.71, 0.7)
 texture = ExtResource("2_03woj")
 
 [node name="tankGun" type="Sprite2D" parent="."]
-position = Vector2(15, 11)
 rotation = -1.5708
 scale = Vector2(0.814815, 0.833329)
 texture = ExtResource("3_uio1y")
@@ -29,5 +26,4 @@ offset = Vector2(0, 16.534)
 position = Vector2(-0.000195479, 54.326)
 
 [node name="tank_body_collision" type="CollisionShape2D" parent="."]
-position = Vector2(14.5, 11)
 shape = SubResource("RectangleShape2D_o3dy1")
