@@ -26,3 +26,7 @@ func explode():
 	explosion.global_position = global_position
 	get_tree().root.add_child(explosion)
 	pass #some logic creating a sprite animation and collison box of some size
+
+
+func _on_arming_timeout():
+	$hitbox.disabled = false
