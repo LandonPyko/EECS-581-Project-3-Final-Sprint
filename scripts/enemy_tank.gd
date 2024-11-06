@@ -8,26 +8,57 @@ extends CharacterBody2D
 												  #so we can make some from this script
 @onready var MINE = preload("res://scenes/mine.tscn")
 
+@onready var nav_agent : NavigationAgent2D = $nav_agent
+@onready var move_timer : Timer = $MoveTimer
+
 enum DIFFICULTIES {EASY, MEDIUM, HARD}# Will retrieve the type from the menu button, then act accordingly
 var difficulty = "Easy" # For now we'll just set it to easy
+#var target_dest = Vector2.ZERO
 # We can change this to set it to whatever the player chooses it as
 # Then we can have different movement logic based on that
 
-const SPEED = 150  # Set your speed constant
+var speed = 150  # Set your speed constant
+var target_pos : Vector2 = Vector2.ZERO
 
-#func _ready():
-	#$MoveTimer.wait_time = 2
-	#$MoveTimer.connect("timeout", Callable(self, "_on_MoveTimer_timeout"))  # Connect the timer's timeout signal
-	#$MoveTimer.start()
+func _ready():
+	# These values need to be adjusted for the actor's speed
+	# and the navigation layout.
+	nav_agent.path_desired_distance = 4.0
+	nav_agent.target_desired_distance = 4.0
 
-func _physics_process(_delta):
-	move_and_slide() # Called every frame
+	# Make sure to not await during _ready.
+	actor_setup.call_deferred()
+
+func actor_setup():
+	# Wait for the first physics frame so the NavigationServer can sync.
+	await get_tree().physics_frame
+
+	# Now that the navigation map is no longer empty, set the movement target.
+	nav_agent.target_position = target_pos
+
+func _physics_process(delta):
+	if nav_agent.is_navigation_finished():
+		_random_move()
+		move_timer.start()
+	var _current_position: Vector2 = global_position
+	var next_path_position: Vector2 = nav_agent.get_next_path_position()
+	
+	global_rotation = rotate_toward(global_rotation, global_position.direction_to(next_path_position).angle(), 4 * delta)
+
+	print(rotation)
+	print(get_angle_to(target_pos))
+	velocity = transform.x * Vector2(1,1) * speed
+	#velocity = current_position.direction_to(next_path_position) * speed
+	move_and_slide()
 	# Keeps moving along the vector until timer runout
 
 func _random_move():
-	velocity.x = randf_range(-1, 1)
-	velocity.y = randf_range(-1, 1)
-	velocity = velocity.normalized() * SPEED # Normalize and set the speed
+	target_pos.x = randi_range(0, 1800)
+	target_pos.y = randi_range(0, 940)
+	nav_agent.target_position = target_pos
+	#velocity.x = randf_range(-1, 1)
+	#velocity.y = randf_range(-1, 1)
+	#velocity = velocity.normalized() * speed # Normalize and set the speed
 
 
 func _on_move_timer_timeout() -> void:

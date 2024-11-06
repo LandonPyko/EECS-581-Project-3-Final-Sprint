@@ -29,7 +29,8 @@ position = Vector2(-0.000195479, 54.326)
 shape = SubResource("RectangleShape2D_y5vn6")
 
 [node name="MoveTimer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
+wait_time = 5.0
+
+[node name="nav_agent" type="NavigationAgent2D" parent="."]
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
