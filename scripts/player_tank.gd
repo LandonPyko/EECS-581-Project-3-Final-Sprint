@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var max_bullets := 5 #OPTION Could make a changeable value for powerups
 @export var max_mines := 2
 @export var lives := 4
+@export var my_color := Color.ALICE_BLUE
 
 @export var score := 0
 
@@ -25,6 +26,9 @@ func dec_mines():
 	cur_mines = cur_mines - 1
 func dec_bullets():
 	cur_bullets = cur_bullets - 1
+
+func _ready() -> void:
+	_changecolor(my_color)
 
 #func to get input from player
 func get_input():
@@ -61,6 +65,10 @@ func _physics_process(delta):
 		mine.global_position = global_position #place at center of tank #TODO Change something with the rendering so tank is on top
 
 
+func _changecolor(color):
+	modulate = color
+	#$tankBody.modulate = color
+	#$tankGun.modulate = color
 
 func _input(event): #get input event if one happens
 	if event is InputEventMouseMotion: #if it is mouse movement

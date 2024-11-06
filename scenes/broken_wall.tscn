@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://gt7v2wyfvhcn"]
+
+[ext_resource type="Texture2D" uid="uid://ekx2vpnc6cl0" path="res://assets/crackedWall.png" id="1_nb3h8"]
+[ext_resource type="Script" path="res://scripts/broken_wall.gd" id="2_15nkb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crpuv"]
+size = Vector2(100, 100)
+
+[node name="broken_wall" type="StaticBody2D"]
+collision_layer = 160
+collision_mask = 10
+script = ExtResource("2_15nkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_crpuv")
+
+[node name="wall_body" type="Sprite2D" parent="."]
+texture = ExtResource("1_nb3h8")

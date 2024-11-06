@@ -16,11 +16,13 @@ func _physics_process(_delta):
 	if dead: #if life_time is out, free the instance
 		free()
 
-
 func _on_life_time_timeout(): #when life_time timer expires
-	#Clear either a bullet or mine
+	explode()
 	parent.dec_mines()
-	dead = true #Tell the mine it's dead.
 
 func explode():
+	dead = true
+	var explosion = preload("res://scenes/explosion.tscn").instantiate()
+	explosion.global_position = global_position
+	get_tree().root.add_child(explosion)
 	pass #some logic creating a sprite animation and collison box of some size

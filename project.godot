@@ -66,5 +66,6 @@ mine={
 2d_physics/layer_2="player_bullets"
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="enemy_bullets"
+2d_physics/layer_6="broken_wall"
 2d_physics/layer_7="holes"
 2d_physics/layer_8="walls"
