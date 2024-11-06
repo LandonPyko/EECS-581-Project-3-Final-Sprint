@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://yntndw377gt"]
+[gd_scene load_steps=21 format=4 uid="uid://yntndw377gt"]
 
 [ext_resource type="Texture2D" uid="uid://cji81mja43g8w" path="res://assets/background.png" id="1_d3i0p"]
 [ext_resource type="PackedScene" uid="uid://dj43p1a8ypeu7" path="res://scenes/playerTank.tscn" id="2_qbigu"]
@@ -152,6 +152,12 @@ sources/0 = SubResource("TileSetAtlasSource_i8fym")
 sources/1 = SubResource("TileSetAtlasSource_r2r75")
 sources/2 = SubResource("TileSetAtlasSource_yi5e7")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5cs5h"]
+vertices = PackedVector2Array(1342, 574, 1622, 682, 1066, 682, 1054, 622, 1202, 574, 1622, 806, 1770, 906, 670, 906, 1066, 806, 1770, 30, 1202, 434, 1054, 386, 1114, 326, 670, 586, 818, 622, 1582, 194, 1246, 194, 1246, 30, 1582, 326, 1342, 434, 530, 586, 530, 906, 30, 906, 30, 30, 1114, 30, 818, 386)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 6, 5, 1), PackedInt32Array(10, 4, 3, 11, 12), PackedInt32Array(8, 7, 13, 14), PackedInt32Array(15, 16, 17, 9), PackedInt32Array(15, 9, 1, 18), PackedInt32Array(18, 1, 0, 19), PackedInt32Array(12, 18, 19, 10), PackedInt32Array(20, 21, 22, 23), PackedInt32Array(20, 23, 24, 25), PackedInt32Array(14, 3, 2, 8), PackedInt32Array(25, 14, 13), PackedInt32Array(25, 13, 20), PackedInt32Array(25, 24, 12, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 1800, 0, 1800, 936, 0, 936), PackedVector2Array(1096, 776, 1592, 776, 1592, 712, 1096, 712), PackedVector2Array(1144, 296, 1552, 296, 1552, 224, 1216, 224, 1216, 0, 1144, 0), PackedVector2Array(1024, 592, 1024, 416, 848, 416, 848, 592), PackedVector2Array(560, 944, 640, 944, 640, 616, 560, 616), PackedVector2Array(1312, 544, 1312, 464, 1232, 464, 1232, 544)])
+agent_radius = 30.0
+
 [node name="background" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -209,4 +215,8 @@ position = Vector2(269, 442)
 collision_mask = 204
 
 [node name="Level2" type="TileMapLayer" parent="."]
+enabled = false
 tile_set = SubResource("TileSet_8brc0")
+
+[node name="nav_map" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_5cs5h")
