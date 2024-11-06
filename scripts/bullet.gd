@@ -19,7 +19,7 @@ func _physics_process(delta):
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	if collision:
 		var collider = collision.get_collider()
-		if collider.is_in_group("Enemy"):
+		if collider.is_in_group("Enemy") and collision_layer == 2:
 			print("Hit a tank!")
 			collider.free()
 			free()	# If it hits a tank we free the bullet instance
@@ -39,5 +39,6 @@ func _physics_process(delta):
 
 
 func _on_life_time_timeout(): #when life_time timer expires
-	parent.dec_bullets()
+	if parent != null:
+		parent.dec_bullets()
 	dead = true #Tell the bullet it's dead.

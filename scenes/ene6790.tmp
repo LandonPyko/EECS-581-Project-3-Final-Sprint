@@ -23,7 +23,7 @@ texture = ExtResource("2_ckxeu")
 offset = Vector2(0, 16.534)
 
 [node name="fire_loc" type="Node2D" parent="tankGun"]
-position = Vector2(0, 80)
+position = Vector2(-0.000195479, 54.326)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_y5vn6")

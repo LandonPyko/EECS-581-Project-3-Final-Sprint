@@ -10,12 +10,16 @@ extends CharacterBody2D
 
 @onready var nav_agent : NavigationAgent2D = $nav_agent
 @onready var move_timer : Timer = $MoveTimer
+@onready var shot_timer : Timer = $shot_timer
+
 
 enum DIFFICULTIES {EASY, MEDIUM, HARD}# Will retrieve the type from the menu button, then act accordingly
 var difficulty = "Easy" # For now we'll just set it to easy
 #var target_dest = Vector2.ZERO
 # We can change this to set it to whatever the player chooses it as
 # Then we can have different movement logic based on that
+
+var mouse_pos = Vector2(0,0) #set mouse pos to some place, don't matter.
 
 var speed = 150  # Set your speed constant
 var target_pos : Vector2 = Vector2.ZERO
@@ -25,7 +29,6 @@ func _ready():
 	# and the navigation layout.
 	nav_agent.path_desired_distance = 4.0
 	nav_agent.target_desired_distance = 4.0
-
 	# Make sure to not await during _ready.
 	actor_setup.call_deferred()
 
@@ -43,10 +46,10 @@ func _physics_process(delta):
 	var _current_position: Vector2 = global_position
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()
 	
-	global_rotation = rotate_toward(global_rotation, global_position.direction_to(next_path_position).angle(), 4 * delta)
+	rotation = rotate_toward(rotation, global_position.direction_to(next_path_position).angle(), 4 * delta)
 
 	velocity = transform.x * Vector2(1,1) * speed
-
+	#$tankGun.global_rotation = mouse_pos.angle_to_point(position)-deg_to_rad(-90)
 	move_and_slide()
 	# Keeps moving along the vector until timer runout
 
@@ -54,7 +57,33 @@ func _random_move():
 	target_pos.x = randi_range(0, 1800)
 	target_pos.y = randi_range(0, 940)
 	nav_agent.target_position = target_pos
+	
+func move_turret():
+	$tankGun.global_rotation = randf_range(0,2*PI)
 
+func shoot():
+	#create bullet instance for bullet
+	
+	var bul := BULLET.instantiate()
+	bul.parent = self #set parent to this instance for refrence
+	get_tree().root.add_child(bul) #add to game tree at root #no reason not to for now
+	bul.set_collision_layer(8)
+	bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation bullshit because graphics are fucked fuck you andrew jk love you
+	bul.global_position = $tankGun/fire_loc.global_position #move to the fire loc so it pretend to fire from turret
+	#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else
+	move_turret()
 
 func _on_move_timer_timeout() -> void:
 	_random_move()  # Call random_move to set a new velocity
+
+func dec_bullets():
+	pass #dummy function because I don't want to do logic
+
+func _on_shot_timer_timeout():
+	shoot()
+	shot_timer.start(randf_range(0.5,2))
+
+func _input(event): #get input event if one happens
+	if event is InputEventMouseMotion: #if it is mouse movement
+		#print("Mouse Motion at: ", event.position) #print debug info
+		mouse_pos = event.global_position #change mouse_pos to new pos

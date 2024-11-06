@@ -50,7 +50,7 @@ func _physics_process(delta):
 		cur_bullets = cur_bullets + 1 #increase number of bullets fired
 		#create bullet instance for bullet
 		var bul = BULLET.instantiate()
-		bul.parent = get_parent().get_node("Tank") #set parent to this instance for refrence
+		bul.parent = self
 		get_tree().root.add_child(bul) #add to game tree at root #no reason not to for now
 		bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation bullshit because graphics are fucked fuck you andrew jk love you
 		bul.global_position = $tankGun/fire_loc.global_position #move to the fire loc so it pretend to fire from turret
