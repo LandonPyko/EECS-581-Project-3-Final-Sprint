@@ -34,7 +34,6 @@ func _physics_process(delta):
 	else: #otherwise just do normal movement along rotation vector
 		velocity = Vector2(1, 0).rotated(global_rotation) * speed
 	
-	#move_and_slide()
 
 
 

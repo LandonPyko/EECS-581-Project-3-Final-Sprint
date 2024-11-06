@@ -19,7 +19,6 @@ var difficulty = "Easy" # For now we'll just set it to easy
 # We can change this to set it to whatever the player chooses it as
 # Then we can have different movement logic based on that
 
-var mouse_pos = Vector2(0,0) #set mouse pos to some place, don't matter.
 
 var speed = 150  # Set your speed constant
 var target_pos : Vector2 = Vector2.ZERO
@@ -49,7 +48,7 @@ func _physics_process(delta):
 	rotation = rotate_toward(rotation, global_position.direction_to(next_path_position).angle(), 4 * delta)
 
 	velocity = transform.x * Vector2(1,1) * speed
-	#$tankGun.global_rotation = mouse_pos.angle_to_point(position)-deg_to_rad(-90)
+
 	move_and_slide()
 	# Keeps moving along the vector until timer runout
 
@@ -82,8 +81,3 @@ func dec_bullets():
 func _on_shot_timer_timeout():
 	shoot()
 	shot_timer.start(randf_range(0.5,2))
-
-func _input(event): #get input event if one happens
-	if event is InputEventMouseMotion: #if it is mouse movement
-		#print("Mouse Motion at: ", event.position) #print debug info
-		mouse_pos = event.global_position #change mouse_pos to new pos
