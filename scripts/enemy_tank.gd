@@ -45,10 +45,8 @@ func _physics_process(delta):
 	
 	global_rotation = rotate_toward(global_rotation, global_position.direction_to(next_path_position).angle(), 4 * delta)
 
-	print(rotation)
-	print(get_angle_to(target_pos))
 	velocity = transform.x * Vector2(1,1) * speed
-	#velocity = current_position.direction_to(next_path_position) * speed
+
 	move_and_slide()
 	# Keeps moving along the vector until timer runout
 
@@ -56,9 +54,6 @@ func _random_move():
 	target_pos.x = randi_range(0, 1800)
 	target_pos.y = randi_range(0, 940)
 	nav_agent.target_position = target_pos
-	#velocity.x = randf_range(-1, 1)
-	#velocity.y = randf_range(-1, 1)
-	#velocity = velocity.normalized() * speed # Normalize and set the speed
 
 
 func _on_move_timer_timeout() -> void:
