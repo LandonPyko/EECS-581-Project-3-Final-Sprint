@@ -5,8 +5,8 @@
 [ext_resource type="Shape2D" uid="uid://6xdbfm0p43j8" path="res://assets/bullet_collision.tres" id="3_2skx8"]
 
 [node name="bullet" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 132
+collision_layer = 4
+collision_mask = 142
 script = ExtResource("1_xdceb")
 
 [node name="texture" type="Sprite2D" parent="."]

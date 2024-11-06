@@ -266,6 +266,7 @@ normal = Vector2(-1, 0)
 normal = Vector2(1, 0)
 
 [node name="background" type="Node2D"]
+scale = Vector2(1.55096, 1.4446)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(576, 323)
@@ -275,6 +276,31 @@ metadata/_edit_lock_ = true
 
 [node name="Level1" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_rspme")
+
+[node name="broken_wall" parent="Level1" instance=ExtResource("9_ld0tj")]
+position = Vector2(798, 358)
+
+[node name="hole" parent="Level1" instance=ExtResource("6_c8k5h")]
+position = Vector2(798, 485.692)
+
+[node name="Tank" parent="Level1" instance=ExtResource("2_qbigu")]
+my_color = Color(0.792689, 0.539469, 0.300663, 1)
+
+[node name="enemy" parent="Level1" groups=["Enemy"] instance=ExtResource("8_s6wob")]
+position = Vector2(269, 442)
+collision_mask = 204
+
+[node name="wall" parent="Level1" instance=ExtResource("5_5g6iw")]
+position = Vector2(209.547, 52.6098)
+scale = Vector2(0.3721, 0.4225)
+
+[node name="wall2" parent="Level1" instance=ExtResource("5_5g6iw")]
+position = Vector2(209.547, 94.1439)
+scale = Vector2(0.3721, 0.4225)
+
+[node name="wall3" parent="Level1" instance=ExtResource("5_5g6iw")]
+position = Vector2(209.547, 135.678)
+scale = Vector2(0.3721, 0.4225)
 
 [node name="Level2" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_8brc0")
@@ -306,19 +332,3 @@ collision_layer = 128
 [node name="collider" type="CollisionShape2D" parent="left_wall"]
 position = Vector2(-2, 299)
 shape = SubResource("WorldBoundaryShape2D_va5vj")
-
-[node name="wall" parent="." instance=ExtResource("5_5g6iw")]
-position = Vector2(798, 232)
-
-[node name="hole" parent="." instance=ExtResource("6_c8k5h")]
-position = Vector2(798, 485)
-
-[node name="Tank" parent="." instance=ExtResource("2_qbigu")]
-my_color = Color(0.792689, 0.539469, 0.300663, 1)
-
-[node name="enemy" parent="." instance=ExtResource("8_s6wob")]
-position = Vector2(269, 442)
-collision_mask = 204
-
-[node name="broken_wall" parent="." instance=ExtResource("9_ld0tj")]
-position = Vector2(798, 358)

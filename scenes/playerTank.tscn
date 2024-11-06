@@ -5,21 +5,23 @@
 [ext_resource type="Texture2D" uid="uid://cu6dqvkjbphha" path="res://assets/tankGun.png" id="3_uio1y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3dy1"]
-size = Vector2(95, 68)
+size = Vector2(65, 46)
 
 [node name="Tank" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(550, 232)
-collision_mask = 204
+collision_mask = 206
 script = ExtResource("1_5ejvn")
 
 [node name="tankBody" type="Sprite2D" parent="."]
+position = Vector2(14.5, 10.5)
+scale = Vector2(0.71, 0.7)
 texture = ExtResource("2_03woj")
 
 [node name="tankGun" type="Sprite2D" parent="."]
-position = Vector2(-2.38419e-07, 5.72205e-06)
+position = Vector2(15, 11)
 rotation = -1.5708
-scale = Vector2(1.27778, 1.27011)
+scale = Vector2(0.814815, 0.833329)
 texture = ExtResource("3_uio1y")
 offset = Vector2(0, 16.534)
 
@@ -27,6 +29,5 @@ offset = Vector2(0, 16.534)
 position = Vector2(-0.000195479, 54.326)
 
 [node name="tank_body_collision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-0.5, 0)
+position = Vector2(14.5, 11)
 shape = SubResource("RectangleShape2D_o3dy1")

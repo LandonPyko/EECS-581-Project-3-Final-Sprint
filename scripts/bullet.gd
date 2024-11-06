@@ -18,10 +18,16 @@ func _physics_process(delta):
 	##check for collision and do collision logic if one happend
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	if collision:
-		var reflect = collision.get_remainder().bounce(collision.get_normal())
-		velocity = velocity.bounce(collision.get_normal())
-		global_rotation = velocity.angle()
-		move_and_collide(reflect)
+		var collider = collision.get_collider()
+		if collider.is_in_group("Enemy"):
+			print("Hit a tank!")
+			collider.free()
+			free()	# If it hits a tank we free the bullet instance
+		else:
+			var reflect = collision.get_remainder().bounce(collision.get_normal())
+			velocity = velocity.bounce(collision.get_normal())
+			global_rotation = velocity.angle()
+			move_and_collide(reflect)
 		
 		# Implement Bullet Collison with other tanks here?
 		
