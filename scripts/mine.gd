@@ -14,7 +14,7 @@ func _ready():
 
 func _physics_process(_delta):
 	if dead: #if life_time is out, free the instance
-		free()
+		queue_free()
 
 func _on_life_time_timeout(): #when life_time timer expires
 	explode()

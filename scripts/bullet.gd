@@ -3,11 +3,15 @@ extends CharacterBody2D
 @export var speed          = 550 #speed of bullet
 @export var rotation_speed = 1.5 #not needed rn ##OPTION could do curving bullets?
 @export var parent = preload("res://scenes/playerTank.tscn"); #create a dummy instance for the bullet to pretend with
+@export var my_color : Color = Color.BROWN
 
 var rotation_direction = 0 #not needed rn ##OPTION could do curving bullets?
 var click_position 	   = Vector2() #not needed rn
 var target_position	   = Vector2() #not needed rn
 var dead := false #Check if timer has run out because can't do it when signalling.
+
+func _ready():
+	_changecolor(my_color)
 
 func _physics_process(delta):
 	##KILL the bullet if it needs to before doing opearations.
@@ -35,7 +39,8 @@ func _physics_process(delta):
 		velocity = Vector2(1, 0).rotated(global_rotation) * speed
 	
 
-
+func _changecolor(color):
+	modulate = color
 
 func _on_life_time_timeout(): #when life_time timer expires
 	if parent != null:

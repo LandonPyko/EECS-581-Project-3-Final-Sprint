@@ -67,6 +67,7 @@ func shoot():
 	bul.parent = self #set parent to this instance for refrence
 	get_tree().root.add_child(bul) #add to game tree at root #no reason not to for now
 	bul.set_collision_layer(8)
+	bul._changecolor(Color.DARK_SLATE_BLUE)
 	bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation bullshit because graphics are fucked fuck you andrew jk love you
 	bul.global_position = $tankGun/fire_loc.global_position #move to the fire loc so it pretend to fire from turret
 	#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else

@@ -12,6 +12,8 @@ modulate = Color(1, 0, 0, 1)
 collision_layer = 2
 script = ExtResource("1_bl4ox")
 
+[node name="nav_agent" type="NavigationAgent2D" parent="."]
+
 [node name="tankBody" type="Sprite2D" parent="."]
 scale = Vector2(0.71, 0.7)
 texture = ExtResource("1_alfbm")
@@ -30,8 +32,6 @@ shape = SubResource("RectangleShape2D_y5vn6")
 
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 5.0
-
-[node name="nav_agent" type="NavigationAgent2D" parent="."]
 
 [node name="shot_timer" type="Timer" parent="."]
 autostart = true
