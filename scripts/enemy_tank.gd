@@ -9,10 +9,12 @@ extends CharacterBody2D
 @onready var MINE = preload("res://scenes/mine.tscn")
 
 @onready var nav_agent : NavigationAgent2D = $nav_agent
+@onready var tankGun : Sprite2D = $tankGun
 @onready var move_timer : Timer = $MoveTimer
 @onready var shot_timer : Timer = $shot_timer
+@onready var vision : ShapeCast2D = $vision
 
-
+var tur_dir := 0.0
 enum DIFFICULTIES {EASY, MEDIUM, HARD}# Will retrieve the type from the menu button, then act accordingly
 var difficulty = "Easy" # For now we'll just set it to easy
 #var target_dest = Vector2.ZERO
@@ -46,9 +48,8 @@ func _physics_process(delta):
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()
 	
 	rotation = rotate_toward(rotation, global_position.direction_to(next_path_position).angle(), 4 * delta)
-
 	velocity = transform.x * Vector2(1,1) * speed
-
+	move_turret(delta)
 	move_and_slide()
 	# Keeps moving along the vector until timer runout
 
@@ -57,12 +58,23 @@ func _random_move():
 	target_pos.y = randi_range(0, 940)
 	nav_agent.target_position = target_pos
 	
-func move_turret():
-	$tankGun.global_rotation = randf_range(0,2*PI)
+func move_turret(delta):
+	if vision.is_colliding():
+		for i in range(0, vision.get_collision_count()):
+			var collider = vision.get_collider(i)
+			if collider != null:
+				var test : CharacterBody2D = CharacterBody2D.new()
+				test.collision_layer
+				if collider.collision_layer == 1:
+					var target = global_position.direction_to(collider.global_position).angle()-deg_to_rad(90)
+					tankGun.global_rotation = rotate_toward(tankGun.global_rotation, target, 2 * delta)
+	else:
+		tankGun.global_rotation = rotate_toward(tankGun.global_rotation, tur_dir, 1 * delta)
+
 
 func shoot():
 	#create bullet instance for bullet
-	
+	tur_dir = randf_range(0,deg_to_rad(360))
 	var bul := BULLET.instantiate()
 	bul.parent = self #set parent to this instance for refrence
 	get_tree().root.add_child(bul) #add to game tree at root #no reason not to for now
@@ -71,7 +83,6 @@ func shoot():
 	bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation bullshit because graphics are fucked fuck you andrew jk love you
 	bul.global_position = $tankGun/fire_loc.global_position #move to the fire loc so it pretend to fire from turret
 	#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else
-	move_turret()
 
 func _on_move_timer_timeout() -> void:
 	_random_move()  # Call random_move to set a new velocity

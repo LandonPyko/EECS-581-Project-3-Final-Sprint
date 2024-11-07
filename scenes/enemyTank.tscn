@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dacmxxndhic6b"]
+[gd_scene load_steps=6 format=3 uid="uid://dacmxxndhic6b"]
 
 [ext_resource type="Texture2D" uid="uid://diw83q4bmsulp" path="res://assets/tankBody.png" id="1_alfbm"]
 [ext_resource type="Script" path="res://scripts/enemy_tank.gd" id="1_bl4ox"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5vn6"]
 size = Vector2(61, 45)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3faic"]
+radius = 600.0
 
 [node name="enemy" type="CharacterBody2D"]
 modulate = Color(1, 0, 0, 1)
@@ -35,6 +38,11 @@ wait_time = 5.0
 
 [node name="shot_timer" type="Timer" parent="."]
 autostart = true
+
+[node name="vision" type="ShapeCast2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_3faic")
+target_position = Vector2(0, 0)
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="shot_timer" to="." method="_on_shot_timer_timeout"]
