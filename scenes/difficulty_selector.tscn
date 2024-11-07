@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://iten16or0ref"]
+
+[ext_resource type="Script" path="res://scripts/difficulty_selector.gd" id="1_twmfg"]
+
+[node name="difficulty_selector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_twmfg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 309.0
+offset_top = 246.0
+offset_right = 478.0
+offset_bottom = 304.0
+scale = Vector2(3.425, 3.425)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+text = "     Select Difficulty:"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="easy" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "easy"
+
+[node name="medium" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "medium"
+
+[node name="hard" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "hard"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/medium" to="." method="_on_medium_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/hard" to="." method="_on_hard_pressed"]

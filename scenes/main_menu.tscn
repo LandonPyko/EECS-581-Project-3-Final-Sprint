@@ -1,3 +1,41 @@
-[gd_scene format=3 uid="uid://cojkq0cgh54fr"]
+[gd_scene load_steps=2 format=3 uid="uid://cojkq0cgh54fr"]
 
-[node name="main_menu" type="Node2D"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_gx2gu"]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gx2gu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 207.0
+offset_top = 164.0
+offset_right = 555.0
+offset_bottom = 292.0
+scale = Vector2(2.095, 2.095)
+
+[node name="tanks" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+text = "                                 TANKS!!!"
+fit_content = true
+
+[node name="start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "START GAME"
+
+[node name="options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "OPTIONS"
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "QUIT"
+
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
