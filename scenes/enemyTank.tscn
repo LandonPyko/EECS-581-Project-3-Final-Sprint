@@ -8,7 +8,7 @@
 size = Vector2(61, 45)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3faic"]
-radius = 600.0
+radius = 1024.0
 
 [node name="enemy" type="CharacterBody2D"]
 modulate = Color(1, 0, 0, 1)

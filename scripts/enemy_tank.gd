@@ -10,6 +10,7 @@ extends CharacterBody2D
 
 @onready var nav_agent : NavigationAgent2D = $nav_agent
 @onready var tankGun : Sprite2D = $tankGun
+@onready var fire_loc : Node2D = $tankGun/fire_loc
 @onready var move_timer : Timer = $MoveTimer
 @onready var shot_timer : Timer = $shot_timer
 @onready var vision : ShapeCast2D = $vision
@@ -59,7 +60,7 @@ func _random_move():
 	nav_agent.target_position = target_pos
 	
 func move_turret(delta):
-	if vision.is_colliding():
+	if vision.is_colliding() and difficulty == "medium":
 		for i in range(0, vision.get_collision_count()):
 			var collider = vision.get_collider(i)
 			if collider != null:
@@ -68,6 +69,26 @@ func move_turret(delta):
 				if collider.collision_layer == 1:
 					var target = global_position.direction_to(collider.global_position).angle()-deg_to_rad(90)
 					tankGun.global_rotation = rotate_toward(tankGun.global_rotation, target, 2 * delta)
+	elif vision.is_colliding() and difficulty == "hard":
+		for i in range(0, vision.get_collision_count()):
+			var collider = vision.get_collider(i)
+			if collider != null:
+				var test : CharacterBody2D = CharacterBody2D.new()
+				test.collision_layer
+				if collider.collision_layer == 1: # is a player
+					#first we get position of player
+					var player_pos = collider.global_position
+					#then velocity?
+					var player_velocity = collider.velocity
+					#then distance to player
+					var square = pow((player_pos.x - fire_loc.global_position.x), 2)
+					var distance = sqrt(pow((player_pos.x - fire_loc.global_position.x), 2)+pow((player_pos.y - fire_loc.global_position.y), 2))
+					#given those, add velocity times delta to the postion? maybe distance to player to consider timing?
+					
+					var predicted_pos = player_pos + (player_velocity*(delta*9)) 
+					print("Distance to is: ", distance)
+					var target_rotation = global_position.direction_to(predicted_pos).angle()-deg_to_rad(90)
+					tankGun.global_rotation = rotate_toward(tankGun.global_rotation, target_rotation, 3 * delta)
 	else:
 		tankGun.global_rotation = rotate_toward(tankGun.global_rotation, tur_dir, 1 * delta)
 
