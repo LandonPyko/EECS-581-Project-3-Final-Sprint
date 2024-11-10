@@ -46,3 +46,6 @@ func _on_life_time_timeout(): #when life_time timer expires
 	if parent != null:
 		parent.dec_bullets()
 	dead = true #Tell the bullet it's dead.
+
+func bullet():#dummy func to determine if bullet
+	pass

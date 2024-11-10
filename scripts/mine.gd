@@ -12,6 +12,8 @@ var dead := false #Check if timer has run out because can't do it when signallin
 func _ready():
 	$life_time.wait_time = explodeTimer
 
+
+
 func _physics_process(_delta):
 	if dead: #if life_time is out, free the instance
 		queue_free()
@@ -30,3 +32,7 @@ func explode():
 
 func _on_arming_timeout():
 	$hitbox.disabled = false
+
+
+func mine(): #dummy function to detect mines. Cant think of a better way rn
+	pass
