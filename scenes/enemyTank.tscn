@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dacmxxndhic6b"]
+[gd_scene load_steps=7 format=3 uid="uid://dacmxxndhic6b"]
 
 [ext_resource type="Texture2D" uid="uid://diw83q4bmsulp" path="res://assets/tankBody.png" id="1_alfbm"]
 [ext_resource type="Script" path="res://scripts/enemy_tank.gd" id="1_bl4ox"]
@@ -10,9 +10,14 @@ size = Vector2(61, 45)
 [sub_resource type="CircleShape2D" id="CircleShape2D_3faic"]
 radius = 1024.0
 
+[sub_resource type="SphereMesh" id="SphereMesh_2k70l"]
+radius = 10.0
+height = 20.0
+
 [node name="enemy" type="CharacterBody2D"]
 modulate = Color(1, 0, 0, 1)
-collision_layer = 2
+collision_layer = 4
+collision_mask = 225
 script = ExtResource("1_bl4ox")
 
 [node name="nav_agent" type="NavigationAgent2D" parent="."]
@@ -43,6 +48,10 @@ autostart = true
 visible = false
 shape = SubResource("CircleShape2D_3faic")
 target_position = Vector2(0, 0)
+
+[node name="dummy" type="MeshInstance2D" parent="."]
+top_level = true
+mesh = SubResource("SphereMesh_2k70l")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="shot_timer" to="." method="_on_shot_timer_timeout"]

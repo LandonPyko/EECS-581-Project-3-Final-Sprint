@@ -17,7 +17,7 @@ extends CharacterBody2D
 
 var tur_dir := 0.0
 enum DIFFICULTIES {EASY, MEDIUM, HARD}# Will retrieve the type from the menu button, then act accordingly
-var difficulty = "Easy" # For now we'll just set it to easy
+var difficulty = "hard" # For now we'll just set it to easy
 #var target_dest = Vector2.ZERO
 # We can change this to set it to whatever the player chooses it as
 # Then we can have different movement logic based on that
@@ -42,8 +42,11 @@ func actor_setup():
 	nav_agent.target_position = target_pos
 
 func _physics_process(delta):
-	if nav_agent.is_navigation_finished():
+	if nav_agent.is_navigation_finished() and difficulty != "hard":
 		_random_move()
+		move_timer.start()
+	else:
+		hard_move()
 		move_timer.start()
 	var _current_position: Vector2 = global_position
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()
@@ -58,6 +61,26 @@ func _random_move():
 	target_pos.x = randi_range(0, 1800)
 	target_pos.y = randi_range(0, 940)
 	nav_agent.target_position = target_pos
+	
+func hard_move():
+	#okay so first we need to path towards player. but not all the way
+	#I'd like to make a circle around the player that the tank tries to pathfind onto
+	#First we get position of player I guess
+	#Need to check for player, collider things
+		##TODO probably make the collider logic its own function that returns the player collider or null
+	if vision.is_colliding():
+		for i in range(0, vision.get_collision_count()): #get colliders
+			var collider = vision.get_collider(i) #call collider
+			if collider != null: #if its a thing
+				if collider.collision_layer == 1:#players are on layer 1. Maybe decide a better way to check this
+					var temp_pos = collider.global_position #this is where the player is
+					target_pos = temp_pos - Vector2(1,0).rotated((temp_pos - global_position).angle()) * 150
+					nav_agent.target_position = target_pos
+					$dummy.global_position = target_pos
+	else:
+		_random_move()
+	
+	
 	
 func move_turret(delta):
 	if vision.is_colliding() and difficulty == "medium":
@@ -88,7 +111,7 @@ func move_turret(delta):
 					var predicted_pos = player_pos + (player_velocity*(delta*9)) 
 					print("Distance to is: ", distance)
 					var target_rotation = global_position.direction_to(predicted_pos).angle()-deg_to_rad(90)
-					tankGun.global_rotation = rotate_toward(tankGun.global_rotation, target_rotation, 3 * delta)
+					tankGun.global_rotation = rotate_toward(tankGun.global_rotation, target_rotation, 10 * delta)
 	else:
 		tankGun.global_rotation = rotate_toward(tankGun.global_rotation, tur_dir, 1 * delta)
 
