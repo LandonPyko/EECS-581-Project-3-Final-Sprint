@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=4 uid="uid://yntndw377gt"]
 
-[ext_resource type="Texture2D" uid="uid://cji81mja43g8w" path="res://assets/background.png" id="1_d3i0p"]
+[ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="1_d3i0p"]
 [ext_resource type="PackedScene" uid="uid://dj43p1a8ypeu7" path="res://scenes/playerTank.tscn" id="2_qbigu"]
 [ext_resource type="Texture2D" uid="uid://ekx2vpnc6cl0" path="res://assets/crackedWall.png" id="3_mvd3e"]
-[ext_resource type="Texture2D" uid="uid://530reiticayj" path="res://assets/hole.png" id="4_lmyey"]
+[ext_resource type="Texture2D" uid="uid://kcrgpckktfka" path="res://assets/hole.png" id="4_lmyey"]
 [ext_resource type="PackedScene" uid="uid://bj8dje0p13rkd" path="res://scenes/wall.tscn" id="5_5g6iw"]
 [ext_resource type="Texture2D" uid="uid://ip4ro4io80ar" path="res://assets/wall.png" id="5_gim2s"]
 [ext_resource type="PackedScene" uid="uid://bibx23kj623up" path="res://scenes/hole.tscn" id="6_c8k5h"]
