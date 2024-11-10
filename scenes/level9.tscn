@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://btshvo0o2acre"]
+[gd_scene load_steps=16 format=4 uid="uid://btshvo0o2acre"]
 
 [ext_resource type="Script" path="res://scripts/stage.gd" id="1_qbaqp"]
 [ext_resource type="Texture2D" uid="uid://cji81mja43g8w" path="res://assets/background.png" id="2_7qpqd"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bibx23kj623up" path="res://scenes/hole.tscn" id="5_ro41p"]
 [ext_resource type="PackedScene" uid="uid://dj43p1a8ypeu7" path="res://scenes/playerTank.tscn" id="6_uks4p"]
 [ext_resource type="PackedScene" uid="uid://dacmxxndhic6b" path="res://scenes/enemyTank.tscn" id="7_hgeb3"]
+[ext_resource type="Script" path="res://scripts/score.gd" id="8_6doqu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kelan"]
 normal = Vector2(0, 1)
@@ -108,3 +109,14 @@ collision_mask = 129
 position = Vector2(1032, 408)
 rotation = 14.1372
 collision_mask = 129
+
+[node name="Score" type="Label" parent="."]
+offset_left = 795.0
+offset_top = 23.0
+offset_right = 975.0
+offset_bottom = 121.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.400698, 0.400698, 0.400698, 1)
+theme_override_colors/font_outline_color = Color(0.396889, 0.396889, 0.396889, 1)
+theme_override_font_sizes/font_size = 32
+script = ExtResource("8_6doqu")

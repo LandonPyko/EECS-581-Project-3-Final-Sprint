@@ -25,6 +25,8 @@ func _physics_process(delta):
 		var collider = collision.get_collider()
 		if collider.is_in_group("Enemy") and collision_layer == 2:
 			print("Hit a tank!")
+			Global.temp_score += 1 # Increment score
+			# print(Global.temp_score)
 			collider.free()
 			free()	# If it hits a tank we free the bullet instance
 		else:
