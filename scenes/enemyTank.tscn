@@ -52,6 +52,7 @@ margin = 10.0
 collision_mask = 3
 
 [node name="dummy" type="MeshInstance2D" parent="."]
+visible = false
 top_level = true
 mesh = SubResource("SphereMesh_2k70l")
 

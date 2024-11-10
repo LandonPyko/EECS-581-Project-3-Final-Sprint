@@ -15,19 +15,21 @@ extends CharacterBody2D
 @onready var shot_timer : Timer = $shot_timer
 @onready var vision : ShapeCast2D = $vision
 
+
+const MINE_SAFE_DIST = 400 #change how far to run from mines
+const BUL_SAFE_DIST = 75 #change how far to run from bullets
 var tur_dir := 0.0
 enum DIFFICULTIES {EASY, MEDIUM, HARD}# Will retrieve the type from the menu button, then act accordingly
 var difficulty = "hard" # For now we'll just set it to easy
 
-var danger := false #used for hard movement to choose if dodging or tracking player
-var danger_dist = 0.0
+var dangers= []
 #var target_dest = Vector2.ZERO
 # We can change this to set it to whatever the player chooses it as
 # Then we can have different movement logic based on that
 
 
 var speed = 150  # Set your speed constant
-var target_pos : Vector2 = Vector2.ZERO
+var target_pos : Vector2 = Vector2(900,400)
 
 func _ready():
 	# These values need to be adjusted for the actor's speed
@@ -36,7 +38,6 @@ func _ready():
 	nav_agent.target_desired_distance = 4.0
 	# Make sure to not await during _ready.
 	actor_setup.call_deferred()
-	_random_move()
 
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -55,7 +56,7 @@ func _physics_process(delta):
 	var _current_position: Vector2 = global_position
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()
 	
-	rotation = rotate_toward(rotation, global_position.direction_to(next_path_position).angle(), 4 * delta)
+	rotation = rotate_toward(rotation, global_position.direction_to(next_path_position).angle(), 10 * delta)
 	velocity = transform.x * Vector2(1,1) * speed
 	move_turret(delta)
 	move_and_slide()
@@ -67,16 +68,7 @@ func _random_move():
 	nav_agent.target_position = target_pos
 	
 func hard_move():
-	#okay so first we need to path towards player. but not all the way
-	#I'd like to make a circle around the player that the tank tries to pathfind onto
-	#First we get position of player I guess
-	#Need to check for player, collider things
 		##TODO probably make the collider logic its own function that returns the player collider or null
-	#okay so now we need to check for mines and bullets and dodge them
-	#radius of explision: 259 pixels
-	#radius of bullet: idk like 30
-	#first we check if a mine exists in vision.
-	#maybe make a list of colliders
 	vision.force_shapecast_update()
 	if vision.is_colliding():
 		for i in range(0, vision.get_collision_count()): #get colliders
@@ -84,32 +76,63 @@ func hard_move():
 			if collider != null: #if its a thing
 				if collider.collision_layer == 2: #its a bullet or a mine
 					if collider.has_method("mine"): #this detects minesw
-						#now we get a radius around the mine and detect if we are in it?
-						#take posisitons, find distanceto, if less than 259
-						#run away in the ray direction
 						var temp_pos = collider.global_position #this is where the mine is
 						var distance = global_position.distance_to(temp_pos)
 						var other_distance = target_pos.distance_to(temp_pos)
-						if distance < 300 or other_distance < 300: #if too close
-							if other_distance > distance:
-								danger_dist = other_distance
-							else:
-								danger_dist = distance
-							#get angle from mine to me, This will be fastest path away
-							#reusuing code for player
-							target_pos = temp_pos - Vector2(1,0).rotated((temp_pos - global_position).angle()) * 350
+						var pass_check = true
+						for j in range(dangers.size()):
+							if dangers[j][0] == collider:
+								pass_check = false
+						if pass_check:
+							dangers.append([collider,distance,"mine"])
+						if distance < MINE_SAFE_DIST or other_distance < MINE_SAFE_DIST: #if too close
+							target_pos = temp_pos - Vector2(1,0).rotated((temp_pos - global_position).angle()) * MINE_SAFE_DIST
+							nav_agent.target_position = target_pos
+							$dummy.global_position = target_pos
+							return
+					elif collider.has_method("bullet"):
+						var bul_pos = collider.global_position #this is where the bullet is
+						#point in the direction of the bullet
+						var bul_future = bul_pos + collider.velocity
+						var point = Geometry2D.get_closest_point_to_segment_uncapped(global_position, bul_pos, bul_future)
+						
+						var distance = global_position.distance_to(point)
+						var other_distance = target_pos.distance_to(point)
+						var pass_check = true
+						for j in range(dangers.size()):
+							if dangers[j][0] == collider:
+								pass_check = false
+						if pass_check:
+							dangers.append([collider,distance,"bullet"])
+						if distance < BUL_SAFE_DIST or other_distance < BUL_SAFE_DIST: #if too close
+							target_pos = point - Vector2(1,0).rotated((point - global_position).angle()) * BUL_SAFE_DIST
 							nav_agent.target_position = target_pos
 							$dummy.global_position = target_pos
 							return
 						
-					pass
 				if collider.collision_layer == 1:#players are on layer 1. Maybe decide a better way to check this
 					var temp_pos = collider.global_position #this is where the player is
 					target_pos = temp_pos - Vector2(1,0).rotated((temp_pos - global_position).angle()) * 150
+					update_dangers()
+					for danger in dangers:
+						if danger[2] == "mine" and danger[1] < MINE_SAFE_DIST:
+							target_pos = danger[0].global_position - Vector2(1,0).rotated((danger[0].global_position - global_position).angle()) * MINE_SAFE_DIST
+						elif danger[2] == "bullet" and danger[1] < BUL_SAFE_DIST:
+							update_dangers()
+							var bul_future = danger[0].global_position + danger[0].velocity
+							var point = Geometry2D.get_closest_point_to_segment_uncapped(global_position, danger[0].global_position, bul_future)
+							target_pos = point - Vector2(1,0).rotated((point - global_position).angle()) * BUL_SAFE_DIST
 					nav_agent.target_position = target_pos
 					$dummy.global_position = target_pos
-	
-	
+
+func update_dangers():
+	for i in range(dangers.size()):
+		if i > dangers.size()-1:
+			return
+		if dangers[i][0] == null:
+			dangers.remove_at(i)
+		else:
+			dangers[i][1] = global_position.distance_to(dangers[i][0].global_position)
 	
 	
 	
@@ -119,8 +142,6 @@ func move_turret(delta):
 		for i in range(0, vision.get_collision_count()):
 			var collider = vision.get_collider(i)
 			if collider != null:
-				var test : CharacterBody2D = CharacterBody2D.new()
-				test.collision_layer
 				if collider.collision_layer == 1:
 					var target = global_position.direction_to(collider.global_position).angle()-deg_to_rad(90)
 					tankGun.global_rotation = rotate_toward(tankGun.global_rotation, target, 2 * delta)
@@ -128,8 +149,6 @@ func move_turret(delta):
 		for i in range(0, vision.get_collision_count()):
 			var collider = vision.get_collider(i)
 			if collider != null:
-				var test : CharacterBody2D = CharacterBody2D.new()
-				test.collision_layer
 				if collider.collision_layer == 1: # is a player
 					#first we get position of player
 					var player_pos = collider.global_position
