@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cu6dqvkjbphha" path="res://assets/tankGun.png" id="2_ckxeu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5vn6"]
-size = Vector2(61, 45)
+size = Vector2(50.5, 36.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3faic"]
 radius = 1024.0

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cu6dqvkjbphha" path="res://assets/tankGun.png" id="3_uio1y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3dy1"]
-size = Vector2(65, 46)
+size = Vector2(54, 36)
 
 [node name="Tank" type="CharacterBody2D"]
 z_index = 1
@@ -26,4 +26,5 @@ offset = Vector2(0, 16.534)
 position = Vector2(0, 80)
 
 [node name="tank_body_collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_o3dy1")
