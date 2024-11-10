@@ -1,0 +1,110 @@
+[gd_scene load_steps=15 format=4 uid="uid://kcv7k46ek4tf"]
+
+[ext_resource type="Script" path="res://scripts/stage.gd" id="1_3w6xp"]
+[ext_resource type="Texture2D" uid="uid://cji81mja43g8w" path="res://assets/background.png" id="2_mpnxw"]
+[ext_resource type="PackedScene" uid="uid://gt7v2wyfvhcn" path="res://scenes/broken_wall.tscn" id="3_j03b7"]
+[ext_resource type="PackedScene" uid="uid://bj8dje0p13rkd" path="res://scenes/wall.tscn" id="4_hngdy"]
+[ext_resource type="PackedScene" uid="uid://bibx23kj623up" path="res://scenes/hole.tscn" id="5_7nckp"]
+[ext_resource type="PackedScene" uid="uid://dj43p1a8ypeu7" path="res://scenes/playerTank.tscn" id="6_pgc3e"]
+[ext_resource type="PackedScene" uid="uid://dacmxxndhic6b" path="res://scenes/enemyTank.tscn" id="7_m2v4i"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kelan"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3dor5"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3leyg"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_va5vj"]
+normal = Vector2(1, 0)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ub6d7"]
+vertices = PackedVector2Array(202, 278, 202, 206.023, 1572, 209.969, 778, 278, 1572, 374, 998, 374, 778, 346, 1572, 682, 1572, 754.992, 202, 754, 998, 682, 202, 586, 778, 586, 998, 614, 998, 442, 1572, 442, 1572, 614, 778, 518, 202, 518, 202, 346)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5, 6), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(10, 9, 11, 12, 13), PackedInt32Array(14, 15, 16, 13, 12, 17), PackedInt32Array(14, 17, 18, 19, 6, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(192, 196, 192, 764, 1582, 765, 1582, 200)])
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_sflq1"]
+scenes/1/scene = ExtResource("3_j03b7")
+scenes/2/scene = ExtResource("4_hngdy")
+scenes/3/scene = ExtResource("5_7nckp")
+
+[sub_resource type="TileSet" id="TileSet_rspme"]
+tile_size = Vector2i(48, 48)
+sources/3 = SubResource("TileSetScenesCollectionSource_sflq1")
+
+[node name="background" type="Node2D"]
+script = ExtResource("1_3w6xp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(900, 470)
+scale = Vector2(18, 13.429)
+texture = ExtResource("2_mpnxw")
+metadata/_edit_lock_ = true
+
+[node name="top_wall" type="StaticBody2D" parent="Sprite2D"]
+position = Vector2(-50, -35)
+scale = Vector2(0.0868056, 0.108359)
+collision_layer = 128
+
+[node name="collider" type="CollisionShape2D" parent="Sprite2D/top_wall"]
+position = Vector2(572, 130.581)
+shape = SubResource("WorldBoundaryShape2D_kelan")
+
+[node name="right_wall" type="StaticBody2D" parent="Sprite2D"]
+position = Vector2(-50, -35)
+scale = Vector2(0.0868056, 0.108359)
+collision_layer = 128
+
+[node name="collider" type="CollisionShape2D" parent="Sprite2D/right_wall"]
+position = Vector2(1012.48, 323)
+shape = SubResource("WorldBoundaryShape2D_3dor5")
+
+[node name="bottom_wall" type="StaticBody2D" parent="Sprite2D"]
+position = Vector2(-50, -35)
+scale = Vector2(0.0868056, 0.108359)
+collision_layer = 128
+
+[node name="collider" type="CollisionShape2D" parent="Sprite2D/bottom_wall"]
+position = Vector2(572, 523.667)
+shape = SubResource("WorldBoundaryShape2D_3leyg")
+
+[node name="left_wall" type="StaticBody2D" parent="Sprite2D"]
+position = Vector2(-50, -35)
+scale = Vector2(0.0868056, 0.108359)
+collision_layer = 128
+
+[node name="collider" type="CollisionShape2D" parent="Sprite2D/left_wall"]
+position = Vector2(124.16, 299)
+shape = SubResource("WorldBoundaryShape2D_va5vj")
+
+[node name="nav_map2" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_ub6d7")
+
+[node name="tilemaplayer" type="TileMapLayer" parent="nav_map2"]
+tile_map_data = PackedByteArray("AAADAAMAAwAAAAAAAgADAAQAAwAAAAAAAgADAAUAAwAAAAAAAgADAAYAAwAAAAAAAgADAAgAAwAAAAAAAgADAAkAAwAAAAAAAgADAAoAAwAAAAAAAgADAAsAAwAAAAAAAgADAAwAAwAAAAAAAgADAA0AAwAAAAAAAgADAA4AAwAAAAAAAgADAA8AAwAAAAAAAgADABAAAwAAAAAAAgAEABAAAwAAAAAAAgAFABAAAwAAAAAAAgAGABAAAwAAAAAAAgAHABAAAwAAAAAAAgAIABAAAwAAAAAAAgAJABAAAwAAAAAAAgAKABAAAwAAAAAAAgALABAAAwAAAAAAAgAMABAAAwAAAAAAAgANABAAAwAAAAAAAgAOABAAAwAAAAAAAgAPABAAAwAAAAAAAgAQABAAAwAAAAAAAgARABAAAwAAAAAAAgASABAAAwAAAAAAAgATABAAAwAAAAAAAgAUABAAAwAAAAAAAgAVABAAAwAAAAAAAgAWABAAAwAAAAAAAgAXABAAAwAAAAAAAgAYABAAAwAAAAAAAgAZABAAAwAAAAAAAgAaABAAAwAAAAAAAgAbABAAAwAAAAAAAgAcABAAAwAAAAAAAgAdABAAAwAAAAAAAgAeABAAAwAAAAAAAgAfABAAAwAAAAAAAgAgABAAAwAAAAAAAgAhABAAAwAAAAAAAgAhAA8AAwAAAAAAAgAhAA4AAwAAAAAAAgAhAA0AAwAAAAAAAgAhAAwAAwAAAAAAAgAhAAsAAwAAAAAAAgAhAAoAAwAAAAAAAgAhAAkAAwAAAAAAAgAhAAgAAwAAAAAAAgAhAAcAAwAAAAAAAgAhAAYAAwAAAAAAAgAhAAUAAwAAAAAAAgAhAAQAAwAAAAAAAgAhAAMAAwAAAAAAAgAgAAMAAwAAAAAAAgAfAAMAAwAAAAAAAgAeAAMAAwAAAAAAAgAdAAMAAwAAAAAAAgAcAAMAAwAAAAAAAgAbAAMAAwAAAAAAAgAaAAMAAwAAAAAAAgAZAAMAAwAAAAAAAgAYAAMAAwAAAAAAAgAXAAMAAwAAAAAAAgAWAAMAAwAAAAAAAgAVAAMAAwAAAAAAAgAUAAMAAwAAAAAAAgATAAMAAwAAAAAAAgASAAMAAwAAAAAAAgARAAMAAwAAAAAAAgAQAAMAAwAAAAAAAgAPAAMAAwAAAAAAAgAOAAMAAwAAAAAAAgANAAMAAwAAAAAAAgAMAAMAAwAAAAAAAgALAAMAAwAAAAAAAgAKAAMAAwAAAAAAAgAJAAMAAwAAAAAAAgAIAAMAAwAAAAAAAgAHAAMAAwAAAAAAAgAGAAMAAwAAAAAAAgAFAAMAAwAAAAAAAgAEAAMAAwAAAAAAAgADAAcAAwAAAAAAAgAXAAgAAwAAAAAAAgAYAAgAAwAAAAAAAgAZAAgAAwAAAAAAAgAaAAgAAwAAAAAAAgAbAAgAAwAAAAAAAgAeAAgAAwAAAAAAAgAfAAgAAwAAAAAAAgAgAAgAAwAAAAAAAgAXAA0AAwAAAAAAAgAYAA0AAwAAAAAAAgAZAA0AAwAAAAAAAgAaAA0AAwAAAAAAAgAbAA0AAwAAAAAAAgAeAA0AAwAAAAAAAgAfAA0AAwAAAAAAAgAgAA0AAwAAAAAAAgAEAAYAAwAAAAAAAgAFAAYAAwAAAAAAAgAGAAYAAwAAAAAAAgAJAAYAAwAAAAAAAgAKAAYAAwAAAAAAAgALAAYAAwAAAAAAAgAMAAYAAwAAAAAAAgANAAYAAwAAAAAAAgAEAAsAAwAAAAAAAgAFAAsAAwAAAAAAAgAGAAsAAwAAAAAAAgAJAAsAAwAAAAAAAgAKAAsAAwAAAAAAAgALAAsAAwAAAAAAAgAMAAsAAwAAAAAAAgANAAsAAwAAAAAAAgAOAAYAAwAAAAAAAgAPAAYAAwAAAAAAAgAOAAsAAwAAAAAAAgAPAAsAAwAAAAAAAgAWAAgAAwAAAAAAAgAVAAgAAwAAAAAAAgAWAA0AAwAAAAAAAgAVAA0AAwAAAAAAAgAIAAsAAwAAAAAAAQAHAAsAAwAAAAAAAQAIAAYAAwAAAAAAAQAHAAYAAwAAAAAAAQAdAAgAAwAAAAAAAQAcAAgAAwAAAAAAAQAdAA0AAwAAAAAAAQAcAA0AAwAAAAAAAQA=")
+tile_set = SubResource("TileSet_rspme")
+
+[node name="Tank" parent="nav_map2/tilemaplayer" groups=["Player"] instance=ExtResource("6_pgc3e")]
+position = Vector2(287, 682)
+my_color = Color(0.292088, 0.628154, 0.906236, 1)
+
+[node name="enemy" parent="nav_map2/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_m2v4i")]
+position = Vector2(286, 244)
+rotation = 6.28319
+collision_mask = 129
+
+[node name="enemy2" parent="nav_map2/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_m2v4i")]
+position = Vector2(1454, 281)
+rotation = 9.42478
+collision_mask = 129
+
+[node name="enemy3" parent="nav_map2/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_m2v4i")]
+position = Vector2(1491, 723)
+rotation = 10.9956
+collision_mask = 129
+
+[node name="enemy4" parent="nav_map2/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_m2v4i")]
+position = Vector2(285, 450)
+rotation = 12.5664
+collision_mask = 129
