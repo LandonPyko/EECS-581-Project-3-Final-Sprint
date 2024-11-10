@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://csxcnafmcnc8j"]
+[gd_scene load_steps=3 format=3 uid="uid://csxcnafmcnc8j"]
 
 [ext_resource type="Script" path="res://scripts/roundwin.gd" id="1_o7bkb"]
+[ext_resource type="Script" path="res://scripts/round_end_score.gd" id="2_dqdaq"]
 
 [node name="RoundWin" type="Control"]
 layout_mode = 3
@@ -23,6 +24,11 @@ scale = Vector2(2.095, 2.095)
 layout_mode = 2
 text = "                         Round Completed!"
 fit_content = true
+
+[node name="Score" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+script = ExtResource("2_dqdaq")
 
 [node name="start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
