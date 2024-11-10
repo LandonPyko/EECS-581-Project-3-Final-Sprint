@@ -160,6 +160,7 @@ sources/1 = SubResource("TileSetAtlasSource_r2r75")
 sources/2 = SubResource("TileSetAtlasSource_yi5e7")
 
 [node name="background" type="Node2D"]
+z_index = -1
 script = ExtResource("1_au2dv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -18,6 +18,9 @@ extends CharacterBody2D
 var tur_dir := 0.0
 enum DIFFICULTIES {EASY, MEDIUM, HARD}# Will retrieve the type from the menu button, then act accordingly
 var difficulty = "hard" # For now we'll just set it to easy
+
+var danger := false #used for hard movement to choose if dodging or tracking player
+var danger_dist = 0.0
 #var target_dest = Vector2.ZERO
 # We can change this to set it to whatever the player chooses it as
 # Then we can have different movement logic based on that
@@ -33,6 +36,7 @@ func _ready():
 	nav_agent.target_desired_distance = 4.0
 	# Make sure to not await during _ready.
 	actor_setup.call_deferred()
+	_random_move()
 
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -68,21 +72,49 @@ func hard_move():
 	#First we get position of player I guess
 	#Need to check for player, collider things
 		##TODO probably make the collider logic its own function that returns the player collider or null
+	#okay so now we need to check for mines and bullets and dodge them
+	#radius of explision: 259 pixels
+	#radius of bullet: idk like 30
+	#first we check if a mine exists in vision.
+	#maybe make a list of colliders
+	vision.force_shapecast_update()
 	if vision.is_colliding():
 		for i in range(0, vision.get_collision_count()): #get colliders
 			var collider = vision.get_collider(i) #call collider
 			if collider != null: #if its a thing
+				if collider.collision_layer == 2: #its a bullet or a mine
+					if collider.has_method("mine"): #this detects minesw
+						#now we get a radius around the mine and detect if we are in it?
+						#take posisitons, find distanceto, if less than 259
+						#run away in the ray direction
+						var temp_pos = collider.global_position #this is where the mine is
+						var distance = global_position.distance_to(temp_pos)
+						var other_distance = target_pos.distance_to(temp_pos)
+						if distance < 300 or other_distance < 300: #if too close
+							if other_distance > distance:
+								danger_dist = other_distance
+							else:
+								danger_dist = distance
+							#get angle from mine to me, This will be fastest path away
+							#reusuing code for player
+							target_pos = temp_pos - Vector2(1,0).rotated((temp_pos - global_position).angle()) * 350
+							nav_agent.target_position = target_pos
+							$dummy.global_position = target_pos
+							return
+						
+					pass
 				if collider.collision_layer == 1:#players are on layer 1. Maybe decide a better way to check this
 					var temp_pos = collider.global_position #this is where the player is
 					target_pos = temp_pos - Vector2(1,0).rotated((temp_pos - global_position).angle()) * 150
 					nav_agent.target_position = target_pos
 					$dummy.global_position = target_pos
-	else:
-		_random_move()
+	
+	
 	
 	
 	
 func move_turret(delta):
+	vision.force_shapecast_update()
 	if vision.is_colliding() and difficulty == "medium":
 		for i in range(0, vision.get_collision_count()):
 			var collider = vision.get_collider(i)
@@ -109,7 +141,7 @@ func move_turret(delta):
 					#given those, add velocity times delta to the postion? maybe distance to player to consider timing?
 					
 					var predicted_pos = player_pos + (player_velocity*(delta*9)) 
-					print("Distance to is: ", distance)
+					#print("Distance to is: ", distance)
 					var target_rotation = global_position.direction_to(predicted_pos).angle()-deg_to_rad(90)
 					tankGun.global_rotation = rotate_toward(tankGun.global_rotation, target_rotation, 10 * delta)
 	else:
