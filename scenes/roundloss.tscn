@@ -40,7 +40,7 @@ text = "OPTIONS"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "QUIT"
+text = "MENU"
 
 [connection signal="pressed" from="VBoxContainer/retry" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/options" to="." method="_on_options_pressed"]

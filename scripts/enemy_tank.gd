@@ -27,7 +27,7 @@ const MINE_SAFE_DIST = 400 #change how far to run from mines
 const BUL_SAFE_DIST = 75 #change how far to run from bullets
 var tur_dir := 0.0
 enum DIFFICULTIES {EASY, MEDIUM, HARD}# Will retrieve the type from the menu button, then act accordingly
-var difficulty = "hard" # For now we'll just set it to easy
+#var difficulty = "hard" # For now we'll just set it to easy
 
 var dangers= []
 #var target_dest = Vector2.ZERO
@@ -55,7 +55,7 @@ func actor_setup():
 	nav_agent.target_position = target_pos
 
 func _physics_process(delta):
-	if nav_agent.is_navigation_finished() and difficulty != "hard":
+	if nav_agent.is_navigation_finished() and Global.difficulty != "hard":
 		_random_move()
 		move_timer.start()
 	else:
@@ -146,14 +146,14 @@ func update_dangers():
 	
 func move_turret(delta):
 	vision.force_shapecast_update()
-	if vision.is_colliding() and difficulty == "medium":
+	if vision.is_colliding() and Global.difficulty == "medium":
 		for i in range(0, vision.get_collision_count()):
 			var collider = vision.get_collider(i)
 			if collider != null:
 				if collider.collision_layer == 1:
 					var target = global_position.direction_to(collider.global_position).angle()-deg_to_rad(90)
 					tankGun.global_rotation = rotate_toward(tankGun.global_rotation, target, 2 * delta)
-	elif vision.is_colliding() and difficulty == "hard":
+	elif vision.is_colliding() and Global.difficulty == "hard":
 		for i in range(0, vision.get_collision_count()):
 			var collider = vision.get_collider(i)
 			if collider != null:

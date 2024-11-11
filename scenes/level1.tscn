@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://xl5nxfic5vm6"]
+[gd_scene load_steps=16 format=4 uid="uid://dsqcl325ypwrn"]
 
 [ext_resource type="Script" path="res://scripts/stage.gd" id="1_n8rs1"]
 [ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_tlbx2"]
@@ -34,7 +34,7 @@ scenes/3/scene = ExtResource("5_ecx2l")
 tile_size = Vector2i(48, 48)
 sources/3 = SubResource("TileSetScenesCollectionSource_fvtnm")
 
-[node name="background" type="Node2D"]
+[node name="background3" type="Node2D"]
 script = ExtResource("1_n8rs1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
