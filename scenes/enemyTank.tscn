@@ -44,6 +44,9 @@ wait_time = 5.0
 [node name="shot_timer" type="Timer" parent="."]
 autostart = true
 
+[node name="mine_timer" type="Timer" parent="."]
+autostart = true
+
 [node name="vision" type="ShapeCast2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_3faic")
@@ -58,3 +61,4 @@ mesh = SubResource("SphereMesh_2k70l")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="shot_timer" to="." method="_on_shot_timer_timeout"]
+[connection signal="timeout" from="mine_timer" to="." method="_on_mine_timer_timeout"]

@@ -15,6 +15,13 @@ extends CharacterBody2D
 @onready var shot_timer : Timer = $shot_timer
 @onready var vision : ShapeCast2D = $vision
 
+var my_color : Color = Color.RED
+
+var type = "pink" #define type of enemy tank
+#add support for yellow,pink, and oragne
+##Yellow needs to place mines instead of bullets
+##pink needs to reduce shot_timer and not add randomness
+##orange needs to place mines and shoot bullets
 
 const MINE_SAFE_DIST = 400 #change how far to run from mines
 const BUL_SAFE_DIST = 75 #change how far to run from bullets
@@ -32,6 +39,7 @@ var speed = 150  # Set your speed constant
 var target_pos : Vector2 = Vector2(900,400)
 
 func _ready():
+	change_type(type)
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
 	nav_agent.path_desired_distance = 4.0
@@ -179,12 +187,46 @@ func shoot():
 	bul.global_position = $tankGun/fire_loc.global_position #move to the fire loc so it pretend to fire from turret
 	#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else
 
+func mine():
+	var mine = MINE.instantiate()
+	mine.parent = self #set parent to this instance for refrence
+	get_tree().root.add_child(mine) #add to game tree at root
+	mine.set_collision_layer(8)
+	mine.global_position = global_position #place at center of tank #TODO Change something with the rendering so tank is on top
+
 func _on_move_timer_timeout() -> void:
 	_random_move()  # Call random_move to set a new velocity
 
 func dec_bullets():
 	pass #dummy function because I don't want to do logic
 
+func dec_mines():
+	pass
+
+func change_color(color: Color):
+	modulate = color
+	
+func change_type(newType: String):
+	type = newType
+	if type == "red":
+		change_color(Color.RED)
+	elif type == "orange":
+		change_color(Color.ORANGE)
+	elif type == "pink":
+		change_color(Color.PINK)
+	elif type == "yellow":
+		change_color(Color.YELLOW)
+	
+
 func _on_shot_timer_timeout():
-	shoot()
-	shot_timer.start(randf_range(0.5,2))
+	if type != "yellow":
+		shoot()
+	if type == "pink":
+		shot_timer.start(0.5)
+	else:
+		shot_timer.start(randf_range(0.5,2))
+
+
+func _on_mine_timer_timeout():
+	if type == "yellow" or type == "orange":
+		mine()
