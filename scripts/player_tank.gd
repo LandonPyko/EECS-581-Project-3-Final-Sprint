@@ -43,6 +43,7 @@ func _physics_process(delta):
 	get_input() # get details of movement
 	rotation += rotation_direction * rotation_speed * delta #rotate tank
 	move_and_slide() #move tank with physics, wooo
+	_changecolor(my_color)
 	
 	##SHOOTING LOGIC
 	if Input.is_action_just_pressed("shoot") && (cur_bullets < max_bullets): #check if want to and can fire

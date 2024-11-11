@@ -20,7 +20,8 @@ func _physics_process(_delta):
 
 func _on_life_time_timeout(): #when life_time timer expires
 	explode()
-	parent.dec_mines()
+	if parent != null:
+		parent.dec_mines()
 
 func explode():
 	dead = true
