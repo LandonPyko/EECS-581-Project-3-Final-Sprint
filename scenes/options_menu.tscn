@@ -11,49 +11,109 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t2vip")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 500.865
-offset_bottom = 106.0
+[node name="background1" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_left = 334.0
+offset_top = 356.0
+offset_right = 374.0
+offset_bottom = 396.0
+scale = Vector2(29.225, 3.55)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="background1"]
+layout_mode = 2
+color = Color(0.462291, 0.462291, 0.462291, 1)
+
+[node name="background2" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 106.0
+offset_right = 376.0
+offset_bottom = 146.0
+scale = Vector2(29.135, 4.855)
+
+[node name="ColorRect" type="ColorRect" parent="background2"]
+layout_mode = 2
+color = Color(0.462291, 0.462291, 0.462291, 1)
+
+[node name="audio" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 99.0
+offset_right = 840.975
+offset_bottom = 205.0
+scale = Vector2(2.3, 2.3)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="audio"]
 layout_mode = 2
 text = "Audio:"
 fit_content = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="audio"]
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="audio/HBoxContainer"]
 clip_contents = false
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Master Volume"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="audio/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="audio"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="audio/HBoxContainer2"]
 clip_contents = false
 layout_mode = 2
+size_flags_horizontal = 3
 text = "FX Volume"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2"]
+[node name="HSlider" type="HSlider" parent="audio/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="audio"]
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="audio/HBoxContainer3"]
 clip_contents = false
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Music Volume"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer3"]
+[node name="HSlider" type="HSlider" parent="audio/HBoxContainer3"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="customization" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 338.0
+offset_top = 348.0
+offset_right = 837.0
+offset_bottom = 408.0
+scale = Vector2(2.3, 2.3)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="customization"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Customization:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="customization"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="customization/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Change Player Color"
+
+[node name="TankColorPick" type="ColorPickerButton" parent="customization/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "uhhhh"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -62,13 +122,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -260.0
-offset_top = -181.0
-offset_right = 240.0
-offset_bottom = -150.0
+offset_left = -444.0
+offset_top = -127.0
+offset_right = 55.9999
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1.855, 1.855)
 size_flags_vertical = 8
 text = "Back to Menu"
 
+[connection signal="color_changed" from="customization/HBoxContainer/TankColorPick" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="popup_closed" from="customization/HBoxContainer/TankColorPick" to="." method="_on_color_picker_button_popup_closed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

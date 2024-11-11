@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cojkq0cgh54fr"]
+[gd_scene load_steps=3 format=3 uid="uid://cojkq0cgh54fr"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_gx2gu"]
+[ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_6fu20"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -11,17 +12,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gx2gu")
 
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(902, 472)
+scale = Vector2(1.798, 1.256)
+texture = ExtResource("2_6fu20")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 510.0
-offset_top = 328.0
-offset_right = 858.0
-offset_bottom = 456.0
+offset_left = 547.0
+offset_top = 320.0
+offset_right = 895.0
+offset_bottom = 448.0
 scale = Vector2(2.095, 2.095)
 
 [node name="tanks" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
-text = "                                 TANKS!!!"
+text = "                                  TANKS!!!"
 fit_content = true
 
 [node name="start" type="Button" parent="VBoxContainer"]
@@ -35,6 +41,8 @@ text = "OPTIONS"
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "QUIT"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/options" to="." method="_on_options_pressed"]

@@ -5,8 +5,7 @@ extends CharacterBody2D
 @export var max_bullets := 5 #OPTION Could make a changeable value for powerups
 @export var max_mines := 2
 @export var lives := 4
-@export var my_color := Color.ALICE_BLUE
-
+var my_color = Global.tank_Color
 @export var score := 0
 
 
