@@ -16,7 +16,7 @@ layout_mode = 2
 offset_left = 334.0
 offset_top = 356.0
 offset_right = 374.0
-offset_bottom = 396.0
+offset_bottom = 423.0
 scale = Vector2(29.225, 3.55)
 
 [node name="ColorRect" type="ColorRect" parent="background1"]
@@ -92,8 +92,8 @@ size_flags_horizontal = 3
 layout_mode = 0
 offset_left = 338.0
 offset_top = 348.0
-offset_right = 837.0
-offset_bottom = 408.0
+offset_right = 842.0
+offset_bottom = 449.0
 scale = Vector2(2.3, 2.3)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="customization"]
@@ -111,6 +111,20 @@ size_flags_horizontal = 3
 text = "Change Player Color"
 
 [node name="TankColorPick" type="ColorPickerButton" parent="customization/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "uhhhh"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="customization"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="customization/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Change Bullet Color"
+
+[node name="bulletColorPick" type="ColorPickerButton" parent="customization/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "uhhhh"
@@ -134,4 +148,7 @@ text = "Back to Menu"
 
 [connection signal="color_changed" from="customization/HBoxContainer/TankColorPick" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="popup_closed" from="customization/HBoxContainer/TankColorPick" to="." method="_on_color_picker_button_popup_closed"]
+[connection signal="color_changed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="popup_closed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_color_picker_button_popup_closed"]
+[connection signal="popup_closed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_bullet_color_pick_popup_closed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

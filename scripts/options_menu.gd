@@ -1,6 +1,7 @@
 extends Control
 
 @onready var colorPick = $customization/HBoxContainer/TankColorPick
+@onready var bulColorPick = $customization/HBoxContainer2/bulletColorPick
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,5 +25,6 @@ func _on_color_picker_button_popup_closed() -> void:
 	print(Global.tank_Color)
 
 
-func _on_color_picker_button_color_changed(color: Color) -> void:
-	pass # Replace with function body.
+func _on_bullet_color_pick_popup_closed():
+	Global.bullet_Color = bulColorPick.color
+	print(Global.bullet_Color)
