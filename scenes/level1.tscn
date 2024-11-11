@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/stage.gd" id="1_n8rs1"]
 [ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_tlbx2"]
+[ext_resource type="NavigationPolygon" uid="uid://doxbglj1l8lv" path="res://assets/nav_map.tres" id="3_at3fk"]
 [ext_resource type="PackedScene" uid="uid://gt7v2wyfvhcn" path="res://scenes/broken_wall.tscn" id="3_d5mc5"]
 [ext_resource type="PackedScene" uid="uid://bj8dje0p13rkd" path="res://scenes/wall.tscn" id="4_s0wwn"]
 [ext_resource type="PackedScene" uid="uid://bibx23kj623up" path="res://scenes/hole.tscn" id="5_ecx2l"]
@@ -19,11 +20,6 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_va5vj"]
 normal = Vector2(1, 0)
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ub6d7"]
-vertices = PackedVector2Array(922, 682, 1573.94, 758, 202, 758, 854, 682, 586, 682, 518, 682, 586, 442, 586, 278, 854, 278, 202, 202, 518, 518, 1571.05, 202, 922, 278, 518, 278, 586, 518, 518, 442)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2), PackedInt32Array(5, 4, 2), PackedInt32Array(6, 7, 8, 3), PackedInt32Array(5, 2, 9, 10), PackedInt32Array(11, 1, 0, 12), PackedInt32Array(9, 11, 12, 8), PackedInt32Array(9, 8, 7), PackedInt32Array(9, 7, 13), PackedInt32Array(3, 4, 14), PackedInt32Array(6, 3, 14, 15), PackedInt32Array(15, 14, 10, 9), PackedInt32Array(9, 13, 15)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(191, 191, 192, 769, 1584, 769, 1581, 192)])
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_fvtnm"]
 scenes/1/scene = ExtResource("3_d5mc5")
@@ -79,17 +75,17 @@ collision_layer = 128
 position = Vector2(124.16, 299)
 shape = SubResource("WorldBoundaryShape2D_va5vj")
 
-[node name="nav_map2" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_ub6d7")
+[node name="nav_map" type="NavigationRegion2D" parent="."]
+navigation_polygon = ExtResource("3_at3fk")
 
-[node name="tilemaplayer" type="TileMapLayer" parent="nav_map2"]
+[node name="tilemaplayer" type="TileMapLayer" parent="nav_map"]
 tile_map_data = PackedByteArray("AAADAAMAAwAAAAAAAgADAAQAAwAAAAAAAgADAAUAAwAAAAAAAgADAAYAAwAAAAAAAgADAAcAAwAAAAAAAgADAAgAAwAAAAAAAgADAAkAAwAAAAAAAgADAAoAAwAAAAAAAgADAAsAAwAAAAAAAgADAAwAAwAAAAAAAgADAA0AAwAAAAAAAgADAA4AAwAAAAAAAgADAA8AAwAAAAAAAgADABAAAwAAAAAAAgAEABAAAwAAAAAAAgAFABAAAwAAAAAAAgAGABAAAwAAAAAAAgAHABAAAwAAAAAAAgAIABAAAwAAAAAAAgAJABAAAwAAAAAAAgAKABAAAwAAAAAAAgALABAAAwAAAAAAAgAMABAAAwAAAAAAAgANABAAAwAAAAAAAgAOABAAAwAAAAAAAgAPABAAAwAAAAAAAgAQABAAAwAAAAAAAgARABAAAwAAAAAAAgASABAAAwAAAAAAAgATABAAAwAAAAAAAgAUABAAAwAAAAAAAgAVABAAAwAAAAAAAgAWABAAAwAAAAAAAgAXABAAAwAAAAAAAgAYABAAAwAAAAAAAgAZABAAAwAAAAAAAgAaABAAAwAAAAAAAgAbABAAAwAAAAAAAgAcABAAAwAAAAAAAgAdABAAAwAAAAAAAgAeABAAAwAAAAAAAgAfABAAAwAAAAAAAgAgABAAAwAAAAAAAgAhABAAAwAAAAAAAgAhAA8AAwAAAAAAAgAhAA4AAwAAAAAAAgAhAA0AAwAAAAAAAgAhAAwAAwAAAAAAAgAhAAsAAwAAAAAAAgAhAAoAAwAAAAAAAgAhAAkAAwAAAAAAAgAhAAgAAwAAAAAAAgAhAAcAAwAAAAAAAgAhAAYAAwAAAAAAAgAhAAUAAwAAAAAAAgAhAAQAAwAAAAAAAgAhAAMAAwAAAAAAAgAgAAMAAwAAAAAAAgAfAAMAAwAAAAAAAgAeAAMAAwAAAAAAAgAdAAMAAwAAAAAAAgAcAAMAAwAAAAAAAgAbAAMAAwAAAAAAAgAaAAMAAwAAAAAAAgAZAAMAAwAAAAAAAgAYAAMAAwAAAAAAAgAXAAMAAwAAAAAAAgAWAAMAAwAAAAAAAgAVAAMAAwAAAAAAAgAUAAMAAwAAAAAAAgATAAMAAwAAAAAAAgASAAMAAwAAAAAAAgARAAMAAwAAAAAAAgAQAAMAAwAAAAAAAgAPAAMAAwAAAAAAAgAOAAMAAwAAAAAAAgANAAMAAwAAAAAAAgAMAAMAAwAAAAAAAgALAAMAAwAAAAAAAgAKAAMAAwAAAAAAAgAJAAMAAwAAAAAAAgAIAAMAAwAAAAAAAgAHAAMAAwAAAAAAAgAGAAMAAwAAAAAAAgAFAAMAAwAAAAAAAgAEAAMAAwAAAAAAAgALAAYAAwAAAAAAAgALAAcAAwAAAAAAAgALAAgAAwAAAAAAAgALAAsAAwAAAAAAAgALAAwAAwAAAAAAAgALAA0AAwAAAAAAAgASAAYAAwAAAAAAAgASAAcAAwAAAAAAAgASAAgAAwAAAAAAAgASAAsAAwAAAAAAAgASAAwAAwAAAAAAAgASAA0AAwAAAAAAAgASAAkAAwAAAAAAAQASAAoAAwAAAAAAAQA=")
 tile_set = SubResource("TileSet_rspme")
 
-[node name="Tank" parent="nav_map2/tilemaplayer" groups=["Player"] instance=ExtResource("6_wda16")]
+[node name="Tank" parent="nav_map/tilemaplayer" groups=["Player"] instance=ExtResource("6_wda16")]
 position = Vector2(372, 486)
 
-[node name="enemy" parent="nav_map2/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_nfxii")]
+[node name="enemy" parent="nav_map/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_nfxii")]
 position = Vector2(1408, 478)
 collision_mask = 129
 

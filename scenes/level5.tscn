@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/stage.gd" id="1_secgd"]
 [ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_annlu"]
+[ext_resource type="NavigationPolygon" uid="uid://doxbglj1l8lv" path="res://assets/nav_map.tres" id="3_b4tvf"]
 [ext_resource type="PackedScene" uid="uid://gt7v2wyfvhcn" path="res://scenes/broken_wall.tscn" id="3_btvo7"]
 [ext_resource type="PackedScene" uid="uid://bj8dje0p13rkd" path="res://scenes/wall.tscn" id="4_qtarx"]
 [ext_resource type="PackedScene" uid="uid://bibx23kj623up" path="res://scenes/hole.tscn" id="5_d3tat"]
@@ -19,11 +20,6 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_va5vj"]
 normal = Vector2(1, 0)
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ub6d7"]
-vertices = PackedVector2Array(1450, 442, 1572, 754.992, 202, 754, 442, 634, 1334, 442, 374, 634, 1450, 374, 1572, 209.969, 442, 518, 1334, 326, 1402, 374, 1402, 326, 202, 206.023, 326, 586, 374, 586, 326, 518)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 3, 2), PackedInt32Array(0, 6, 7, 1), PackedInt32Array(4, 3, 8, 9), PackedInt32Array(6, 10, 11, 7), PackedInt32Array(12, 7, 11, 9), PackedInt32Array(13, 14, 5, 2), PackedInt32Array(13, 2, 12, 15), PackedInt32Array(15, 12, 9, 8)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(192, 196, 192, 764, 1582, 765, 1582, 200)])
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_sflq1"]
 scenes/1/scene = ExtResource("3_btvo7")
@@ -79,22 +75,22 @@ collision_layer = 128
 position = Vector2(124.16, 299)
 shape = SubResource("WorldBoundaryShape2D_va5vj")
 
-[node name="nav_map2" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_ub6d7")
+[node name="nav_map" type="NavigationRegion2D" parent="."]
+navigation_polygon = ExtResource("3_b4tvf")
 
-[node name="tilemaplayer" type="TileMapLayer" parent="nav_map2"]
+[node name="tilemaplayer" type="TileMapLayer" parent="nav_map"]
 tile_map_data = PackedByteArray("AAADAAMAAwAAAAAAAgADAAQAAwAAAAAAAgADAAUAAwAAAAAAAgADAAYAAwAAAAAAAgADAAgAAwAAAAAAAgADAAkAAwAAAAAAAgADAAoAAwAAAAAAAgADAAsAAwAAAAAAAgADAAwAAwAAAAAAAgADAA0AAwAAAAAAAgADAA4AAwAAAAAAAgADAA8AAwAAAAAAAgADABAAAwAAAAAAAgAEABAAAwAAAAAAAgAFABAAAwAAAAAAAgAGABAAAwAAAAAAAgAHABAAAwAAAAAAAgAIABAAAwAAAAAAAgAJABAAAwAAAAAAAgAKABAAAwAAAAAAAgALABAAAwAAAAAAAgAMABAAAwAAAAAAAgANABAAAwAAAAAAAgAOABAAAwAAAAAAAgAPABAAAwAAAAAAAgAQABAAAwAAAAAAAgARABAAAwAAAAAAAgASABAAAwAAAAAAAgATABAAAwAAAAAAAgAUABAAAwAAAAAAAgAVABAAAwAAAAAAAgAWABAAAwAAAAAAAgAXABAAAwAAAAAAAgAYABAAAwAAAAAAAgAZABAAAwAAAAAAAgAaABAAAwAAAAAAAgAbABAAAwAAAAAAAgAcABAAAwAAAAAAAgAdABAAAwAAAAAAAgAeABAAAwAAAAAAAgAfABAAAwAAAAAAAgAgABAAAwAAAAAAAgAhABAAAwAAAAAAAgAhAA8AAwAAAAAAAgAhAA4AAwAAAAAAAgAhAA0AAwAAAAAAAgAhAAwAAwAAAAAAAgAhAAsAAwAAAAAAAgAhAAoAAwAAAAAAAgAhAAkAAwAAAAAAAgAhAAgAAwAAAAAAAgAhAAcAAwAAAAAAAgAhAAYAAwAAAAAAAgAhAAUAAwAAAAAAAgAhAAQAAwAAAAAAAgAhAAMAAwAAAAAAAgAgAAMAAwAAAAAAAgAfAAMAAwAAAAAAAgAeAAMAAwAAAAAAAgAdAAMAAwAAAAAAAgAcAAMAAwAAAAAAAgAbAAMAAwAAAAAAAgAaAAMAAwAAAAAAAgAZAAMAAwAAAAAAAgAYAAMAAwAAAAAAAgAXAAMAAwAAAAAAAgAWAAMAAwAAAAAAAgAVAAMAAwAAAAAAAgAUAAMAAwAAAAAAAgATAAMAAwAAAAAAAgASAAMAAwAAAAAAAgARAAMAAwAAAAAAAgAQAAMAAwAAAAAAAgAPAAMAAwAAAAAAAgAOAAMAAwAAAAAAAgANAAMAAwAAAAAAAgAMAAMAAwAAAAAAAgALAAMAAwAAAAAAAgAKAAMAAwAAAAAAAgAJAAMAAwAAAAAAAgAIAAMAAwAAAAAAAgAHAAMAAwAAAAAAAgAGAAMAAwAAAAAAAgAFAAMAAwAAAAAAAgAEAAMAAwAAAAAAAgADAAcAAwAAAAAAAgAIAAsAAwAAAAAAAgAHAAsAAwAAAAAAAQAIAAwAAwAAAAAAAQAcAAcAAwAAAAAAAQAdAAgAAwAAAAAAAQAcAAgAAwAAAAAAAgA=")
 tile_set = SubResource("TileSet_rspme")
 
-[node name="Tank" parent="nav_map2/tilemaplayer" groups=["Player"] instance=ExtResource("6_jit21")]
+[node name="Tank" parent="nav_map/tilemaplayer" groups=["Player"] instance=ExtResource("6_jit21")]
 position = Vector2(297, 651)
 
-[node name="enemy" parent="nav_map2/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_76rs0")]
+[node name="enemy" parent="nav_map/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_76rs0")]
 position = Vector2(1457, 549)
 rotation = 3.14159
 collision_mask = 129
 
-[node name="enemy2" parent="nav_map2/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_76rs0")]
+[node name="enemy2" parent="nav_map/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_76rs0")]
 position = Vector2(1224, 271)
 rotation = 7.85398
 collision_mask = 129

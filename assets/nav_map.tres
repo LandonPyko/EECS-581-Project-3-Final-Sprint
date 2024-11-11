@@ -1,0 +1,7 @@
+[gd_resource type="NavigationPolygon" format=3 uid="uid://doxbglj1l8lv"]
+
+[resource]
+vertices = PackedVector2Array(922, 682, 1573.94, 758, 202, 758, 854, 682, 586, 682, 518, 682, 586, 442, 586, 278, 854, 278, 202, 202, 518, 518, 1571.05, 202, 922, 278, 518, 278, 586, 518, 518, 442)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2), PackedInt32Array(5, 4, 2), PackedInt32Array(6, 7, 8, 3), PackedInt32Array(5, 2, 9, 10), PackedInt32Array(11, 1, 0, 12), PackedInt32Array(9, 11, 12, 8), PackedInt32Array(9, 8, 7), PackedInt32Array(9, 7, 13), PackedInt32Array(3, 4, 14), PackedInt32Array(6, 3, 14, 15), PackedInt32Array(15, 14, 10, 9), PackedInt32Array(9, 13, 15)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(191, 191, 192, 769, 1584, 769, 1581, 192)])
+agent_radius = 40.0

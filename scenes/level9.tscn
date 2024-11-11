@@ -1,7 +1,8 @@
 [gd_scene load_steps=16 format=4 uid="uid://btshvo0o2acre"]
 
 [ext_resource type="Script" path="res://scripts/stage.gd" id="1_qbaqp"]
-[ext_resource type="Texture2D" uid="uid://cji81mja43g8w" path="res://assets/background.png" id="2_7qpqd"]
+[ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_7qpqd"]
+[ext_resource type="NavigationPolygon" uid="uid://doxbglj1l8lv" path="res://assets/nav_map.tres" id="3_28kt1"]
 [ext_resource type="PackedScene" uid="uid://gt7v2wyfvhcn" path="res://scenes/broken_wall.tscn" id="3_rii7p"]
 [ext_resource type="PackedScene" uid="uid://bj8dje0p13rkd" path="res://scenes/wall.tscn" id="4_p37mn"]
 [ext_resource type="PackedScene" uid="uid://bibx23kj623up" path="res://scenes/hole.tscn" id="5_ro41p"]
@@ -19,11 +20,6 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_va5vj"]
 normal = Vector2(1, 0)
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ub6d7"]
-vertices = PackedVector2Array(922, 682, 1572, 754.992, 202, 754, 806, 682, 202, 490, 634, 490, 806, 614, 1572, 490, 1142, 490, 922, 470, 1142, 422, 922, 278, 1572, 209.969, 1572, 422, 922, 346, 874, 470, 874, 346, 806, 490, 854, 490, 854, 614, 806, 278, 634, 422, 202, 422, 202, 206.023)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5, 6), PackedInt32Array(7, 1, 0, 8), PackedInt32Array(8, 0, 9, 10), PackedInt32Array(11, 12, 13, 10, 14), PackedInt32Array(9, 15, 16, 14, 10), PackedInt32Array(17, 18, 19, 6), PackedInt32Array(17, 6, 5), PackedInt32Array(20, 17, 5, 21), PackedInt32Array(21, 22, 23, 20), PackedInt32Array(20, 23, 12, 11)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(192, 196, 192, 764, 1582, 765, 1582, 200)])
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_sflq1"]
 scenes/1/scene = ExtResource("3_rii7p")
@@ -79,33 +75,32 @@ collision_layer = 128
 position = Vector2(124.16, 299)
 shape = SubResource("WorldBoundaryShape2D_va5vj")
 
-[node name="nav_map2" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_ub6d7")
+[node name="nav_map" type="NavigationRegion2D" parent="."]
+navigation_polygon = ExtResource("3_28kt1")
 
-[node name="tilemaplayer" type="TileMapLayer" parent="nav_map2"]
+[node name="tilemaplayer" type="TileMapLayer" parent="nav_map"]
 tile_map_data = PackedByteArray("AAADAAMAAwAAAAAAAgADAAQAAwAAAAAAAgADAAUAAwAAAAAAAgADAAYAAwAAAAAAAgADAAgAAwAAAAAAAgADAAkAAwAAAAAAAgADAAoAAwAAAAAAAgADAAsAAwAAAAAAAgADAAwAAwAAAAAAAgADAA0AAwAAAAAAAgADAA4AAwAAAAAAAgADAA8AAwAAAAAAAgADABAAAwAAAAAAAgAEABAAAwAAAAAAAgAFABAAAwAAAAAAAgAGABAAAwAAAAAAAgAHABAAAwAAAAAAAgAIABAAAwAAAAAAAgAJABAAAwAAAAAAAgAKABAAAwAAAAAAAgALABAAAwAAAAAAAgAMABAAAwAAAAAAAgANABAAAwAAAAAAAgAOABAAAwAAAAAAAgAPABAAAwAAAAAAAgAQABAAAwAAAAAAAgARABAAAwAAAAAAAgASABAAAwAAAAAAAgATABAAAwAAAAAAAgAUABAAAwAAAAAAAgAVABAAAwAAAAAAAgAWABAAAwAAAAAAAgAXABAAAwAAAAAAAgAYABAAAwAAAAAAAgAZABAAAwAAAAAAAgAaABAAAwAAAAAAAgAbABAAAwAAAAAAAgAcABAAAwAAAAAAAgAdABAAAwAAAAAAAgAeABAAAwAAAAAAAgAfABAAAwAAAAAAAgAgABAAAwAAAAAAAgAhABAAAwAAAAAAAgAhAA8AAwAAAAAAAgAhAA4AAwAAAAAAAgAhAA0AAwAAAAAAAgAhAAwAAwAAAAAAAgAhAAsAAwAAAAAAAgAhAAoAAwAAAAAAAgAhAAkAAwAAAAAAAgAhAAgAAwAAAAAAAgAhAAcAAwAAAAAAAgAhAAYAAwAAAAAAAgAhAAUAAwAAAAAAAgAhAAQAAwAAAAAAAgAhAAMAAwAAAAAAAgAgAAMAAwAAAAAAAgAfAAMAAwAAAAAAAgAeAAMAAwAAAAAAAgAdAAMAAwAAAAAAAgAcAAMAAwAAAAAAAgAbAAMAAwAAAAAAAgAaAAMAAwAAAAAAAgAZAAMAAwAAAAAAAgAYAAMAAwAAAAAAAgAXAAMAAwAAAAAAAgAWAAMAAwAAAAAAAgAVAAMAAwAAAAAAAgAUAAMAAwAAAAAAAgATAAMAAwAAAAAAAgASAAMAAwAAAAAAAgARAAMAAwAAAAAAAgAQAAMAAwAAAAAAAgAPAAMAAwAAAAAAAgAOAAMAAwAAAAAAAgANAAMAAwAAAAAAAgAMAAMAAwAAAAAAAgALAAMAAwAAAAAAAgAKAAMAAwAAAAAAAgAJAAMAAwAAAAAAAgAIAAMAAwAAAAAAAgAHAAMAAwAAAAAAAgAGAAMAAwAAAAAAAgAFAAMAAwAAAAAAAgAEAAMAAwAAAAAAAgADAAcAAwAAAAAAAgAEAAkAAwAAAAAAAgAFAAkAAwAAAAAAAgAGAAkAAwAAAAAAAgAHAAkAAwAAAAAAAgAIAAkAAwAAAAAAAgAJAAkAAwAAAAAAAgAKAAkAAwAAAAAAAgALAAkAAwAAAAAAAgAMAAkAAwAAAAAAAgAYAAkAAwAAAAAAAgAZAAkAAwAAAAAAAgAaAAkAAwAAAAAAAgAbAAkAAwAAAAAAAgAcAAkAAwAAAAAAAgAdAAkAAwAAAAAAAgAeAAkAAwAAAAAAAgAfAAkAAwAAAAAAAgAgAAkAAwAAAAAAAgARAAcAAwAAAAAAAQARAAgAAwAAAAAAAQARAAkAAwAAAAAAAQASAAoAAwAAAAAAAQASAAsAAwAAAAAAAQASAAwAAwAAAAAAAQASAAYAAwAAAAAAAgARAA0AAwAAAAAAAgASAA0AAwAAAAAAAgARAAYAAwAAAAAAAgA=")
 tile_set = SubResource("TileSet_rspme")
 
-[node name="Tank" parent="nav_map2/tilemaplayer" groups=["Player"] instance=ExtResource("6_uks4p")]
+[node name="Tank" parent="nav_map/tilemaplayer" groups=["Player"] instance=ExtResource("6_uks4p")]
 position = Vector2(302, 637)
-my_color = Color(0.292088, 0.628154, 0.906236, 1)
 
-[node name="enemy" parent="nav_map2/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_hgeb3")]
+[node name="enemy" parent="nav_map/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_hgeb3")]
 position = Vector2(408, 336)
 rotation = 6.28319
 collision_mask = 129
 
-[node name="enemy2" parent="nav_map2/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_hgeb3")]
+[node name="enemy2" parent="nav_map/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_hgeb3")]
 position = Vector2(1416, 336)
 rotation = 9.42478
 collision_mask = 129
 
-[node name="enemy3" parent="nav_map2/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_hgeb3")]
+[node name="enemy3" parent="nav_map/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_hgeb3")]
 position = Vector2(1416, 648)
 rotation = 9.42478
 collision_mask = 129
 
-[node name="enemy5" parent="nav_map2/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_hgeb3")]
+[node name="enemy5" parent="nav_map/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_hgeb3")]
 position = Vector2(1032, 408)
 rotation = 14.1372
 collision_mask = 129
