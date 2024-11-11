@@ -52,10 +52,11 @@ func _physics_process(delta):
 		var bul = BULLET.instantiate()
 		bul.parent = self
 		get_tree().root.add_child(bul) #add to game tree at root #no reason not to for now
-		bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation bullshit because graphics are fucked fuck you andrew jk love you
-		bul.global_position = $tankGun/fire_loc.global_position #move to the fire loc so it pretend to fire from turret
+		bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation stuff because graphics
+		var direction = Vector2(cos($tankGun.global_rotation), sin($tankGun.global_rotation))
+		bul.global_position = $tankGun/fire_loc.global_position + direction * 10#move to the fire loc so it pretend to fire from turret
 		#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else
-
+	
 	elif Input.is_action_just_pressed("mine") && (cur_mines < max_mines):
 		cur_mines = cur_mines + 1 #increase number of mines placed
 		#create bullet instance for mine

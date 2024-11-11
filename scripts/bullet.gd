@@ -29,6 +29,10 @@ func _physics_process(delta):
 			# print(Global.temp_score)
 			collider.free()
 			free()	# If it hits a tank we free the bullet instance
+		elif collider.is_in_group("Player"):	
+			print("hello")
+			collider.free()
+			free()
 		else:
 			var reflect = collision.get_remainder().bounce(collision.get_normal())
 			velocity = velocity.bounce(collision.get_normal())

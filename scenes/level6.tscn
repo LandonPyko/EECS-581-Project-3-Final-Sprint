@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=4 uid="uid://dfd1k2yhecqxe"]
 
 [ext_resource type="Script" path="res://scripts/stage.gd" id="1_bxsu0"]
-[ext_resource type="Texture2D" uid="uid://cji81mja43g8w" path="res://assets/background.png" id="2_lsrse"]
+[ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_lsrse"]
 [ext_resource type="PackedScene" uid="uid://gt7v2wyfvhcn" path="res://scenes/broken_wall.tscn" id="3_qt32k"]
 [ext_resource type="PackedScene" uid="uid://bj8dje0p13rkd" path="res://scenes/wall.tscn" id="4_8m4y5"]
 [ext_resource type="PackedScene" uid="uid://bibx23kj623up" path="res://scenes/hole.tscn" id="5_g647o"]
@@ -88,7 +88,6 @@ tile_set = SubResource("TileSet_rspme")
 
 [node name="Tank" parent="nav_map2/tilemaplayer" groups=["Player"] instance=ExtResource("6_pkhpq")]
 position = Vector2(297, 480)
-my_color = Color(0.292088, 0.628154, 0.906236, 1)
 
 [node name="enemy" parent="nav_map2/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_encdg")]
 position = Vector2(1356, 371)
