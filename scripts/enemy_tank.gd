@@ -17,7 +17,9 @@ extends CharacterBody2D
 
 var my_color : Color = Color.RED
 
-var type = "pink" #define type of enemy tank
+#define type of enemy tank
+@export_enum("red", "yellow", "pink", "orange") var type: String = "red" 
+
 #add support for yellow,pink, and oragne
 ##Yellow needs to place mines instead of bullets
 ##pink needs to reduce shot_timer and not add randomness
