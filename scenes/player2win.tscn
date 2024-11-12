@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://csxcnafmcnc8j"]
+[gd_scene load_steps=3 format=3 uid="uid://d1cf8hd1awji8"]
 
-[ext_resource type="Script" path="res://scripts/roundwin.gd" id="1_o7bkb"]
-[ext_resource type="Script" path="res://scripts/round_end_score.gd" id="2_dqdaq"]
+[ext_resource type="Script" path="res://scripts/pvp_roundover.gd" id="1_fp05j"]
+[ext_resource type="Script" path="res://scripts/round_end_score.gd" id="2_h4b5a"]
 
 [node name="RoundWin" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_o7bkb")
+script = ExtResource("1_fp05j")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -22,13 +22,13 @@ scale = Vector2(2.095, 2.095)
 
 [node name="roundcomplete" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
-text = "                         	  Player 1 Wins!"
+text = "                         	 Player 2 Wins!"
 fit_content = true
 
 [node name="Score" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 horizontal_alignment = 1
-script = ExtResource("2_dqdaq")
+script = ExtResource("2_h4b5a")
 
 [node name="start" type="Button" parent="VBoxContainer"]
 layout_mode = 2

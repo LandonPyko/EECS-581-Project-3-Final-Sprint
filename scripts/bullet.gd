@@ -34,6 +34,14 @@ func _physics_process(delta):
 			print("hello")
 			collider.free()
 			free()
+		elif collider.is_in_group("Player1"):
+			print("Player 1 killed")
+			Global.p2_score += 1
+			collider.free()
+		elif collider.is_in_group("Player2"):
+			print("Player 2 killed")
+			Global.p1_score += 1
+			collider.free()
 		else:
 			var reflect = collision.get_remainder().bounce(collision.get_normal())
 			velocity = velocity.bounce(collision.get_normal())
