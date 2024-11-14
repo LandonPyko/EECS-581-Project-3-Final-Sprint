@@ -30,12 +30,34 @@ func _ready() -> void:
 	_changecolor(my_color)
 
 #func to get input from player
-func get_input():
-	rotation_direction = Input.get_axis("left", "right") #Direction to turn
-	velocity = transform.x * Input.get_axis("down", "up") * speed #velocity to move at
+func get_input():	
+	if self.is_in_group("Player"):
+		rotation_direction = Input.get_axis("left", "right") #Direction to turn
+		velocity = transform.x * Input.get_axis("down", "up") * speed #velocity to move at
+		
+	if self.is_in_group("Player1"):
+		rotation_direction = Input.get_axis("leftKeyboard", "rightKeyboard") #Direction to turn
+		velocity = transform.x * Input.get_axis("downKeyboard", "upKeyboard") * speed #velocity to move at
+		
+	if self.is_in_group("Player2"):
+		rotation_direction = Input.get_axis("leftController", "rightController") #Direction to turn
+		velocity = transform.x * Input.get_axis("downController", "upController") * speed #velocity to move at
 	
-	#MAKE TURRENT TURN TOWARDS MOUSE
-	$tankGun.global_rotation = mouse_pos.angle_to_point(position)-deg_to_rad(-90)
+	if self.is_in_group("Player") or self.is_in_group("Player1"):
+		#MAKE TURRENT TURN TOWARDS MOUSE
+		$tankGun.global_rotation = mouse_pos.angle_to_point(position)-deg_to_rad(-90)
+		
+	if self.is_in_group("Player") or self.is_in_group("Player2"):
+		var deadzone = 0.5
+		var controllerangle = Vector2.ZERO
+		var xAxisRL = Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
+		var yAxisUD = Input.get_joy_axis(0 ,JOY_AXIS_RIGHT_Y)
+		controllerangle = Vector2(xAxisRL, yAxisUD).angle()
+		
+
+		if abs(xAxisRL) > deadzone || abs(yAxisUD) > deadzone:
+			controllerangle = Vector2(xAxisRL, yAxisUD).angle()
+			$tankGun.rotation = controllerangle
 	
 
 func _physics_process(delta):
@@ -45,8 +67,19 @@ func _physics_process(delta):
 	move_and_slide() #move tank with physics, wooo
 	_changecolor(my_color)
 	
+	var shootButton = "shoot"
+	var mineButton  = "mine"
+		
+	if self.is_in_group("Player1"):
+		shootButton = "shootMouse"
+		mineButton  = "mineMouse"
+		
+	if self.is_in_group("Player2"):
+		shootButton = "shootController"
+		mineButton  = "mineController"
+	
 	##SHOOTING LOGIC
-	if Input.is_action_just_pressed("shoot") && (cur_bullets < max_bullets): #check if want to and can fire
+	if Input.is_action_just_pressed(shootButton) && (cur_bullets < max_bullets): #check if want to and can fire
 		cur_bullets = cur_bullets + 1 #increase number of bullets fired
 		#create bullet instance for bullet
 		var bul = BULLET.instantiate()
@@ -57,7 +90,7 @@ func _physics_process(delta):
 		bul.global_position = $tankGun/fire_loc.global_position + direction * 10#move to the fire loc so it pretend to fire from turret
 		#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else
 	
-	elif Input.is_action_just_pressed("mine") && (cur_mines < max_mines):
+	elif Input.is_action_just_pressed(mineButton) && (cur_mines < max_mines):
 		cur_mines = cur_mines + 1 #increase number of mines placed
 		#create bullet instance for mine
 		var mine = MINE.instantiate()

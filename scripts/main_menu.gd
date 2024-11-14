@@ -1,10 +1,7 @@
 extends Control
 
 func _on_start_pressed() -> void:
-	Global.current_level = 1
-	Global.score = 0
-	Global.temp_score = 0
-	get_tree().change_scene_to_file("res://scenes/difficulty_selector.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_mode_selector.tscn")
 
 
 func _on_options_pressed() -> void:

@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1cf8hd1awji8"]
+[gd_scene load_steps=3 format=3 uid="uid://g6q08kt8p6g0"]
 
-[ext_resource type="Script" path="res://scripts/pvp_roundover.gd" id="1_fp05j"]
-[ext_resource type="Script" path="res://scripts/pvp_round_end_score.gd" id="2_aku28"]
+[ext_resource type="Script" path="res://scripts/pvp_roundover.gd" id="1_rg2ko"]
+[ext_resource type="Script" path="res://scripts/pvp_round_end_score.gd" id="2_ye7qx"]
 
 [node name="RoundWin" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fp05j")
+script = ExtResource("1_rg2ko")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -22,26 +22,16 @@ scale = Vector2(2.095, 2.095)
 
 [node name="roundcomplete" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
-text = "                         	 Player 2 Wins!"
+text = "                      Game Over! It's a tie!"
 fit_content = true
 
 [node name="Score" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 horizontal_alignment = 1
-script = ExtResource("2_aku28")
-
-[node name="start" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "CONTINUE"
-
-[node name="options" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "OPTIONS"
+script = ExtResource("2_ye7qx")
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "MENU"
 
-[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

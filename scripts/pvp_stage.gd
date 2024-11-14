@@ -13,8 +13,17 @@ func _process(delta: float) -> void:
 	
 	if not $nav_map.is_baking():
 		$nav_map.bake_navigation_polygon()
+		
+	if Global.p1_score + Global.p2_score < 10:
+		if player1.is_empty():	# If no enemies left
+			get_tree().change_scene_to_file("res://scenes/player2win.tscn")
+		if player2.is_empty():
+			get_tree().change_scene_to_file("res://scenes/player1win.tscn")
 	
-	if player1.is_empty():	# If no enemies left
-		get_tree().change_scene_to_file("res://scenes/player2win.tscn")
-	if player2.is_empty():
-		get_tree().change_scene_to_file("res://scenes/player1win.tscn")
+	else:
+		if Global.p1_score > Global.p2_score:
+			get_tree().change_scene_to_file("res://scenes/game_over_player1win.tscn")
+		elif Global.p2_score > Global.p1_score:
+			get_tree().change_scene_to_file("res://scenes/game_over_player2win.tscn")
+		else:
+			get_tree().change_scene_to_file("res://scenes/game_over_tie.tscn")

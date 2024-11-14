@@ -22,7 +22,7 @@ scale = Vector2(2.095, 2.095)
 
 [node name="roundcomplete" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
-text = "                         	  Player 1 Wins!"
+text = "                         Round Completed!"
 fit_content = true
 
 [node name="Score" type="Label" parent="VBoxContainer"]

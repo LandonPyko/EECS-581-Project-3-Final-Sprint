@@ -19,7 +19,11 @@ func _process(delta: float) -> void:
 func _on_button_pressed() -> void: # Return button
 	var next_screen = "res://scenes/main_menu.tscn"
 	if Global.current_level > 0:
-		next_screen = "res://scenes/level%d.tscn" % Global.current_level
+		if Global.difficulty == "pvp":
+			next_screen = "res://scenes/level%d_pvp.tscn" % Global.current_level
+		else:
+			next_screen = "res://scenes/level%d.tscn" % Global.current_level
+		
 	get_tree().change_scene_to_file(next_screen)
 	
 	
