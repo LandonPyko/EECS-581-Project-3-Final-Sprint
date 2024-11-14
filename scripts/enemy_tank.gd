@@ -165,10 +165,7 @@ func move_turret(delta):
 					#then velocity?
 					var player_velocity = collider.velocity
 					#then distance to player
-					var square = pow((player_pos.x - fire_loc.global_position.x), 2)
-					var distance = sqrt(pow((player_pos.x - fire_loc.global_position.x), 2)+pow((player_pos.y - fire_loc.global_position.y), 2))
-					#given those, add velocity times delta to the postion? maybe distance to player to consider timing?
-					
+
 					var predicted_pos = player_pos + (player_velocity*(delta*9)) 
 					#print("Distance to is: ", distance)
 					var target_rotation = global_position.direction_to(predicted_pos).angle()-deg_to_rad(90)
@@ -189,7 +186,7 @@ func shoot():
 	bul.global_position = $tankGun/fire_loc.global_position #move to the fire loc so it pretend to fire from turret
 	#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else
 
-func mine():
+func place_mine():
 	var mine = MINE.instantiate()
 	mine.parent = self #set parent to this instance for refrence
 	get_tree().root.add_child(mine) #add to game tree at root
@@ -231,4 +228,4 @@ func _on_shot_timer_timeout():
 
 func _on_mine_timer_timeout():
 	if type == "yellow" or type == "orange":
-		mine()
+		place_mine()

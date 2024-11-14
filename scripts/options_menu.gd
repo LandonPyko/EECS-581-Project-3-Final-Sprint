@@ -10,12 +10,6 @@ func _ready() -> void:
 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-
 func _on_button_pressed() -> void: # Return button
 	var next_screen = "res://scenes/main_menu.tscn"
 	if Global.current_level > 0:
