@@ -35,7 +35,7 @@ text = "PvE"
 layout_mode = 2
 text = "PvP"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/pve" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/pve" to="." method="_on_pve_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/pvp" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/pve" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/pvp" to="." method="_on_pvp_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/pvp" to="." method="_on_hard_pressed"]

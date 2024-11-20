@@ -57,7 +57,7 @@ func get_input():
 
 		if abs(xAxisRL) > deadzone || abs(yAxisUD) > deadzone:
 			controllerangle = Vector2(xAxisRL, yAxisUD).angle()
-			$tankGun.rotation = controllerangle
+			$tankGun.global_rotation = controllerangle - deg_to_rad(90)
 	
 
 func _physics_process(delta):
