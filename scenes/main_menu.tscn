@@ -32,14 +32,26 @@ fit_content = true
 
 [node name="start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../quit")
+focus_neighbor_bottom = NodePath("../options")
+focus_next = NodePath("../options")
+focus_previous = NodePath("../quit")
 text = "START GAME"
 
 [node name="options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../start")
+focus_neighbor_bottom = NodePath("../quit")
+focus_next = NodePath("../quit")
+focus_previous = NodePath("../start")
 text = "OPTIONS"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../options")
+focus_neighbor_bottom = NodePath("../start")
+focus_next = NodePath("../start")
+focus_previous = NodePath("../options")
 text = "QUIT"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -32,14 +32,26 @@ script = ExtResource("2_rlw1r")
 
 [node name="retry" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../quit")
+focus_neighbor_bottom = NodePath("../options")
+focus_next = NodePath("../options")
+focus_previous = NodePath("../quit")
 text = "RETRY LEVEL"
 
 [node name="options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../retry")
+focus_neighbor_bottom = NodePath("../quit")
+focus_next = NodePath("../quit")
+focus_previous = NodePath("../retry")
 text = "OPTIONS"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../options")
+focus_neighbor_bottom = NodePath("../retry")
+focus_next = NodePath("../retry")
+focus_previous = NodePath("../options")
 text = "MENU"
 
 [connection signal="pressed" from="VBoxContainer/retry" to="." method="_on_start_pressed"]

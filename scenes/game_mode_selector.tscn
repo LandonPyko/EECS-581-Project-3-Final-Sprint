@@ -29,10 +29,18 @@ layout_mode = 2
 
 [node name="pve" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../pvp")
+focus_neighbor_right = NodePath("../pvp")
+focus_next = NodePath("../pvp")
+focus_previous = NodePath("../pvp")
 text = "PvE"
 
 [node name="pvp" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../pve")
+focus_neighbor_right = NodePath("../pve")
+focus_next = NodePath("../pve")
+focus_previous = NodePath("../pve")
 text = "PvP"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/pve" to="." method="_on_pve_pressed"]

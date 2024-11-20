@@ -29,14 +29,26 @@ layout_mode = 2
 
 [node name="easy" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../hard")
+focus_neighbor_right = NodePath("../medium")
+focus_next = NodePath("../medium")
+focus_previous = NodePath("../hard")
 text = "easy"
 
 [node name="medium" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../easy")
+focus_neighbor_right = NodePath("../hard")
+focus_next = NodePath("../hard")
+focus_previous = NodePath("../easy")
 text = "medium"
 
 [node name="hard" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../medium")
+focus_neighbor_right = NodePath("../easy")
+focus_next = NodePath("../easy")
+focus_previous = NodePath("../medium")
 text = "hard"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/easy" to="." method="_on_easy_pressed"]

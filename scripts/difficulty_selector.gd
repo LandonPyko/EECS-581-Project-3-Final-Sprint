@@ -1,6 +1,7 @@
 extends Control
 
-
+func _ready() -> void:
+	$VBoxContainer/HBoxContainer/easy.grab_focus()
 
 func _on_easy_pressed() -> void:
 	Global.difficulty = "easy"
