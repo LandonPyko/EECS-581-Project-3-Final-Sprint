@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds7rfpjwshdtu"]
+
+[ext_resource type="Texture2D" uid="uid://dvcx6qnw41sgs" path="res://assets/tankTread.png" id="1_uovlr"]
+
+[node name="Node2D" type="Node2D"]
+rotation = -1.5708
+
+[node name="lTread" type="Sprite2D" parent="."]
+position = Vector2(18, 0)
+scale = Vector2(0.223, 0.258)
+texture = ExtResource("1_uovlr")
+
+[node name="rTread" type="Sprite2D" parent="."]
+position = Vector2(-18, 0)
+scale = Vector2(0.223, 0.258)
+texture = ExtResource("1_uovlr")

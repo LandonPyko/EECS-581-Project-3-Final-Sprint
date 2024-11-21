@@ -17,6 +17,8 @@ var cur_mines := 0   #walrus, := is used to make it only be of the type of its a
 												  #so we can make some from this script
 @onready var MINE = preload("res://scenes/mine.tscn")
 
+@onready var TREAD = preload("res://scenes/tankTread.tscn")
+
 var rotation_direction = 0   #Just create it
 var mouse_pos = Vector2(0,0) #set mouse pos to some place, don't matter.
 
@@ -98,6 +100,13 @@ func _physics_process(delta):
 		get_tree().root.add_child(mine) #add to game tree at root
 		mine.global_position = global_position #place at center of tank #TODO Change something with the rendering so tank is on top
 
+	if Input.is_anything_pressed() == true:
+		if $Timer.is_stopped():
+			$Timer.set_wait_time(0)
+			$Timer.start()
+			$Timer.set_wait_time(.15)
+	else:
+		$Timer.stop()
 
 func _changecolor(color):
 	modulate = color
@@ -108,3 +117,12 @@ func _input(event): #get input event if one happens
 	if event is InputEventMouseMotion: #if it is mouse movement
 		#print("Mouse Motion at: ", event.position) #print debug info
 		mouse_pos = event.global_position #change mouse_pos to new pos
+		
+
+
+
+func _on_timer_timeout() -> void:
+	var tread = TREAD.instantiate()
+	tread.global_position = global_position
+	tread.rotation = rotation - deg_to_rad(90)
+	get_parent().add_child(tread)

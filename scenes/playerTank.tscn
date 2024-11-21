@@ -28,3 +28,9 @@ position = Vector2(0, 80)
 [node name="tank_body_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_o3dy1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
