@@ -4,6 +4,7 @@ extends Sprite2D
 var dead = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AudioStreamPlayer.play()
 	pass # Replace with function body.
 
 

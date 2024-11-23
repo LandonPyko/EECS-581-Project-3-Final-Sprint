@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://vwg6vlbcw0j0"]
+
+[ext_resource type="AudioStream" uid="uid://d07ji6epnw7k0" path="res://assets/audio/game.mp3" id="1_ckvp6"]
+[ext_resource type="Script" path="res://scripts/audio_manager.gd" id="2_bbhw3"]
+
+[node name="AudioManager" type="AudioStreamPlayer"]
+stream = ExtResource("1_ckvp6")
+script = ExtResource("2_bbhw3")

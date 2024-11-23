@@ -1,6 +1,7 @@
 extends Control
 
 func _ready():
+	AudioManager.play_music()
 	$VBoxContainer/start.grab_focus()
 
 func _on_start_pressed() -> void:

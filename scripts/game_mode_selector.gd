@@ -2,6 +2,7 @@ extends Control
 
 func _ready() -> void:
 	$VBoxContainer/HBoxContainer/pve.grab_focus()
+	AudioManager.play_music()
 
 func _on_pvp_pressed() -> void:
 	Global.current_level = 1

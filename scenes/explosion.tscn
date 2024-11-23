@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c83uk166vdlij"]
+[gd_scene load_steps=9 format=3 uid="uid://c83uk166vdlij"]
 
 [ext_resource type="Script" path="res://scripts/explosion.gd" id="1_fmvf8"]
+[ext_resource type="AudioStream" uid="uid://um3ah1qad0uy" path="res://assets/audio/explosion.wav" id="2_girg4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vunnv"]
 
@@ -38,5 +39,8 @@ collision_mask = 32
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_girg4")
 
 [connection signal="timeout" from="lifetime" to="." method="_on_lifetime_timeout"]
