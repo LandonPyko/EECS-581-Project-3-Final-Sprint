@@ -7,8 +7,21 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	colorPick.color = Global.tank_Color
+	$audio/HBoxContainer/Master_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	$audio/HBoxContainer/FX_slider.value	 = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("FX")))
+	$audio/HBoxContainer/Music_slider.value	 = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
+	$Button.grab_focus()
 
+func _on_master_slider_value_changed(value: float) -> void:
+	Global.set_bus_volume(AudioServer.get_bus_index("Master"), value)
+	#print(db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))) # debug stuff
+	#print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	
+func _on_fx_slider_value_changed(value: float) -> void:
+	Global.set_bus_volume(AudioServer.get_bus_index("FX"), value)
 
+func _on_music_slider_value_changed(value: float) -> void:
+	Global.set_bus_volume(AudioServer.get_bus_index("Music"), value)
 
 func _on_button_pressed() -> void: # Return button
 	var next_screen = "res://scenes/main_menu.tscn"
