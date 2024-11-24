@@ -47,10 +47,18 @@ func _physics_process(delta):
 			print("Player 2 killed")
 			Global.p1_score += 1
 			collider.free()
+		elif collider.has_method("bullet"):
+			$Ricochet.play()
+			if parent != null:
+				parent.dec_bullets()
+			if collider.parent != null:
+				collider.parent.dec_bullets()
+			collider.dead = true
+			dead = true
 		else:
 			if ricochet_bank == 0:
-				collider.free()
-				free()
+				if parent != null:
+					parent.dec_bullets()
 				dead = true
 				return
 			$Ricochet.play()

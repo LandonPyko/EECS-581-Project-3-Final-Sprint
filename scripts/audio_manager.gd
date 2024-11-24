@@ -6,6 +6,8 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func play_music():
+	if Global.current_level > 1:
+		pitch_scale = 0.1 * Global.current_level + 1
 	if not is_playing():
 		play()
 
