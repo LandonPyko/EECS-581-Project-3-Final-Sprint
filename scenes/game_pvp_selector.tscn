@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccjjyvfsdkr8l"]
+
+[ext_resource type="Script" path="res://scripts/pvp_ready.gd" id="1_xlpqh"]
+
+[sub_resource type="Theme" id="Theme_7n32g"]
+
+[node name="pvp_ready" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xlpqh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 94.0
+offset_right = 1760.0
+offset_bottom = 762.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 80
+text = "Player 1: --------------------------------------"
+fit_content = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 80
+text = "Player 2: --------------------------------------"
+fit_content = true
+
+[node name="ready_time" type="Timer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 656.0
+offset_top = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 80
+text = "TIMER: 3"
+fit_content = true
+
+[node name="CheckButton1" type="CheckBox" parent="."]
+offset_left = 1506.0
+offset_top = 430.0
+offset_right = 1760.0
+offset_bottom = 540.0
+theme = SubResource("Theme_7n32g")
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 10
+theme_override_constants/icon_max_width = 1000
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_font_sizes/font_size = 60
+theme_override_constants/check_v_offset = 0
+text = "Ready? "
+
+[node name="CheckButton2" type="CheckBox" parent="."]
+layout_mode = 2
+offset_left = 1506.0
+offset_top = 316.0
+offset_right = 1760.0
+offset_bottom = 426.0
+theme = SubResource("Theme_7n32g")
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 10
+theme_override_constants/icon_max_width = 1000
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_font_sizes/font_size = 60
+theme_override_constants/check_v_offset = 0
+text = "Ready? "
+
+[connection signal="timeout" from="ready_time" to="." method="_on_ready_time_timeout"]

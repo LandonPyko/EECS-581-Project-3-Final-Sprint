@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccjjyvfsdkr8l"]
+[gd_scene load_steps=2 format=3 uid="uid://b4j1p5ej16t4j"]
 
 [ext_resource type="Script" path="res://scripts/game_mode_selector.gd" id="1_8x285"]
 
@@ -45,7 +45,7 @@ focus_next = NodePath("../pve")
 focus_previous = NodePath("../pve")
 text = "PvP"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/pve" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/pve" to="." method="_on_pve_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/pvp" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/pve" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/pvp" to="." method="_on_pvp_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/pvp" to="." method="_on_hard_pressed"]
