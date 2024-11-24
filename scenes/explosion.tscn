@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c83uk166vdlij"]
+[gd_scene load_steps=10 format=3 uid="uid://c83uk166vdlij"]
 
 [ext_resource type="Script" path="res://scripts/explosion.gd" id="1_fmvf8"]
 [ext_resource type="AudioStream" uid="uid://um3ah1qad0uy" path="res://assets/audio/explosion.wav" id="2_girg4"]
+[ext_resource type="AudioStream" uid="uid://d1dbqw4rpslp5" path="res://assets/audio/hitHurt.wav" id="3_daocd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vunnv"]
 
@@ -42,7 +43,10 @@ autostart = true
 
 [node name="Explosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_girg4")
-volume_db = -4.5
+volume_db = -38.414
 bus = &"FX"
+
+[node name="HitTank" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_daocd")
 
 [connection signal="timeout" from="lifetime" to="." method="_on_lifetime_timeout"]

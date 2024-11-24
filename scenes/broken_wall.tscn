@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ekx2vpnc6cl0" path="res://assets/crackedWall.png" id="1_nb3h8"]
 [ext_resource type="Script" path="res://scripts/broken_wall.gd" id="2_15nkb"]
-[ext_resource type="AudioStream" uid="uid://djjd63x0mthjq" path="res://assets/audio/broken_wall_break.wav" id="3_gwasy"]
+[ext_resource type="AudioStream" uid="uid://d3kgq1v2px73t" path="res://assets/audio/wall_break.wav" id="3_pjyst"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crpuv"]
 size = Vector2(100, 100)
@@ -20,4 +20,6 @@ shape = SubResource("RectangleShape2D_crpuv")
 texture = ExtResource("1_nb3h8")
 
 [node name="Break" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_gwasy")
+stream = ExtResource("3_pjyst")
+volume_db = 24.0
+bus = &"FX"

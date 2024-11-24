@@ -9,10 +9,15 @@ extends Control
 func _ready():
 	pass # Replace with function body.
 
-
+func _input(event):
+	if event.is_action_pressed("selectKeyboard"):
+		p1_ready.set_pressed(not p1_ready.is_pressed())
+		
+	if event.is_action_pressed("selectController"):
+		p2_ready.set_pressed(not p2_ready.is_pressed())
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	if p1_ready.button_pressed and p2_ready.button_pressed:
 		timer.text = "TIMER: " + str(int(ready_time.time_left))
 		if ready_time.is_stopped():

@@ -19,24 +19,23 @@ func _process(_delta):
 			var collider = area.get_collider(i)
 			if collider != null:
 				if collider.is_in_group("Enemy"):
-					#$hitTank.play()
+					$HitTank.play()
 					print("Hit a tank!")
 					Global.temp_score += 1 # Increment score
-					# print(Global.temp_score)
 					collider.free()
 					free()	# If it hits a tank we free the bullet instance
 				elif collider.is_in_group("Player"):	
-					#$hitTank.play()
+					$HitTank.play()
 					print("hello")
 					collider.free()
 					free()
 				elif collider.is_in_group("Player1"):
-					#$hitTank.play()
+					$HitTank.play()
 					print("Player 1 killed")
 					Global.p2_score += 1
 					collider.free()
 				elif collider.is_in_group("Player2"):
-					#$hitTank.play()
+					$HitTank.play()
 					print("Player 2 killed")
 					Global.p1_score += 1
 					collider.free()

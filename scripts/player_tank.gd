@@ -97,7 +97,7 @@ func _physics_process(delta):
 		cur_mines = cur_mines + 1 #increase number of mines placed
 		#create bullet instance for mine
 		var mine = MINE.instantiate()
-		mine.parent = get_parent().get_node("Tank") #set parent to this instance for refrence
+		mine.parent = self#get_parent().get_node("Tank") #set parent to this instance for refrence
 		get_tree().root.add_child(mine) #add to game tree at root
 		mine.global_position = global_position #place at center of tank #TODO Change something with the rendering so tank is on top
 
