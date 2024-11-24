@@ -175,6 +175,7 @@ func move_turret(delta):
 
 
 func shoot():
+	$Enemy_Shoot.play()
 	#create bullet instance for bullet
 	tur_dir = randf_range(0,deg_to_rad(360))
 	var bul := BULLET.instantiate()

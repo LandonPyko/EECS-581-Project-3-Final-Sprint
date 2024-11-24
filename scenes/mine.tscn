@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdh35tnsfegva"]
+[gd_scene load_steps=6 format=3 uid="uid://bdh35tnsfegva"]
 
 [ext_resource type="Script" path="res://scripts/mine.gd" id="1_51033"]
 [ext_resource type="Texture2D" uid="uid://meddjwh1ayx" path="res://assets/mine.png" id="2_57b2m"]
 [ext_resource type="Shape2D" uid="uid://bsdw8qoby4dog" path="res://assets/mine_collision.tres" id="3_lmery"]
+[ext_resource type="AudioStream" uid="uid://iek71emhhgu4" path="res://assets/audio/mine_place.wav" id="4_1lhuv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kfwrc"]
 radius = 259.0
@@ -33,6 +34,11 @@ autostart = true
 z_index = -1
 shape = SubResource("CircleShape2D_kfwrc")
 target_position = Vector2(0, 0)
+
+[node name="Placing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1lhuv")
+volume_db = 4.5
+bus = &"FX"
 
 [connection signal="timeout" from="life_time" to="." method="_on_life_time_timeout"]
 [connection signal="timeout" from="arming" to="." method="_on_arming_timeout"]

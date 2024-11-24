@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://onrulp2p0hel"]
+[gd_scene load_steps=6 format=3 uid="uid://onrulp2p0hel"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_xdceb"]
 [ext_resource type="Texture2D" uid="uid://cnekp6gthntey" path="res://assets/bullet.png" id="2_dd6uo"]
 [ext_resource type="Shape2D" uid="uid://6xdbfm0p43j8" path="res://assets/bullet_collision.tres" id="3_2skx8"]
 [ext_resource type="AudioStream" uid="uid://d1dbqw4rpslp5" path="res://assets/audio/hitHurt.wav" id="4_qhirg"]
+[ext_resource type="AudioStream" uid="uid://f1niv1qtvlgg" path="res://assets/audio/ricochet.wav" id="5_ksu0f"]
 
 [node name="bullet" type="CharacterBody2D"]
 modulate = Color(1, 0.352941, 0.317647, 1)
@@ -28,5 +29,11 @@ autostart = true
 
 [node name="hitTank" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_qhirg")
+bus = &"FX"
+
+[node name="Ricochet" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ksu0f")
+volume_db = -8.0
+bus = &"FX"
 
 [connection signal="timeout" from="life_time" to="." method="_on_life_time_timeout"]

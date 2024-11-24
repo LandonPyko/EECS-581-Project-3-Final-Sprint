@@ -10,6 +10,7 @@ var rotation_direction = 0 #not needed rn ##OPTION could do curving bullets?
 var click_position 	   = Vector2() #not needed rn
 var target_position	   = Vector2() #not needed rn
 var dead := false #Check if timer has run out because can't do it when signalling.
+var ricochet_bank = 2 # Track number of ricochets left before dead
 
 func _ready():
 	_changecolor(my_color)
@@ -47,10 +48,17 @@ func _physics_process(delta):
 			Global.p1_score += 1
 			collider.free()
 		else:
+			if ricochet_bank == 0:
+				collider.free()
+				free()
+				dead = true
+				return
+			$Ricochet.play()
 			var reflect = collision.get_remainder().bounce(collision.get_normal())
 			velocity = velocity.bounce(collision.get_normal())
 			global_rotation = velocity.angle()
 			move_and_collide(reflect)
+			ricochet_bank -= 1
 		
 		# Implement Bullet Collison with other tanks here?
 		

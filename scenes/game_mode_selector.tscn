@@ -13,11 +13,12 @@ script = ExtResource("1_8x285")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 309.0
-offset_top = 246.0
-offset_right = 478.0
-offset_bottom = 304.0
+offset_left = 650.0
+offset_top = 300.0
+offset_right = 819.0
+offset_bottom = 358.0
 scale = Vector2(3.425, 3.425)
+alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
@@ -26,6 +27,7 @@ fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="pve" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -43,7 +45,7 @@ focus_next = NodePath("../pve")
 focus_previous = NodePath("../pve")
 text = "PvP"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/pve" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/pve" to="." method="_on_pve_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/pvp" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/pve" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/pvp" to="." method="_on_pvp_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/pvp" to="." method="_on_hard_pressed"]

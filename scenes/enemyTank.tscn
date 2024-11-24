@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dacmxxndhic6b"]
+[gd_scene load_steps=8 format=3 uid="uid://dacmxxndhic6b"]
 
 [ext_resource type="Texture2D" uid="uid://diw83q4bmsulp" path="res://assets/tankBody.png" id="1_alfbm"]
 [ext_resource type="Script" path="res://scripts/enemy_tank.gd" id="1_bl4ox"]
 [ext_resource type="Texture2D" uid="uid://cu6dqvkjbphha" path="res://assets/tankGun.png" id="2_ckxeu"]
+[ext_resource type="AudioStream" uid="uid://bxqoudtw8s8bt" path="res://assets/audio/enemy_shoot.wav" id="4_vql7d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5vn6"]
 size = Vector2(50.5, 36.5)
@@ -58,6 +59,10 @@ collision_mask = 3
 visible = false
 top_level = true
 mesh = SubResource("SphereMesh_2k70l")
+
+[node name="Enemy_Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vql7d")
+bus = &"FX"
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="shot_timer" to="." method="_on_shot_timer_timeout"]

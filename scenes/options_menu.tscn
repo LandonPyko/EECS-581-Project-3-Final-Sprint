@@ -65,6 +65,8 @@ focus_neighbor_top = NodePath("../../../Button")
 focus_neighbor_bottom = NodePath("../../HBoxContainer2/FX_slider")
 focus_next = NodePath("../../HBoxContainer2/FX_slider")
 focus_previous = NodePath("../../../Button")
+max_value = 1.0
+step = 0.001
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="audio"]
 layout_mode = 2
@@ -82,6 +84,8 @@ focus_neighbor_top = NodePath("../../HBoxContainer/Master_slider")
 focus_neighbor_bottom = NodePath("../../HBoxContainer3/Music_slider")
 focus_next = NodePath("../../HBoxContainer3/Music_slider")
 focus_previous = NodePath("../../HBoxContainer/Master_slider")
+max_value = 1.0
+step = 0.001
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="audio"]
 layout_mode = 2
@@ -99,6 +103,8 @@ focus_neighbor_top = NodePath("../../HBoxContainer2/FX_slider")
 focus_neighbor_bottom = NodePath("../../../customization/HBoxContainer/TankColorPick")
 focus_next = NodePath("../../../customization/HBoxContainer/TankColorPick")
 focus_previous = NodePath("../../HBoxContainer2/FX_slider")
+max_value = 1.0
+step = 0.001
 
 [node name="customization" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -176,6 +182,6 @@ text = "RETURN"
 [connection signal="color_changed" from="customization/HBoxContainer/TankColorPick" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="popup_closed" from="customization/HBoxContainer/TankColorPick" to="." method="_on_color_picker_button_popup_closed"]
 [connection signal="color_changed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_color_picker_button_color_changed"]
-[connection signal="popup_closed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_color_picker_button_popup_closed"]
 [connection signal="popup_closed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_bullet_color_pick_popup_closed"]
+[connection signal="popup_closed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_color_picker_button_popup_closed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

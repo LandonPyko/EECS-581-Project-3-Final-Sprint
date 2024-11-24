@@ -2,6 +2,7 @@ extends StaticBody2D
 var dead = false
 
 func explosion():
+	$Break.play()
 	dead = true
 
 func _process(_delta):

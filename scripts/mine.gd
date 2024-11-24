@@ -11,8 +11,7 @@ var dead := false #Check if timer has run out because can't do it when signallin
 
 func _ready():
 	$life_time.wait_time = explodeTimer
-
-
+	$Placing.play()
 
 func _physics_process(_delta):
 	if dead: #if life_time is out, free the instance

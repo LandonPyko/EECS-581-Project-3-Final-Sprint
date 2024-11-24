@@ -82,6 +82,7 @@ func _physics_process(delta):
 	
 	##SHOOTING LOGIC
 	if Input.is_action_just_pressed(shootButton) && (cur_bullets < max_bullets): #check if want to and can fire
+		$Player_Shoot.play()
 		cur_bullets = cur_bullets + 1 #increase number of bullets fired
 		#create bullet instance for bullet
 		var bul = BULLET.instantiate()

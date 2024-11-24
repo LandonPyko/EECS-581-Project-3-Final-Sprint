@@ -99,3 +99,7 @@ theme_override_colors/font_shadow_color = Color(0.400698, 0.400698, 0.400698, 1)
 theme_override_colors/font_outline_color = Color(0.396889, 0.396889, 0.396889, 1)
 theme_override_font_sizes/font_size = 32
 script = ExtResource("8_2xvbl")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 1)
+bus = &"FX"
