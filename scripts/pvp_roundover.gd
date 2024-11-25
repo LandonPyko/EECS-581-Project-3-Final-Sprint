@@ -17,12 +17,16 @@ func _on_start_pressed() -> void: # Continue button
 	if Global.current_level > 10:
 		Global.current_level = 0
 		next_screen = "res://scenes/main_menu.tscn"
+	Global.winner = null
+	Global.optionsReturnScreen = null
 	print(next_screen)
 	get_tree().change_scene_to_file(next_screen)
 
 
 func _on_options_pressed() -> void: # Options button
+	Global.optionsReturnScreen = "res://scenes/player"+str(Global.winner)+"win.tscn"
 	get_tree().change_scene_to_file("res://scenes/options_menu.tscn")
+	
 
 
 func _on_quit_pressed() -> void: # Menu button

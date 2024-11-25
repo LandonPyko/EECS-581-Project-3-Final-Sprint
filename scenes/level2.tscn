@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=4 uid="uid://cf6d8e6coikly"]
+[gd_scene load_steps=17 format=4 uid="uid://cf6d8e6coikly"]
 
 [ext_resource type="Script" path="res://scripts/stage.gd" id="1_7oos3"]
 [ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_8rrqy"]
 [ext_resource type="PackedScene" uid="uid://gt7v2wyfvhcn" path="res://scenes/broken_wall.tscn" id="3_is5d0"]
+[ext_resource type="PackedScene" uid="uid://b3dgae8mm7udh" path="res://scenes/background.tscn" id="3_q3qoi"]
 [ext_resource type="NavigationPolygon" uid="uid://doxbglj1l8lv" path="res://assets/nav_map.tres" id="3_sk1eq"]
 [ext_resource type="PackedScene" uid="uid://bj8dje0p13rkd" path="res://scenes/wall.tscn" id="4_iygow"]
 [ext_resource type="PackedScene" uid="uid://bibx23kj623up" path="res://scenes/hole.tscn" id="5_nd4v5"]
@@ -74,6 +75,10 @@ collision_layer = 128
 [node name="collider" type="CollisionShape2D" parent="Sprite2D/left_wall"]
 position = Vector2(124.16, 299)
 shape = SubResource("WorldBoundaryShape2D_va5vj")
+
+[node name="Node2D" parent="Sprite2D" instance=ExtResource("3_q3qoi")]
+position = Vector2(-50.5, -35.6691)
+scale = Vector2(0.0507488, 0.0730178)
 
 [node name="nav_map" type="NavigationRegion2D" parent="."]
 navigation_polygon = ExtResource("3_sk1eq")

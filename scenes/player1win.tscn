@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsd4ah1ln2e2r"]
+[gd_scene load_steps=4 format=3 uid="uid://bsd4ah1ln2e2r"]
 
 [ext_resource type="Script" path="res://scripts/pvp_roundover.gd" id="1_veo5v"]
 [ext_resource type="Script" path="res://scripts/pvp_round_end_score.gd" id="2_5vfme"]
+[ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_ksacn"]
 
 [node name="RoundWin" type="Control"]
 layout_mode = 3
@@ -12,21 +13,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_veo5v")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(902, 472)
+scale = Vector2(1.798, 1.256)
+texture = ExtResource("2_ksacn")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 510.0
-offset_top = 328.0
-offset_right = 858.0
-offset_bottom = 456.0
-scale = Vector2(2.095, 2.095)
+offset_left = 474.0
+offset_top = 228.0
+offset_right = 1274.0
+offset_bottom = 668.0
 
 [node name="roundcomplete" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
-text = "                         	 Player 1 Wins!"
+theme_override_font_sizes/normal_font_size = 80
+text = "      Player 1 Wins!"
 fit_content = true
 
 [node name="Score" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 script = ExtResource("2_5vfme")
 
@@ -36,6 +43,7 @@ focus_neighbor_top = NodePath("../quit")
 focus_neighbor_bottom = NodePath("../options")
 focus_next = NodePath("../options")
 focus_previous = NodePath("../quit")
+theme_override_font_sizes/font_size = 50
 text = "CONTINUE"
 
 [node name="options" type="Button" parent="VBoxContainer"]
@@ -44,6 +52,7 @@ focus_neighbor_top = NodePath("../start")
 focus_neighbor_bottom = NodePath("../quit")
 focus_next = NodePath("../quit")
 focus_previous = NodePath("../start")
+theme_override_font_sizes/font_size = 50
 text = "OPTIONS"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
@@ -52,6 +61,7 @@ focus_neighbor_top = NodePath("../options")
 focus_neighbor_bottom = NodePath("../start")
 focus_next = NodePath("../start")
 focus_previous = NodePath("../options")
+theme_override_font_sizes/font_size = 50
 text = "MENU"
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]

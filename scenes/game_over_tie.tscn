@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://g6q08kt8p6g0"]
+[gd_scene load_steps=4 format=3 uid="uid://g6q08kt8p6g0"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_towbo"]
+[ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_xn7tr"]
 [ext_resource type="Script" path="res://scripts/pvp_round_end_score.gd" id="2_ye7qx"]
 
 [node name="RoundWin" type="Control"]
@@ -12,26 +13,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_towbo")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(902, 472)
+scale = Vector2(1.798, 1.256)
+texture = ExtResource("2_xn7tr")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 510.0
-offset_top = 328.0
-offset_right = 858.0
-offset_bottom = 456.0
-scale = Vector2(2.095, 2.095)
+offset_left = 391.0
+offset_top = 263.0
+offset_right = 1341.0
+offset_bottom = 563.0
 
 [node name="roundcomplete" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
-text = "                      Game Over! It's a tie!"
+theme_override_font_sizes/normal_font_size = 80
+text = "   Game Over! It's a tie!"
 fit_content = true
 
 [node name="Score" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 script = ExtResource("2_ye7qx")
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "MENU"
 
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

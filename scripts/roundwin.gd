@@ -24,6 +24,7 @@ func _on_start_pressed() -> void: # Continue button
 
 
 func _on_options_pressed() -> void: # Options button
+	Global.optionsReturnScreen = "res://scenes/roundwin.tscn"
 	get_tree().change_scene_to_file("res://scenes/options_menu.tscn")
 
 

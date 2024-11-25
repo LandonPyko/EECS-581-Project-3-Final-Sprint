@@ -29,3 +29,7 @@ func _process(delta):
 
 func _on_ready_time_timeout():
 	get_tree().change_scene_to_file("res://scenes/level1_pvp.tscn")
+
+
+func _on_quit_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

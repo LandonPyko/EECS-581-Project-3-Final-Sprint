@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3dgae8mm7udh"]
+
+[ext_resource type="Texture2D" uid="uid://f84rppglinpu" path="res://assets/detailedBackground.jpg" id="1_bvatf"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-9, -9)
+scale = Vector2(0.913478, 0.980556)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_bvatf")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_top = 494.89
+offset_right = 500.0
+offset_bottom = 994.89
+texture = ExtResource("1_bvatf")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(500, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Node2D"]
+offset_right = 500.0
+offset_bottom = 500.0
+texture = ExtResource("1_bvatf")
+
+[node name="TextureRect2" type="TextureRect" parent="Node2D"]
+offset_top = 494.89
+offset_right = 500.0
+offset_bottom = 994.89
+texture = ExtResource("1_bvatf")
+
+[node name="Node2D3" type="Node2D" parent="."]
+position = Vector2(1500, -1.905)
+
+[node name="TextureRect" type="TextureRect" parent="Node2D3"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_bvatf")
+
+[node name="TextureRect2" type="TextureRect" parent="Node2D3"]
+offset_top = 494.89
+offset_right = 500.0
+offset_bottom = 994.89
+texture = ExtResource("1_bvatf")
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(1000, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Node2D2"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_bvatf")
+
+[node name="TextureRect2" type="TextureRect" parent="Node2D2"]
+offset_top = 494.89
+offset_right = 500.0
+offset_bottom = 994.89
+texture = ExtResource("1_bvatf")

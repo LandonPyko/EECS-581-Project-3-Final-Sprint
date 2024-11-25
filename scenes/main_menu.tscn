@@ -19,16 +19,16 @@ texture = ExtResource("2_6fu20")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 547.0
-offset_top = 320.0
-offset_right = 895.0
-offset_bottom = 448.0
-scale = Vector2(2.095, 2.095)
+offset_left = 489.0
+offset_top = 216.0
+offset_right = 1289.0
+offset_bottom = 692.0
 
 [node name="tanks" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
-text = "                                  TANKS!!!"
-fit_content = true
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 80
+text = "          TANKS!!!!!"
 
 [node name="start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -36,6 +36,7 @@ focus_neighbor_top = NodePath("../quit")
 focus_neighbor_bottom = NodePath("../options")
 focus_next = NodePath("../options")
 focus_previous = NodePath("../quit")
+theme_override_font_sizes/font_size = 80
 text = "START GAME"
 
 [node name="options" type="Button" parent="VBoxContainer"]
@@ -44,6 +45,7 @@ focus_neighbor_top = NodePath("../start")
 focus_neighbor_bottom = NodePath("../quit")
 focus_next = NodePath("../quit")
 focus_previous = NodePath("../start")
+theme_override_font_sizes/font_size = 80
 text = "OPTIONS"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
@@ -52,9 +54,8 @@ focus_neighbor_top = NodePath("../options")
 focus_neighbor_bottom = NodePath("../start")
 focus_next = NodePath("../start")
 focus_previous = NodePath("../options")
+theme_override_font_sizes/font_size = 80
 text = "QUIT"
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/options" to="." method="_on_options_pressed"]

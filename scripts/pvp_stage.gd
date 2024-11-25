@@ -17,8 +17,10 @@ func _process(delta: float) -> void:
 		
 	if Global.p1_score + Global.p2_score < 10:
 		if player1.is_empty():	# If no enemies left
+			Global.winner = 2
 			get_tree().change_scene_to_file("res://scenes/player2win.tscn")
 		if player2.is_empty():
+			Global.winner = 1
 			get_tree().change_scene_to_file("res://scenes/player1win.tscn")
 	
 	else:

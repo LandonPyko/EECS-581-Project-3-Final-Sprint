@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=4 uid="uid://dsqcl325ypwrn"]
+[gd_scene load_steps=17 format=4 uid="uid://dsqcl325ypwrn"]
 
 [ext_resource type="Script" path="res://scripts/stage.gd" id="1_n8rs1"]
+[ext_resource type="PackedScene" uid="uid://b3dgae8mm7udh" path="res://scenes/background.tscn" id="2_2xykl"]
 [ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_tlbx2"]
 [ext_resource type="NavigationPolygon" uid="uid://doxbglj1l8lv" path="res://assets/nav_map.tres" id="3_at3fk"]
 [ext_resource type="PackedScene" uid="uid://gt7v2wyfvhcn" path="res://scenes/broken_wall.tscn" id="3_d5mc5"]
@@ -38,6 +39,10 @@ position = Vector2(900, 470)
 scale = Vector2(18, 13.429)
 texture = ExtResource("2_tlbx2")
 metadata/_edit_lock_ = true
+
+[node name="Node2D" parent="Sprite2D" instance=ExtResource("2_2xykl")]
+position = Vector2(-50.5, -35.6691)
+scale = Vector2(0.0507488, 0.0730178)
 
 [node name="top_wall" type="StaticBody2D" parent="Sprite2D"]
 position = Vector2(-50, -35)

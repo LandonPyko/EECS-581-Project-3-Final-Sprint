@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmi830e2an7r1"]
+[gd_scene load_steps=4 format=3 uid="uid://drfngwdj680g0"]
 
 [ext_resource type="Script" path="res://scripts/pvp_ready.gd" id="1_xlpqh"]
+[ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_au0mj"]
 
 [sub_resource type="Theme" id="Theme_7n32g"]
 
@@ -12,6 +13,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xlpqh")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(895, 470)
+scale = Vector2(1.83999, 1.40161)
+texture = ExtResource("2_au0mj")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -91,5 +97,18 @@ theme_override_font_sizes/font_size = 60
 theme_override_constants/check_v_offset = 0
 text = "Ready? "
 
+[node name="quit" type="Button" parent="."]
+offset_left = 461.0
+offset_top = 809.0
+offset_right = 1261.0
+offset_bottom = 900.0
+focus_neighbor_top = NodePath("../options")
+focus_neighbor_bottom = NodePath("../start")
+focus_next = NodePath("../start")
+focus_previous = NodePath("../options")
+theme_override_font_sizes/font_size = 60
+text = "MENU"
+
 [connection signal="timeout" from="ready_time" to="." method="_on_ready_time_timeout"]
 [connection signal="toggled" from="CheckButton1" to="." method="_on_check_button_1_toggled"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

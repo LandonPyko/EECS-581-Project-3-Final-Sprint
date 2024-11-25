@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://iten16or0ref"]
+[gd_scene load_steps=3 format=3 uid="uid://iten16or0ref"]
 
 [ext_resource type="Script" path="res://scripts/difficulty_selector.gd" id="1_twmfg"]
+[ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_p5elb"]
 
 [node name="difficulty_selector" type="Control"]
 layout_mode = 3
@@ -11,21 +12,28 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_twmfg")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(902, 472)
+scale = Vector2(1.798, 1.256)
+texture = ExtResource("2_p5elb")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 309.0
-offset_top = 246.0
-offset_right = 478.0
-offset_bottom = 304.0
-scale = Vector2(3.425, 3.425)
+offset_left = 490.0
+offset_top = 293.0
+offset_right = 1310.0
+offset_bottom = 593.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 80
 text = "     Select Difficulty:"
 fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 45
 
 [node name="easy" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -33,6 +41,7 @@ focus_neighbor_left = NodePath("../hard")
 focus_neighbor_right = NodePath("../medium")
 focus_next = NodePath("../medium")
 focus_previous = NodePath("../hard")
+theme_override_font_sizes/font_size = 50
 text = "easy"
 
 [node name="medium" type="Button" parent="VBoxContainer/HBoxContainer"]
@@ -41,6 +50,7 @@ focus_neighbor_left = NodePath("../easy")
 focus_neighbor_right = NodePath("../hard")
 focus_next = NodePath("../hard")
 focus_previous = NodePath("../easy")
+theme_override_font_sizes/font_size = 50
 text = "medium"
 
 [node name="hard" type="Button" parent="VBoxContainer/HBoxContainer"]
@@ -49,6 +59,7 @@ focus_neighbor_left = NodePath("../medium")
 focus_neighbor_right = NodePath("../easy")
 focus_next = NodePath("../easy")
 focus_previous = NodePath("../medium")
+theme_override_font_sizes/font_size = 50
 text = "hard"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/easy" to="." method="_on_easy_pressed"]

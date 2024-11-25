@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=4 uid="uid://duluwn2cah37g"]
+[gd_scene load_steps=16 format=4 uid="uid://duluwn2cah37g"]
 
 [ext_resource type="Script" path="res://scripts/pvp_stage.gd" id="1_idrfk"]
 [ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_jk62r"]
 [ext_resource type="NavigationPolygon" uid="uid://doxbglj1l8lv" path="res://assets/nav_map.tres" id="3_2t1bk"]
+[ext_resource type="PackedScene" uid="uid://b3dgae8mm7udh" path="res://scenes/background.tscn" id="3_kiyc1"]
 [ext_resource type="PackedScene" uid="uid://gt7v2wyfvhcn" path="res://scenes/broken_wall.tscn" id="4_v4qy4"]
 [ext_resource type="PackedScene" uid="uid://bj8dje0p13rkd" path="res://scenes/wall.tscn" id="5_dq48c"]
 [ext_resource type="PackedScene" uid="uid://bibx23kj623up" path="res://scenes/hole.tscn" id="6_f10kh"]
@@ -37,6 +38,10 @@ position = Vector2(900, 470)
 scale = Vector2(18, 13.429)
 texture = ExtResource("2_jk62r")
 metadata/_edit_lock_ = true
+
+[node name="Node2D" parent="Sprite2D" instance=ExtResource("3_kiyc1")]
+position = Vector2(-50.5, -35.6691)
+scale = Vector2(0.0507488, 0.0730178)
 
 [node name="top_wall" type="StaticBody2D" parent="Sprite2D"]
 position = Vector2(-50, -35)
