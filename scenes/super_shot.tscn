@@ -1,6 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://mrubo8v8c3b5"]
+[gd_scene load_steps=2 format=3 uid="uid://djgva32px5jn8"]
 
-[ext_resource type="Script" path="res://scenes/super_shot.gd" id="1_ja63m"]
+[ext_resource type="PackedScene" uid="uid://ca0qmk32g5aq4" path="res://scenes/pickup.tscn" id="1_f2syp"]
 
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_ja63m")
+[node name="super_shot" instance=ExtResource("1_f2syp")]

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnntgysq52hea"]
+
+[ext_resource type="PackedScene" uid="uid://ca0qmk32g5aq4" path="res://scenes/pickup.tscn" id="1_65xfr"]
+
+[node name="speedup" instance=ExtResource("1_65xfr")]

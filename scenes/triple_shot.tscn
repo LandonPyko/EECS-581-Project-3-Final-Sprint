@@ -1,6 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://dg23c742bppot"]
+[gd_scene load_steps=2 format=3 uid="uid://djdiwn4c37ccj"]
 
-[ext_resource type="Script" path="res://scenes/triple_shot.gd" id="1_71vs2"]
+[ext_resource type="PackedScene" uid="uid://ca0qmk32g5aq4" path="res://scenes/pickup.tscn" id="1_ybq3c"]
 
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_71vs2")
+[node name="triple_shot" instance=ExtResource("1_ybq3c")]
