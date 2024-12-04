@@ -9,6 +9,7 @@ func _ready() -> void:
 	AudioManager.play_music()
 
 	colorPick.color = Global.tank_Color
+	bulColorPick.color = Global.bullet_Color
 	$audio/HBoxContainer/Master_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	$audio/HBoxContainer2/FX_slider.value	 = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("FX")))
 	$audio/HBoxContainer3/Music_slider.value	 = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
