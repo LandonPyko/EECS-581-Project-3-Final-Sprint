@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj43p1a8ypeu7"]
+
+[ext_resource type="Script" path="res://scripts/player_tank.gd" id="1_5ejvn"]
+[ext_resource type="Texture2D" uid="uid://diw83q4bmsulp" path="res://assets/tankBody.png" id="2_03woj"]
+[ext_resource type="Texture2D" uid="uid://cu6dqvkjbphha" path="res://assets/tankGun.png" id="3_uio1y"]
+[ext_resource type="AudioStream" uid="uid://bq6s4iqvjqmdk" path="res://assets/audio/player_shoot.wav" id="4_q3l3o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3dy1"]
+size = Vector2(54, 36)
+
+[node name="Tank" type="CharacterBody2D"]
+z_index = 1
+collision_mask = 207
+script = ExtResource("1_5ejvn")
+
+[node name="tankBody" type="Sprite2D" parent="."]
+scale = Vector2(0.71, 0.7)
+texture = ExtResource("2_03woj")
+
+[node name="tankGun" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(0.814815, 0.833329)
+texture = ExtResource("3_uio1y")
+offset = Vector2(0, 16.534)
+
+[node name="fire_loc" type="Node2D" parent="tankGun"]
+position = Vector2(0, 80)
+
+[node name="tank_body_collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_o3dy1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+autostart = true
+
+[node name="Player_Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_q3l3o")
+bus = &"FX"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

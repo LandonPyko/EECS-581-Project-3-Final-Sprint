@@ -8,7 +8,8 @@ extends CharacterBody2D
 var my_color = Global.tank_Color
 @export var score := 0
 
-
+var bullet_size := Vector2(1,1)
+var supershot := false
 var cur_bullets := 0 #create var for cur mines and bullets
 var cur_mines := 0   #walrus, := is used to make it only be of the type of its assignment
 					 #in this case, an int. Just an optimization and helps prevent mishaps
@@ -87,10 +88,18 @@ func _physics_process(delta):
 		#create bullet instance for bullet
 		var bul = BULLET.instantiate()
 		bul.parent = self
+		bul.scale = bullet_size
 		get_tree().root.add_child(bul) #add to game tree at root #no reason not to for now
 		bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation stuff because graphics
 		var direction = Vector2(cos($tankGun.global_rotation), sin($tankGun.global_rotation))
-		bul.global_position = $tankGun/fire_loc.global_position + direction * 10#move to the fire loc so it pretend to fire from turret
+		
+		# Needs to be fixed but idea is there
+		if (supershot):
+			bul.global_position = $tankGun/fire_loc.global_position + Vector2(20,20)
+		else:
+			bul.global_position = $tankGun/fire_loc.global_position
+		
+			
 		#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else
 	
 	elif Input.is_action_just_pressed(mineButton) && (cur_mines < max_mines):
@@ -120,7 +129,9 @@ func _input(event): #get input event if one happens
 		mouse_pos = event.global_position #change mouse_pos to new pos
 		
 
-
+func _super_shot():
+	bullet_size = Vector2(2,2)
+	supershot = true
 
 func _on_timer_timeout() -> void:
 	var tread = TREAD.instantiate()

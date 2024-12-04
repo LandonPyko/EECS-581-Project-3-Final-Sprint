@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dsqcl325ypwrn"]
+[gd_scene load_steps=19 format=4 uid="uid://dsqcl325ypwrn"]
 
 [ext_resource type="Script" path="res://scripts/stage.gd" id="1_n8rs1"]
 [ext_resource type="PackedScene" uid="uid://b3dgae8mm7udh" path="res://scenes/background.tscn" id="2_2xykl"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dacmxxndhic6b" path="res://scenes/enemyTank.tscn" id="7_nfxii"]
 [ext_resource type="Script" path="res://scripts/score.gd" id="8_2xvbl"]
 [ext_resource type="PackedScene" uid="uid://bnntgysq52hea" path="res://scenes/speedup.tscn" id="10_sxewv"]
+[ext_resource type="PackedScene" uid="uid://djgva32px5jn8" path="res://scenes/super_shot.tscn" id="11_wjioy"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kelan"]
 normal = Vector2(0, 1)
@@ -97,6 +98,9 @@ collision_mask = 129
 
 [node name="speedup" parent="." instance=ExtResource("10_sxewv")]
 position = Vector2(670, 470)
+
+[node name="super_shot" parent="." instance=ExtResource("11_wjioy")]
+position = Vector2(364, 348)
 
 [node name="Score" type="Label" parent="."]
 offset_left = 795.0

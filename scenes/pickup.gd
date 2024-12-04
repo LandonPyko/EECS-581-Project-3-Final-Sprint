@@ -18,5 +18,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		queue_free()
 
 func _apply_effect(body):
-	body.speed += 200
+	body._super_shot()
 	pass
