@@ -59,10 +59,9 @@ func actor_setup():
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished() and Global.difficulty != "hard":
 		_random_move()
-		move_timer.start()
-	else:
+	elif Global.difficulty == "hard":
 		hard_move()
-		move_timer.start()
+	move_timer.start()
 	var _current_position: Vector2 = global_position
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()
 	

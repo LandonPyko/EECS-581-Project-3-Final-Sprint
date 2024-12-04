@@ -1,14 +1,27 @@
 extends Control
 
-@onready var colorPick = $customization/HBoxContainer/TankColorPick
-@onready var bulColorPick = $customization/HBoxContainer2/bulletColorPick
+@onready var colorPick := $customization/HBoxContainer/TankColorPick
+@onready var bulColorPick := $customization/HBoxContainer2/bulletColorPick
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	AudioManager.play_music()
+	var colorPickTmp = colorPick.get_picker()
+	var bulColorPickTmp = bulColorPick.get_picker()
+	
+	colorPickTmp.color_modes_visible = false
+	colorPickTmp.presets_visible = false
+	colorPickTmp.sliders_visible = false
+	colorPickTmp.hex_visible = false
+	
+	bulColorPickTmp.color_modes_visible = false
+	bulColorPickTmp.presets_visible = false
+	bulColorPickTmp.sliders_visible = false
+	bulColorPickTmp.hex_visible = false
 
 	colorPick.color = Global.tank_Color
+	bulColorPick.color = Global.bullet_Color
 	$audio/HBoxContainer/Master_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	$audio/HBoxContainer2/FX_slider.value	 = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("FX")))
 	$audio/HBoxContainer3/Music_slider.value	 = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))

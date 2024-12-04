@@ -136,6 +136,7 @@ focus_neighbor_bottom = NodePath("../../HBoxContainer2/bulletColorPick")
 focus_next = NodePath("../../HBoxContainer2/bulletColorPick")
 focus_previous = NodePath("../../../audio/HBoxContainer3/Music_slider")
 text = "uhhhh"
+edit_alpha = false
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="customization"]
 layout_mode = 2
@@ -154,6 +155,7 @@ focus_neighbor_bottom = NodePath("../../../Button")
 focus_next = NodePath("../../../Button")
 focus_previous = NodePath("../../HBoxContainer/TankColorPick")
 text = "uhhhh"
+edit_alpha = false
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -182,6 +184,6 @@ text = "RETURN"
 [connection signal="color_changed" from="customization/HBoxContainer/TankColorPick" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="popup_closed" from="customization/HBoxContainer/TankColorPick" to="." method="_on_color_picker_button_popup_closed"]
 [connection signal="color_changed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_color_picker_button_color_changed"]
-[connection signal="popup_closed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_color_picker_button_popup_closed"]
 [connection signal="popup_closed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_bullet_color_pick_popup_closed"]
+[connection signal="popup_closed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_color_picker_button_popup_closed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
