@@ -136,6 +136,7 @@ focus_neighbor_bottom = NodePath("../../HBoxContainer2/bulletColorPick")
 focus_next = NodePath("../../HBoxContainer2/bulletColorPick")
 focus_previous = NodePath("../../../audio/HBoxContainer3/Music_slider")
 text = "uhhhh"
+edit_alpha = false
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="customization"]
 layout_mode = 2
@@ -154,6 +155,7 @@ focus_neighbor_bottom = NodePath("../../../Button")
 focus_next = NodePath("../../../Button")
 focus_previous = NodePath("../../HBoxContainer/TankColorPick")
 text = "uhhhh"
+edit_alpha = false
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
