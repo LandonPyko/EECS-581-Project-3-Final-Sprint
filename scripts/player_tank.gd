@@ -92,6 +92,7 @@ func _physics_process(delta):
 		bul.parent = self
 		bul.scale = bullet_size
 		get_tree().root.add_child(bul) #add to game tree at root #no reason not to for now
+		bul.add_to_group("Bullets") # Add to group Bullets for clean up at end of round
 		bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation stuff because graphics
 		var direction = Vector2(cos($tankGun.global_rotation), sin($tankGun.global_rotation))
 		
@@ -110,6 +111,7 @@ func _physics_process(delta):
 		var mine = MINE.instantiate()
 		mine.parent = self#get_parent().get_node("Tank") #set parent to this instance for refrence
 		get_tree().root.add_child(mine) #add to game tree at root
+		mine.add_to_group("Mines") # Add to group Mines for clean up at end of round
 		mine.global_position = global_position #place at center of tank #TODO Change something with the rendering so tank is on top
 
 	if Input.is_anything_pressed() == true:
