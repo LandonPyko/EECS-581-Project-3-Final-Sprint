@@ -16,6 +16,7 @@ func _process(_delta: float) -> void:
 		$nav_map.bake_navigation_polygon()
 	
 	if enemies.is_empty():	# If no enemies left
+		
 		get_tree().change_scene_to_file("res://scenes/roundwin.tscn")
 	if player.is_empty():
 		get_tree().change_scene_to_file("res://scenes/roundloss.tscn")

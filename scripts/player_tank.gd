@@ -10,6 +10,8 @@ var my_color = Global.tank_Color
 
 var bullet_size := Vector2(1,1)
 var supershot := false
+var tripleshot := false
+@export_range(0, 360) var arc: float = 0
 var cur_bullets := 0 #create var for cur mines and bullets
 var cur_mines := 0   #walrus, := is used to make it only be of the type of its assignment
 					 #in this case, an int. Just an optimization and helps prevent mishaps
@@ -95,7 +97,7 @@ func _physics_process(delta):
 		
 		# Needs to be fixed but idea is there
 		if (supershot):
-			bul.global_position = $tankGun/fire_loc.global_position + Vector2(20,20)
+			bul.global_position = $tankGun/fire_loc.global_position + Vector2(60,60)
 		else:
 			bul.global_position = $tankGun/fire_loc.global_position
 		
@@ -132,9 +134,16 @@ func _input(event): #get input event if one happens
 func _super_shot():
 	bullet_size = Vector2(2,2)
 	supershot = true
+	#$Super_Shot_Timer.start()
+	
+#func _super_not(): # Reset bullet size and supershot flag
+	#bullet_size = Vector2(1, 1)
+	#supershot = false
 
 func _on_timer_timeout() -> void:
 	var tread = TREAD.instantiate()
 	tread.global_position = global_position
 	tread.rotation = rotation - deg_to_rad(90)
 	get_parent().add_child(tread)
+	#if (supershot == true): # Check on timer stop since multiple timers seem to share this function?
+		#_super_not() # If timer stoppped, reset supershot variables

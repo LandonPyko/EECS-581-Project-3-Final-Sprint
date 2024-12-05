@@ -31,11 +31,16 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_o3dy1")
 
 [node name="Timer" type="Timer" parent="."]
+process_callback = 0
 wait_time = 0.15
 autostart = true
 
 [node name="Player_Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_q3l3o")
 bus = &"FX"
+
+[node name="Super_Shot_Timer" type="Timer" parent="."]
+wait_time = 50.0
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
