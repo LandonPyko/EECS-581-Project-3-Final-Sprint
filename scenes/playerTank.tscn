@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dj43p1a8ypeu7"]
+[gd_scene load_steps=8 format=3 uid="uid://dj43p1a8ypeu7"]
 
 [ext_resource type="Script" path="res://scripts/player_tank.gd" id="1_5ejvn"]
 [ext_resource type="Texture2D" uid="uid://diw83q4bmsulp" path="res://assets/tankBody.png" id="2_03woj"]
 [ext_resource type="Texture2D" uid="uid://cu6dqvkjbphha" path="res://assets/tankGun.png" id="3_uio1y"]
 [ext_resource type="Shape2D" uid="uid://6xdbfm0p43j8" path="res://assets/bullet_collision.tres" id="4_0wqfi"]
 [ext_resource type="AudioStream" uid="uid://bq6s4iqvjqmdk" path="res://assets/audio/player_shoot.wav" id="4_q3l3o"]
+[ext_resource type="AudioStream" uid="uid://b8a3etrnxkggq" path="res://assets/audio/failed_shot.wav" id="6_2e326"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3dy1"]
 size = Vector2(54, 36)
@@ -63,6 +64,9 @@ autostart = true
 [node name="Player_Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_q3l3o")
 bus = &"FX"
+
+[node name="Failed_shot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_2e326")
 
 [node name="Super_Shot_Timer" type="Timer" parent="."]
 wait_time = 10.0

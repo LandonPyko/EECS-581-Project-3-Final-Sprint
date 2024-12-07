@@ -139,7 +139,9 @@ func _physics_process(delta):
 			bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation stuff because graphics
 			#var direction = Vector2(cos($tankGun.global_rotation), sin($tankGun.global_rotation))
 			bul.global_position = fire_loc.global_position
-			# Needs to be fixed but idea is there	
+			# Needs to be fixed but idea is there
+	elif Input.is_action_just_pressed(shootButton) && (cur_bullets < max_bullets) and !check_fire():
+		$Failed_shot.play()
 	elif Input.is_action_just_pressed(mineButton) && (cur_mines < max_mines):
 		cur_mines = cur_mines + 1 #increase number of mines placed
 		#create bullet instance for mine
