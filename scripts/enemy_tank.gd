@@ -10,7 +10,7 @@ extends CharacterBody2D
 
 @onready var nav_agent : NavigationAgent2D = $nav_agent
 @onready var tankGun : Sprite2D = $tankGun
-@onready var fire_loc : Node2D = $tankGun/fire_loc
+@onready var fire_loc : Node2D = $tankGun/CollisionShape2D/fire_loc
 @onready var move_timer : Timer = $MoveTimer
 @onready var shot_timer : Timer = $shot_timer
 @onready var vision : ShapeCast2D = $vision
@@ -55,6 +55,12 @@ func actor_setup():
 
 	# Now that the navigation map is no longer empty, set the movement target.
 	nav_agent.target_position = target_pos
+
+func check_fire() -> bool:
+	#first you get the collider
+	if $tankGun/CollisionShape2D.get_collision_count() > 0:
+		return false
+	return true
 
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished() and Global.difficulty != "hard":
@@ -174,17 +180,18 @@ func move_turret(delta):
 
 
 func shoot():
-	$Enemy_Shoot.play()
-	#create bullet instance for bullet
-	tur_dir = randf_range(0,deg_to_rad(360))
-	var bul := BULLET.instantiate()
-	bul.parent = self #set parent to this instance for refrence
-	get_tree().root.add_child(bul) #add to game tree at root #no reason not to for now
-	bul.set_collision_layer(8)
-	bul._changecolor(Color.DARK_SLATE_BLUE)
-	bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation bullshit because graphics are fucked fuck you andrew jk love you
-	bul.global_position = $tankGun/fire_loc.global_position #move to the fire loc so it pretend to fire from turret
-	#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else
+	if check_fire():
+		$Enemy_Shoot.play()
+		#create bullet instance for bullet
+		tur_dir = randf_range(0,deg_to_rad(360))
+		var bul := BULLET.instantiate()
+		bul.parent = self #set parent to this instance for refrence
+		get_tree().root.add_child(bul) #add to game tree at root #no reason not to for now
+		bul.set_collision_layer(8)
+		bul._changecolor(Color.DARK_SLATE_BLUE)
+		bul.global_rotation = (tankGun.global_rotation)-deg_to_rad(-90) #do orientation bullshit because graphics are fucked fuck you andrew jk love you
+		bul.global_position = fire_loc.global_position #move to the fire loc so it pretend to fire from turret
+		#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else
 
 func place_mine():
 	var mine = MINE.instantiate()

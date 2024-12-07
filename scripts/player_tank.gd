@@ -38,6 +38,12 @@ func dec_bullets():
 func _ready() -> void:
 	_changecolor(my_color)
 
+func check_fire() -> bool:
+	#first you get the collider
+	if $tankGun/CollisionShape2D.get_collision_count() > 0:
+		return false
+	return true
+
 #func to get input from player
 func get_input():	
 	if self.is_in_group("Player"):
@@ -73,6 +79,7 @@ func _physics_process(delta):
 	$debug_text.text = str(int($Super_Shot_Timer.time_left))
 	##MOVEMENT
 	get_input() # get details of movement
+	
 	rotation += rotation_direction * rotation_speed * delta #rotate tank
 	move_and_slide() #move tank with physics, wooo
 	_changecolor(my_color)
@@ -89,7 +96,7 @@ func _physics_process(delta):
 		mineButton  = "mineController"
 	
 	##SHOOTING LOGIC
-	if Input.is_action_just_pressed(shootButton) && (cur_bullets < max_bullets): #check if want to and can fire
+	if Input.is_action_just_pressed(shootButton) && (cur_bullets < max_bullets) and check_fire(): #check if want to and can fire
 		$Player_Shoot.play()
 		cur_bullets = cur_bullets + 1 #increase number of bullets fired
 		#create bullet instance for bullet
