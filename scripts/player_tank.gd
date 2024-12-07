@@ -94,7 +94,7 @@ func _physics_process(delta):
 		get_tree().root.add_child(bul) #add to game tree at root #no reason not to for now
 		bul.add_to_group("Bullets") # Add to group Bullets for clean up at end of round
 		bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation stuff because graphics
-		var direction = Vector2(cos($tankGun.global_rotation), sin($tankGun.global_rotation))
+		#var direction = Vector2(cos($tankGun.global_rotation), sin($tankGun.global_rotation))
 		
 		# Needs to be fixed but idea is there
 		if (supershot):
