@@ -30,7 +30,6 @@ func _process(_delta: float) -> void:
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	var player = get_tree().get_nodes_in_group("Player")
 	
-	print(str(timer.time_left))
 	if not $nav_map.is_baking():
 		$nav_map.bake_navigation_polygon()
 	
