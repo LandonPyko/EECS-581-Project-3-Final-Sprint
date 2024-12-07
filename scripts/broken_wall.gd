@@ -1,12 +1,15 @@
 extends StaticBody2D
 var dead = false
+var played = false
 
 func explosion():
-	$Break.play()
+	if !played:
+		$Break.play()
+		played = true
 	dead = true
 
 func _process(_delta):
-	if dead:
+	if dead and !$Break.playing:
 		var temp = get_parent().get_parent()
 		free()
 		

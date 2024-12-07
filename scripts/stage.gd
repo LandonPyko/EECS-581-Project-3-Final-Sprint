@@ -17,13 +17,17 @@ func _process(_delta: float) -> void:
 	if not $nav_map.is_baking():
 		$nav_map.bake_navigation_polygon()
 	
-	if enemies.is_empty():	# If no enemies left
+	if enemies.is_empty() and player.is_empty():
+		#bullets.clear()
+		#mines.clear()
+		get_tree().change_scene_to_file("res://scenes/roundloss.tscn")
+	elif enemies.is_empty():	# If no enemies left
 		#for nodes in bullets:
 			#remove_child(nodes)
 		#for nodes in mines:
 			#remove_child(nodes)
 		get_tree().change_scene_to_file("res://scenes/roundwin.tscn")
-	if player.is_empty():
+	elif player.is_empty():
 		#bullets.clear()
 		#mines.clear()
 		get_tree().change_scene_to_file("res://scenes/roundloss.tscn")

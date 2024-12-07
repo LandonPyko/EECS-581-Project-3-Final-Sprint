@@ -43,10 +43,12 @@ autostart = true
 
 [node name="Explosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_girg4")
-volume_db = -38.414
+max_polyphony = 4
 bus = &"FX"
 
 [node name="HitTank" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_daocd")
+max_polyphony = 4
+bus = &"FX"
 
 [connection signal="timeout" from="lifetime" to="." method="_on_lifetime_timeout"]

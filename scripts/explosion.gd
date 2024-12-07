@@ -23,12 +23,10 @@ func _process(_delta):
 					print("Hit a tank!")
 					Global.temp_score += 1 # Increment score
 					collider.free()
-					free()	# If it hits a tank we free the bullet instance
 				elif collider.is_in_group("Player"):	
 					$HitTank.play()
 					print("hello")
 					collider.free()
-					free()
 				elif collider.is_in_group("Player1"):
 					$HitTank.play()
 					print("Player 1 killed")
