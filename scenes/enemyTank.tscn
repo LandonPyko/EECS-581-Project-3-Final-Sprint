@@ -71,6 +71,12 @@ mesh = SubResource("SphereMesh_2k70l")
 stream = ExtResource("4_vql7d")
 bus = &"FX"
 
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.15
+autostart = true
+
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="shot_timer" to="." method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="mine_timer" to="." method="_on_mine_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

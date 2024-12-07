@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var rotation_speed = 1.5 #not needed rn ##OPTION could do curving bullets?
 @export var parent = preload("res://scenes/playerTank.tscn"); #create a dummy instance for the bullet to pretend with
 
-var my_color : Color = Global.bullet_Color
+var my_color : Color = Global.bullet1_Color
 
 var rotation_direction = 0 #not needed rn ##OPTION could do curving bullets?
 var click_position 	   = Vector2() #not needed rn
@@ -13,6 +13,10 @@ var dead := false #Check if timer has run out because can't do it when signallin
 var ricochet_bank = 2 # Track number of ricochets left before dead
 
 func _ready():
+	if parent.is_in_group("Player") or parent.is_in_group("Player1"):
+		my_color = Global.bullet1_Color
+	else:
+		my_color = Global.bullet2_Color
 	_changecolor(my_color)
 
 func _physics_process(delta):

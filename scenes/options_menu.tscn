@@ -16,7 +16,7 @@ layout_mode = 2
 offset_left = 334.0
 offset_top = 356.0
 offset_right = 374.0
-offset_bottom = 429.0
+offset_bottom = 456.0
 scale = Vector2(29.225, 3.55)
 
 [node name="ColorRect" type="ColorRect" parent="background1"]
@@ -102,8 +102,8 @@ fit_content = true
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../../HBoxContainer2/FX_slider")
-focus_neighbor_bottom = NodePath("../../../customization/HBoxContainer/TankColorPick")
-focus_next = NodePath("../../../customization/HBoxContainer/TankColorPick")
+focus_neighbor_bottom = NodePath("../../../customization/HBoxContainer/Tank1ColorPick")
+focus_next = NodePath("../../../customization/HBoxContainer/Tank1ColorPick")
 focus_previous = NodePath("../../HBoxContainer2/FX_slider")
 max_value = 1.0
 step = 0.001
@@ -128,14 +128,14 @@ size_flags_vertical = 3
 [node name="RichTextLabel" type="RichTextLabel" parent="customization/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Change Player Color"
+text = "Change Player 1 Color"
 
-[node name="TankColorPick" type="ColorPickerButton" parent="customization/HBoxContainer"]
+[node name="Tank1ColorPick" type="ColorPickerButton" parent="customization/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../../../audio/HBoxContainer3/Music_slider")
-focus_neighbor_bottom = NodePath("../../HBoxContainer2/bulletColorPick")
-focus_next = NodePath("../../HBoxContainer2/bulletColorPick")
+focus_neighbor_bottom = NodePath("../../HBoxContainer2/bullet1ColorPick")
+focus_next = NodePath("../../HBoxContainer2/bullet1ColorPick")
 focus_previous = NodePath("../../../audio/HBoxContainer3/Music_slider")
 text = "uhhhh"
 edit_alpha = false
@@ -147,15 +147,53 @@ size_flags_vertical = 3
 [node name="RichTextLabel" type="RichTextLabel" parent="customization/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Change Bullet Color"
+text = "Change Bullet 1 Color"
 
-[node name="bulletColorPick" type="ColorPickerButton" parent="customization/HBoxContainer2"]
+[node name="bullet1ColorPick" type="ColorPickerButton" parent="customization/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_top = NodePath("../../HBoxContainer/TankColorPick")
+focus_neighbor_top = NodePath("../../HBoxContainer/Tank1ColorPick")
 focus_neighbor_bottom = NodePath("../../../Button")
 focus_next = NodePath("../../../Button")
-focus_previous = NodePath("../../HBoxContainer/TankColorPick")
+focus_previous = NodePath("../../HBoxContainer/Tank1ColorPick")
+text = "uhhhh"
+edit_alpha = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="customization"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="customization/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Change Player 2 Color"
+
+[node name="Tank2ColorPick" type="ColorPickerButton" parent="customization/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../../audio/HBoxContainer3/Music_slider")
+focus_neighbor_bottom = NodePath("../../HBoxContainer2/bullet1ColorPick")
+focus_next = NodePath("../../HBoxContainer2/bullet1ColorPick")
+focus_previous = NodePath("../../../audio/HBoxContainer3/Music_slider")
+text = "uhhhh"
+edit_alpha = false
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="customization"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="customization/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Change Bullet 2 Color"
+
+[node name="bullet2ColorPick" type="ColorPickerButton" parent="customization/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../HBoxContainer/Tank1ColorPick")
+focus_neighbor_bottom = NodePath("../../../Button")
+focus_next = NodePath("../../../Button")
+focus_previous = NodePath("../../HBoxContainer/Tank1ColorPick")
 text = "uhhhh"
 edit_alpha = false
 
@@ -174,18 +212,22 @@ grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.855, 1.855)
 size_flags_vertical = 8
-focus_neighbor_top = NodePath("../customization/HBoxContainer2/bulletColorPick")
+focus_neighbor_top = NodePath("../customization/HBoxContainer2/bullet1ColorPick")
 focus_neighbor_bottom = NodePath("../audio/HBoxContainer/Master_slider")
 focus_next = NodePath("../audio/HBoxContainer/Master_slider")
-focus_previous = NodePath("../customization/HBoxContainer2/bulletColorPick")
+focus_previous = NodePath("../customization/HBoxContainer2/bullet1ColorPick")
 text = "RETURN"
 
 [connection signal="value_changed" from="audio/HBoxContainer/Master_slider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="audio/HBoxContainer2/FX_slider" to="." method="_on_fx_slider_value_changed"]
 [connection signal="value_changed" from="audio/HBoxContainer3/Music_slider" to="." method="_on_music_slider_value_changed"]
-[connection signal="color_changed" from="customization/HBoxContainer/TankColorPick" to="." method="_on_color_picker_button_color_changed"]
-[connection signal="popup_closed" from="customization/HBoxContainer/TankColorPick" to="." method="_on_color_picker_button_popup_closed"]
-[connection signal="color_changed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_color_picker_button_color_changed"]
-[connection signal="popup_closed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_bullet_color_pick_popup_closed"]
-[connection signal="popup_closed" from="customization/HBoxContainer2/bulletColorPick" to="." method="_on_color_picker_button_popup_closed"]
+[connection signal="color_changed" from="customization/HBoxContainer/Tank1ColorPick" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="popup_closed" from="customization/HBoxContainer/Tank1ColorPick" to="." method="_on_color_picker_button_popup_closed"]
+[connection signal="color_changed" from="customization/HBoxContainer2/bullet1ColorPick" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="popup_closed" from="customization/HBoxContainer2/bullet1ColorPick" to="." method="_on_bullet_color_pick_popup_closed"]
+[connection signal="popup_closed" from="customization/HBoxContainer2/bullet1ColorPick" to="." method="_on_color_picker_button_popup_closed"]
+[connection signal="color_changed" from="customization/HBoxContainer3/Tank2ColorPick" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="popup_closed" from="customization/HBoxContainer3/Tank2ColorPick" to="." method="_on_tank_2_color_pick_popup_closed"]
+[connection signal="color_changed" from="customization/HBoxContainer4/bullet2ColorPick" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="popup_closed" from="customization/HBoxContainer4/bullet2ColorPick" to="." method="_on_bullet_2_color_pick_popup_closed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -8,6 +8,8 @@ extends CharacterBody2D
 												  #so we can make some from this script
 @onready var MINE = preload("res://scenes/mine.tscn")
 
+@onready var TREAD = preload("res://scenes/tankTread.tscn")
+
 @onready var nav_agent : NavigationAgent2D = $nav_agent
 @onready var tankGun : Sprite2D = $tankGun
 @onready var fire_loc : Node2D = $tankGun/CollisionShape2D/fire_loc
@@ -61,6 +63,12 @@ func check_fire() -> bool:
 	if $tankGun/CollisionShape2D.get_collision_count() > 0:
 		return false
 	return true
+
+#func _on_timer_timeout() -> void:
+	#var tread = TREAD.instantiate()
+	#tread.global_position = global_position
+	#tread.rotation = rotation - deg_to_rad(90)
+	#get_parent().add_child(tread)
 
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished() and Global.difficulty != "hard":

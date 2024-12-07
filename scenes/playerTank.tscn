@@ -65,7 +65,7 @@ stream = ExtResource("4_q3l3o")
 bus = &"FX"
 
 [node name="Super_Shot_Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 5.0
 one_shot = true
 
 [node name="debug_text" type="RichTextLabel" parent="."]

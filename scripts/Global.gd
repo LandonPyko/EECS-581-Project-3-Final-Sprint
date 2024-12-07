@@ -1,7 +1,9 @@
 extends Node
 
-var tank_Color    = Color.BLUE
-var bullet_Color  = Color.ANTIQUE_WHITE
+var tank1_Color    = Color.BLUE
+var bullet1_Color  = Color.ANTIQUE_WHITE
+var tank2_Color    = Color.BLUE
+var bullet2_Color  = Color.ANTIQUE_WHITE
 var temp_score    = 0
 var score 		  = 0
 var p1_score 	  = 0
