@@ -116,7 +116,6 @@ func _physics_process(delta):
 
 	if Input.is_anything_pressed() == true:
 		if $Timer.is_stopped():
-			$Timer.set_wait_time(0)
 			$Timer.start()
 			$Timer.set_wait_time(.15)
 	else:
