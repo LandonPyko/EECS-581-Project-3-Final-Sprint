@@ -79,8 +79,10 @@ offset_bottom = 50.0
 text = "Dummy text"
 
 [node name="speedup_timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="triple_timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Super_Shot_Timer" to="." method="_on_super_shot_timer_timeout"]

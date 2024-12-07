@@ -89,7 +89,10 @@ func get_input():
 	
 
 func _physics_process(delta):
-	$debug_text.text = str(int($Super_Shot_Timer.time_left))
+	var maxTime = max($Super_Shot_Timer.time_left,$speedup_timer.time_left,$triple_timer.time_left)
+	$debug_text.text = str(int(maxTime))
+	
+	
 	##MOVEMENT
 	get_input() # get details of movement
 	
