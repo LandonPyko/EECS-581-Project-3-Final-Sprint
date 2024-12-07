@@ -25,6 +25,9 @@ var cur_mines := 0   #walrus, := is used to make it only be of the type of its a
 #$tankGun/fire_loc
 @onready var fire_loc = $tankGun/CollisionShape2D/fire_loc
 
+@onready var fire_check = $tankGun/CollisionShape2D
+@onready var triple1 = $tankGun/CollisionShape2D/triple_1
+@onready var triple2 = $tankGun/CollisionShape2D/triple_2
 
 var rotation_direction = 0   #Just create it
 var mouse_pos = Vector2(0,0) #set mouse pos to some place, don't matter.
@@ -34,14 +37,20 @@ func dec_mines():
 	cur_mines = cur_mines - 1
 func dec_bullets():
 	cur_bullets = cur_bullets - 1
+	if cur_bullets < 0:
+		cur_bullets = 0
 
 func _ready() -> void:
 	_changecolor(my_color)
 
 func check_fire() -> bool:
 	#first you get the collider
-	if $tankGun/CollisionShape2D.get_collision_count() > 0:
-		return false
+	if tripleshot:
+		if (fire_check.get_collision_count() > 0 or triple1.get_collision_count() > 0 or triple2.get_collision_count() >0):
+			return false
+	else:
+		if fire_check.get_collision_count() > 0:
+			return false
 	return true
 
 #func to get input from player
@@ -99,24 +108,38 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed(shootButton) && (cur_bullets < max_bullets) and check_fire(): #check if want to and can fire
 		$Player_Shoot.play()
 		cur_bullets = cur_bullets + 1 #increase number of bullets fired
-		#create bullet instance for bullet
-		var bul = BULLET.instantiate()
-		bul.parent = self
-		bul.scale = bullet_size
-		get_tree().root.add_child(bul) #add to game tree at root #no reason not to for now
-		bul.add_to_group("Bullets") # Add to group Bullets for clean up at end of round
-		bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation stuff because graphics
-		#var direction = Vector2(cos($tankGun.global_rotation), sin($tankGun.global_rotation))
-		
-		# Needs to be fixed but idea is there
-		if (supershot):
-			bul.global_position = fire_loc.global_position
+		if tripleshot:
+			#do tripleshot things
+			## this is the hard coded way to do it, could make it modular to add more bullets but
+			## no support for that at this point
+			var bul1 = BULLET.instantiate()
+			var bul2 = BULLET.instantiate()
+			var bul3 = BULLET.instantiate()
+			bul1.parent = self
+			bul2.parent = self
+			bul3.parent = self
+			bul1.scale = bullet_size
+			bul2.scale = bullet_size
+			bul3.scale = bullet_size
+			get_tree().root.add_child(bul1)
+			get_tree().root.add_child(bul2)
+			get_tree().root.add_child(bul3)
+			bul1.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90)
+			bul2.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-60)
+			bul3.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-120)
+			bul1.global_position = fire_loc.global_position
+			bul2.global_position = $tankGun/CollisionShape2D/triple_1/fire_loc.global_position
+			bul3.global_position = $tankGun/CollisionShape2D/triple_2/fire_loc.global_position
 		else:
+			#create bullet instance for bullet
+			var bul = BULLET.instantiate()
+			bul.parent = self
+			bul.scale = bullet_size
+			get_tree().root.add_child(bul) #add to game tree at root #no reason not to for now
+			bul.global_rotation = ($tankGun.global_rotation)-deg_to_rad(-90) #do orientation stuff because graphics
+			#var direction = Vector2(cos($tankGun.global_rotation), sin($tankGun.global_rotation))
 			bul.global_position = fire_loc.global_position
-		
-			
-		#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else
-	
+			# Needs to be fixed but idea is there	
 	elif Input.is_action_just_pressed(mineButton) && (cur_mines < max_mines):
 		cur_mines = cur_mines + 1 #increase number of mines placed
 		#create bullet instance for mine
@@ -170,3 +193,17 @@ func _on_super_shot_timer_timeout():
 	$tankGun/CollisionShape2D.scale = Vector2(0.5,0.5)
 	bullet_size = Vector2(1,1)
 	supershot = false
+
+func _speedup():
+	speed = speed*1.5
+	$speedup_timer.start(10)
+
+func _on_speedup_timer_timeout():
+	speed = 400
+
+func _triple():
+	tripleshot = true
+	$triple_timer.start(10)
+
+func _on_triple_timer_timeout():
+	tripleshot = false

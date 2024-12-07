@@ -3,3 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ca0qmk32g5aq4" path="res://scenes/pickup.tscn" id="1_65xfr"]
 
 [node name="speedup" instance=ExtResource("1_65xfr")]
+effect = "speed"
+
+[node name="Sprite2D" parent="Area2D" index="1"]
+modulate = Color(1, 0, 0, 1)

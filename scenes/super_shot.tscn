@@ -3,3 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ca0qmk32g5aq4" path="res://scenes/pickup.tscn" id="1_f2syp"]
 
 [node name="super_shot" instance=ExtResource("1_f2syp")]
+effect = "super"
+
+[node name="Sprite2D" parent="Area2D" index="1"]
+modulate = Color(0, 0, 1, 1)

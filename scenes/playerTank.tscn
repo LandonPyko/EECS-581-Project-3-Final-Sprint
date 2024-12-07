@@ -33,6 +33,24 @@ collision_mask = 160
 
 [node name="fire_loc" type="Node2D" parent="tankGun/CollisionShape2D"]
 
+[node name="triple_1" type="ShapeCast2D" parent="tankGun/CollisionShape2D"]
+position = Vector2(70, -8.00003)
+rotation = -0.523598
+shape = ExtResource("4_0wqfi")
+target_position = Vector2(0, 0)
+collision_mask = 160
+
+[node name="fire_loc" type="Node2D" parent="tankGun/CollisionShape2D/triple_1"]
+
+[node name="triple_2" type="ShapeCast2D" parent="tankGun/CollisionShape2D"]
+position = Vector2(-70, -8)
+rotation = 0.523599
+shape = ExtResource("4_0wqfi")
+target_position = Vector2(0, 0)
+collision_mask = 160
+
+[node name="fire_loc" type="Node2D" parent="tankGun/CollisionShape2D/triple_2"]
+
 [node name="tank_body_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_o3dy1")
@@ -56,5 +74,11 @@ offset_right = 102.0
 offset_bottom = 50.0
 text = "Dummy text"
 
+[node name="speedup_timer" type="Timer" parent="."]
+
+[node name="triple_timer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Super_Shot_Timer" to="." method="_on_super_shot_timer_timeout"]
+[connection signal="timeout" from="speedup_timer" to="." method="_on_speedup_timer_timeout"]
+[connection signal="timeout" from="triple_timer" to="." method="_on_triple_timer_timeout"]
