@@ -22,6 +22,10 @@ var cur_mines := 0   #walrus, := is used to make it only be of the type of its a
 
 @onready var TREAD = preload("res://scenes/tankTread.tscn")
 
+#$tankGun/fire_loc
+@onready var fire_loc = $tankGun/CollisionShape2D/fire_loc
+
+
 var rotation_direction = 0   #Just create it
 var mouse_pos = Vector2(0,0) #set mouse pos to some place, don't matter.
 
@@ -66,6 +70,7 @@ func get_input():
 	
 
 func _physics_process(delta):
+	$debug_text.text = str(int($Super_Shot_Timer.time_left))
 	##MOVEMENT
 	get_input() # get details of movement
 	rotation += rotation_direction * rotation_speed * delta #rotate tank
@@ -98,9 +103,9 @@ func _physics_process(delta):
 		
 		# Needs to be fixed but idea is there
 		if (supershot):
-			bul.global_position = $tankGun/fire_loc.global_position + Vector2(60,60)
+			bul.global_position = fire_loc.global_position
 		else:
-			bul.global_position = $tankGun/fire_loc.global_position
+			bul.global_position = fire_loc.global_position
 		
 			
 		#Should change a bit so end of bullet is end of turret but meh, like a 5 minute fix I'll leave to someone else
@@ -133,9 +138,12 @@ func _input(event): #get input event if one happens
 		
 
 func _super_shot():
+	#take the given colliion shape and move it by 106
+	$tankGun/CollisionShape2D.position = Vector2(0,106)
+	$tankGun/CollisionShape2D.scale = Vector2(1,1)
 	bullet_size = Vector2(2,2)
 	supershot = true
-	#$Super_Shot_Timer.start()
+	$Super_Shot_Timer.start()
 	
 #func _super_not(): # Reset bullet size and supershot flag
 	#bullet_size = Vector2(1, 1)
@@ -148,3 +156,10 @@ func _on_timer_timeout() -> void:
 	get_parent().add_child(tread)
 	#if (supershot == true): # Check on timer stop since multiple timers seem to share this function?
 		#_super_not() # If timer stoppped, reset supershot variables
+
+
+func _on_super_shot_timer_timeout():
+	$tankGun/CollisionShape2D.position = Vector2(0,84)
+	$tankGun/CollisionShape2D.scale = Vector2(0.5,0.5)
+	bullet_size = Vector2(1,1)
+	supershot = false
