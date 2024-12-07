@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://bajj7pvibx6ww"]
+[gd_scene load_steps=18 format=4 uid="uid://bajj7pvibx6ww"]
 
 [ext_resource type="Script" path="res://scripts/stage.gd" id="1_7ukgg"]
 [ext_resource type="Texture2D" uid="uid://deyyf8ddc1113" path="res://assets/background.png" id="2_fwg3o"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dj43p1a8ypeu7" path="res://scenes/playerTank.tscn" id="6_e2x4e"]
 [ext_resource type="PackedScene" uid="uid://dacmxxndhic6b" path="res://scenes/enemyTank.tscn" id="7_45hd4"]
 [ext_resource type="Script" path="res://scripts/score.gd" id="8_7v0im"]
+[ext_resource type="PackedScene" uid="uid://ca0qmk32g5aq4" path="res://scenes/pickup.tscn" id="11_b5o4m"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kelan"]
 normal = Vector2(0, 1)
@@ -109,3 +110,6 @@ theme_override_colors/font_shadow_color = Color(0.400698, 0.400698, 0.400698, 1)
 theme_override_colors/font_outline_color = Color(0.396889, 0.396889, 0.396889, 1)
 theme_override_font_sizes/font_size = 32
 script = ExtResource("8_7v0im")
+
+[node name="pickup" parent="." instance=ExtResource("11_b5o4m")]
+position = Vector2(885, 244)

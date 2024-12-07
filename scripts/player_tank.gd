@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var max_bullets := 5 #OPTION Could make a changeable value for powerups
 @export var max_mines := 2
 @export var lives := 4
-var my_color = Global.tank_Color
+var my_color = Global.tank1_Color
 @export var score := 0
 
 var bullet_size := Vector2(1,1)
@@ -41,6 +41,10 @@ func dec_bullets():
 		cur_bullets = 0
 
 func _ready() -> void:
+	if self.is_in_group("Player") or self.is_in_group("Player1"):
+		my_color = Global.tank1_Color
+	else:
+		my_color = Global.tank2_Color
 	_changecolor(my_color)
 
 func check_fire() -> bool:
@@ -198,14 +202,14 @@ func _on_super_shot_timer_timeout():
 
 func _speedup():
 	speed = speed*1.5
-	$speedup_timer.start(10)
+	$speedup_timer.start(5)
 
 func _on_speedup_timer_timeout():
 	speed = 400
 
 func _triple():
 	tripleshot = true
-	$triple_timer.start(10)
+	$triple_timer.start(5)
 
 func _on_triple_timer_timeout():
 	tripleshot = false
