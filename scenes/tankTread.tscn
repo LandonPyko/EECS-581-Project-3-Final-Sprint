@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ds7rfpjwshdtu"]
 
-[ext_resource type="Script" path="res://scenes/tank_tread.gd" id="1_jtqfg"]
+[ext_resource type="Script" path="res://scripts/tank_tread.gd" id="1_jtqfg"]
 [ext_resource type="Texture2D" uid="uid://dvcx6qnw41sgs" path="res://assets/tankTread.png" id="1_uovlr"]
 
 [node name="Node2D" type="Node2D"]
