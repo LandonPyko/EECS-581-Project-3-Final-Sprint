@@ -34,23 +34,33 @@ func _physics_process(delta):
 			Global.temp_score += 1 # Increment score
 			# print(Global.temp_score)
 			collider.free()
+			if parent != null:
+				parent.dec_bullets()
 			dead = true
 		elif collider.is_in_group("Player"):	
 			$hitTank.pitch_scale = 0.5
 			$hitTank.play()
 			print("hello")
 			collider.free()
+			if parent != null:
+				parent.dec_bullets()
 			dead = true
 		elif collider.is_in_group("Player1"):
 			$hitTank.play()
 			print("Player 1 killed")
 			Global.p2_score += 1
 			collider.free()
+			if parent != null:
+				parent.dec_bullets()
+			dead = true
 		elif collider.is_in_group("Player2"):
 			$hitTank.play()
 			print("Player 2 killed")
 			Global.p1_score += 1
 			collider.free()
+			if parent != null:
+				parent.dec_bullets()
+			dead = true
 		elif collider.has_method("bullet"):
 			$Ricochet.play()
 			if parent != null:

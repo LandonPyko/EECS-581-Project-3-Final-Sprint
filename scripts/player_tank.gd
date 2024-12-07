@@ -196,14 +196,14 @@ func _on_super_shot_timer_timeout():
 
 func _speedup():
 	speed = speed*1.5
-	$speedup_timer.start(10)
+	$speedup_timer.start(5)
 
 func _on_speedup_timer_timeout():
 	speed = 400
 
 func _triple():
 	tripleshot = true
-	$triple_timer.start(10)
+	$triple_timer.start(5)
 
 func _on_triple_timer_timeout():
 	tripleshot = false

@@ -3,6 +3,10 @@ extends Node2D
 @export var effect          := "dummy"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if effect == "dummy":
+		var types = ["super", "speed", "triple"]
+		var rng = RandomNumberGenerator.new()
+		var effect = types[rng.randf_range(0, 2)]
 	pass
 
 
