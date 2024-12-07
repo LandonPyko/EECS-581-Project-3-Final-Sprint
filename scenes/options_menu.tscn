@@ -16,7 +16,7 @@ layout_mode = 2
 offset_left = 334.0
 offset_top = 356.0
 offset_right = 374.0
-offset_bottom = 423.0
+offset_bottom = 429.0
 scale = Vector2(29.225, 3.55)
 
 [node name="ColorRect" type="ColorRect" parent="background1"]
@@ -28,7 +28,7 @@ layout_mode = 0
 offset_left = 336.0
 offset_top = 106.0
 offset_right = 376.0
-offset_bottom = 146.0
+offset_bottom = 154.0
 scale = Vector2(29.135, 4.855)
 
 [node name="ColorRect" type="ColorRect" parent="background2"]
@@ -38,9 +38,9 @@ color = Color(0.462291, 0.462291, 0.462291, 1)
 [node name="audio" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 339.0
-offset_top = 99.0
-offset_right = 840.975
-offset_bottom = 205.0
+offset_top = 102.0
+offset_right = 841.0
+offset_bottom = 206.0
 scale = Vector2(2.3, 2.3)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="audio"]
@@ -50,13 +50,13 @@ fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="audio"]
 layout_mode = 2
-size_flags_stretch_ratio = 0.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="audio/HBoxContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Master Volume"
+fit_content = true
 
 [node name="Master_slider" type="HSlider" parent="audio/HBoxContainer"]
 layout_mode = 2
@@ -76,6 +76,7 @@ clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "FX Volume"
+fit_content = true
 
 [node name="FX_slider" type="HSlider" parent="audio/HBoxContainer2"]
 layout_mode = 2
@@ -95,6 +96,7 @@ clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Music Volume"
+fit_content = true
 
 [node name="Music_slider" type="HSlider" parent="audio/HBoxContainer3"]
 layout_mode = 2
@@ -109,9 +111,9 @@ step = 0.001
 [node name="customization" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 338.0
-offset_top = 348.0
+offset_top = 367.0
 offset_right = 842.0
-offset_bottom = 449.0
+offset_bottom = 468.0
 scale = Vector2(2.3, 2.3)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="customization"]

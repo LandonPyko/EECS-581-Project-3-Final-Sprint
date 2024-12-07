@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dsqcl325ypwrn"]
+[gd_scene load_steps=20 format=4 uid="uid://dsqcl325ypwrn"]
 
 [ext_resource type="Script" path="res://scripts/stage.gd" id="1_n8rs1"]
 [ext_resource type="PackedScene" uid="uid://b3dgae8mm7udh" path="res://scenes/background.tscn" id="2_2xykl"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dj43p1a8ypeu7" path="res://scenes/playerTank.tscn" id="6_wda16"]
 [ext_resource type="PackedScene" uid="uid://dacmxxndhic6b" path="res://scenes/enemyTank.tscn" id="7_nfxii"]
 [ext_resource type="Script" path="res://scripts/score.gd" id="8_2xvbl"]
+[ext_resource type="PackedScene" uid="uid://djdiwn4c37ccj" path="res://scenes/triple_shot.tscn" id="10_1tga0"]
 [ext_resource type="PackedScene" uid="uid://bnntgysq52hea" path="res://scenes/speedup.tscn" id="10_sxewv"]
 [ext_resource type="PackedScene" uid="uid://djgva32px5jn8" path="res://scenes/super_shot.tscn" id="11_wjioy"]
 
@@ -28,6 +29,9 @@ normal = Vector2(1, 0)
 scenes/1/scene = ExtResource("3_d5mc5")
 scenes/2/scene = ExtResource("4_s0wwn")
 scenes/3/scene = ExtResource("5_ecx2l")
+scenes/4/scene = ExtResource("10_sxewv")
+scenes/5/scene = ExtResource("11_wjioy")
+scenes/7/scene = ExtResource("10_1tga0")
 
 [sub_resource type="TileSet" id="TileSet_rspme"]
 tile_size = Vector2i(48, 48)
@@ -101,6 +105,10 @@ position = Vector2(670, 470)
 
 [node name="super_shot" parent="." instance=ExtResource("11_wjioy")]
 position = Vector2(364, 348)
+
+[node name="triple_shot" parent="." instance=ExtResource("10_1tga0")]
+position = Vector2(400, 653)
+effect = "triple"
 
 [node name="Score" type="Label" parent="."]
 offset_left = 795.0

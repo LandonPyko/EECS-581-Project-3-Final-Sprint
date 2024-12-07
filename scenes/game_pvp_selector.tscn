@@ -98,6 +98,7 @@ theme_override_constants/check_v_offset = 0
 text = "Ready? "
 
 [node name="quit" type="Button" parent="."]
+layout_mode = 0
 offset_left = 461.0
 offset_top = 809.0
 offset_right = 1261.0

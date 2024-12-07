@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dj43p1a8ypeu7"]
+[gd_scene load_steps=7 format=3 uid="uid://dj43p1a8ypeu7"]
 
 [ext_resource type="Script" path="res://scripts/player_tank.gd" id="1_5ejvn"]
 [ext_resource type="Texture2D" uid="uid://diw83q4bmsulp" path="res://assets/tankBody.png" id="2_03woj"]
 [ext_resource type="Texture2D" uid="uid://cu6dqvkjbphha" path="res://assets/tankGun.png" id="3_uio1y"]
+[ext_resource type="Shape2D" uid="uid://6xdbfm0p43j8" path="res://assets/bullet_collision.tres" id="4_0wqfi"]
 [ext_resource type="AudioStream" uid="uid://bq6s4iqvjqmdk" path="res://assets/audio/player_shoot.wav" id="4_q3l3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3dy1"]
@@ -23,8 +24,32 @@ scale = Vector2(0.814815, 0.833329)
 texture = ExtResource("3_uio1y")
 offset = Vector2(0, 16.534)
 
-[node name="fire_loc" type="Node2D" parent="tankGun"]
-position = Vector2(0, 80)
+[node name="CollisionShape2D" type="ShapeCast2D" parent="tankGun"]
+position = Vector2(0, 84)
+scale = Vector2(0.5, 0.5)
+shape = ExtResource("4_0wqfi")
+target_position = Vector2(0, 0)
+collision_mask = 160
+
+[node name="fire_loc" type="Node2D" parent="tankGun/CollisionShape2D"]
+
+[node name="triple_1" type="ShapeCast2D" parent="tankGun/CollisionShape2D"]
+position = Vector2(70, -8.00003)
+rotation = -0.523598
+shape = ExtResource("4_0wqfi")
+target_position = Vector2(0, 0)
+collision_mask = 160
+
+[node name="fire_loc" type="Node2D" parent="tankGun/CollisionShape2D/triple_1"]
+
+[node name="triple_2" type="ShapeCast2D" parent="tankGun/CollisionShape2D"]
+position = Vector2(-70, -8)
+rotation = 0.523599
+shape = ExtResource("4_0wqfi")
+target_position = Vector2(0, 0)
+collision_mask = 160
+
+[node name="fire_loc" type="Node2D" parent="tankGun/CollisionShape2D/triple_2"]
 
 [node name="tank_body_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -40,7 +65,20 @@ stream = ExtResource("4_q3l3o")
 bus = &"FX"
 
 [node name="Super_Shot_Timer" type="Timer" parent="."]
-wait_time = 50.0
+wait_time = 10.0
 one_shot = true
 
+[node name="debug_text" type="RichTextLabel" parent="."]
+offset_top = 25.0
+offset_right = 102.0
+offset_bottom = 50.0
+text = "Dummy text"
+
+[node name="speedup_timer" type="Timer" parent="."]
+
+[node name="triple_timer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Super_Shot_Timer" to="." method="_on_super_shot_timer_timeout"]
+[connection signal="timeout" from="speedup_timer" to="." method="_on_speedup_timer_timeout"]
+[connection signal="timeout" from="triple_timer" to="." method="_on_triple_timer_timeout"]

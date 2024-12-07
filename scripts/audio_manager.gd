@@ -13,7 +13,7 @@ func stop_music():
 	stop()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Global.current_level > 1:
 		pitch_scale = 0.1 * Global.current_level + 1
 	elif Global.current_level == 0:

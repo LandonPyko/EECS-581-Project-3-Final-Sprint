@@ -18,7 +18,10 @@ func _ready():
 func _physics_process(delta):
 	##KILL the bullet if it needs to before doing opearations.
 	if dead: #if life_time is out, free the instance and end the loop
-		free()
+		visible = false
+		$hitbox.disabled = true
+		if !$hitTank.playing:
+			free()
 		return
 	
 	##check for collision and do collision logic if one happend
@@ -31,12 +34,13 @@ func _physics_process(delta):
 			Global.temp_score += 1 # Increment score
 			# print(Global.temp_score)
 			collider.free()
-			free()	# If it hits a tank we free the bullet instance
+			dead = true
 		elif collider.is_in_group("Player"):	
+			$hitTank.pitch_scale = 0.5
 			$hitTank.play()
 			print("hello")
 			collider.free()
-			free()
+			dead = true
 		elif collider.is_in_group("Player1"):
 			$hitTank.play()
 			print("Player 1 killed")
