@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvcx6qnw41sgs" path="res://assets/tankTread.png" id="1_uovlr"]
 
 [node name="Node2D" type="Node2D"]
+show_behind_parent = true
 rotation = -1.5708
 script = ExtResource("1_jtqfg")
 

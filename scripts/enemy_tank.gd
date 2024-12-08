@@ -44,6 +44,15 @@ var target_pos : Vector2 = Vector2(900,400)
 
 func _ready():
 	change_type(type)
+	if type == "red":
+		modulate = Color.RED
+	elif type == "yellow":
+		modulate = Color.YELLOW
+	elif type == "pink":
+		modulate = Color.HOT_PINK
+	elif type == "orange":
+		modulate = Color.ORANGE
+	
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
 	nav_agent.path_desired_distance = 4.0
@@ -64,11 +73,11 @@ func check_fire() -> bool:
 		return false
 	return true
 
-#func _on_timer_timeout() -> void:
-	#var tread = TREAD.instantiate()
-	#tread.global_position = global_position
-	#tread.rotation = rotation - deg_to_rad(90)
-	#get_parent().add_child(tread)
+func _on_timer_timeout() -> void:
+	var tread = TREAD.instantiate()
+	tread.global_position = global_position
+	tread.rotation = rotation - deg_to_rad(90)
+	get_parent().add_child(tread)
 
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished() and Global.difficulty != "hard":
