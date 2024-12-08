@@ -17,3 +17,7 @@ func _on_pve_pressed() -> void:
 	Global.score = 0
 	Global.temp_score = 0
 	get_tree().change_scene_to_file("res://scenes/difficulty_selector.tscn")
+
+
+func _on_quit_pressed():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

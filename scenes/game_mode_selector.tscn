@@ -56,7 +56,20 @@ focus_previous = NodePath("../pvp")
 theme_override_font_sizes/font_size = 50
 text = "PvE"
 
+[node name="quit" type="Button" parent="."]
+offset_left = 520.0
+offset_top = 808.0
+offset_right = 1320.0
+offset_bottom = 899.0
+focus_neighbor_top = NodePath("../options")
+focus_neighbor_bottom = NodePath("../start")
+focus_next = NodePath("../start")
+focus_previous = NodePath("../options")
+theme_override_font_sizes/font_size = 60
+text = "MENU"
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/pvp" to="." method="_on_hard_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/pvp" to="." method="_on_pvp_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/pve" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/pve" to="." method="_on_pve_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
