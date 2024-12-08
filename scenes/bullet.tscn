@@ -9,7 +9,7 @@
 [node name="bullet" type="CharacterBody2D" groups=["Bullets", "Mines"]]
 modulate = Color(1, 0.352941, 0.317647, 1)
 collision_layer = 2
-collision_mask = 143
+collision_mask = 159
 script = ExtResource("1_xdceb")
 
 [node name="texture" type="Sprite2D" parent="."]

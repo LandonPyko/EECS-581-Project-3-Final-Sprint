@@ -3,6 +3,8 @@ extends CharacterBody2D
 #can probably make descriptor arrays to define behavior of different enemies.
 
 @export var score_given := 1
+@export var cur_mines := 0
+@export var max_mines := 3
 
 @onready var BULLET = preload("res://scenes/bullet.tscn")#load the idea of a bullet to this var
 												  #so we can make some from this script
@@ -220,7 +222,9 @@ func dec_bullets():
 	pass #dummy function because I don't want to do logic
 
 func dec_mines():
-	pass
+	cur_mines = cur_mines - 1
+	if cur_mines < 0:
+		cur_mines = 0
 
 func change_color(color: Color):
 	modulate = color
@@ -249,5 +253,5 @@ func _on_shot_timer_timeout():
 
 
 func _on_mine_timer_timeout():
-	if type == "yellow" or type == "orange":
+	if (type == "yellow" or type == "orange") and (cur_mines < max_mines):
 		place_mine()

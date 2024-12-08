@@ -40,6 +40,8 @@ func _process(_delta):
 				elif collider.has_method("explosion"):
 					collider.explosion()
 					print("exploded thing")
+				elif collider.has_method("explode"):
+					collider.explode()
 				print("dummy space")
 
 

@@ -19,11 +19,11 @@ func _physics_process(_delta):
 
 func _on_life_time_timeout(): #when life_time timer expires
 	explode()
-	if parent != null:
-		parent.dec_mines()
 
 func explode():
 	dead = true
+	if parent != null:
+		parent.dec_mines()
 	var explosion = preload("res://scenes/explosion.tscn").instantiate()
 	explosion.global_position = global_position
 	get_tree().root.add_child(explosion)

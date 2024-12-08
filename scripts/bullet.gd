@@ -65,6 +65,11 @@ func _physics_process(delta):
 			if parent != null:
 				parent.dec_bullets()
 			dead = true
+		elif collider.has_method("explode"):
+			if parent != null:
+				parent.dec_bullets()
+			collider.explode()
+			dead = true 
 		elif collider.has_method("bullet"):
 			$Ricochet.play()
 			if parent != null:

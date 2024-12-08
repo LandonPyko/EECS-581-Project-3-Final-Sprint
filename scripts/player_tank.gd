@@ -35,6 +35,9 @@ var mouse_pos = Vector2(0,0) #set mouse pos to some place, don't matter.
 #functions to decrease cur number of mines and bullets
 func dec_mines():
 	cur_mines = cur_mines - 1
+	if cur_mines < 0:
+		cur_mines = 0
+		
 func dec_bullets():
 	cur_bullets = cur_bullets - 1
 	if cur_bullets < 0:
