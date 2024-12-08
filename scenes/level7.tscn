@@ -91,22 +91,24 @@ tile_set = SubResource("TileSet_rspme")
 [node name="Tank" parent="nav_map/tilemaplayer" groups=["Player"] instance=ExtResource("6_pgc3e")]
 position = Vector2(287, 682)
 
-[node name="enemy" parent="nav_map/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_m2v4i")]
+[node name="enemy" parent="nav_map/tilemaplayer" instance=ExtResource("7_m2v4i")]
 position = Vector2(286, 244)
 rotation = 6.28319
 collision_mask = 129
+type = "yellow"
 
-[node name="enemy2" parent="nav_map/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_m2v4i")]
+[node name="enemy2" parent="nav_map/tilemaplayer" instance=ExtResource("7_m2v4i")]
 position = Vector2(1454, 281)
 rotation = 9.42478
 collision_mask = 129
+type = "orange"
 
-[node name="enemy3" parent="nav_map/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_m2v4i")]
+[node name="enemy3" parent="nav_map/tilemaplayer" instance=ExtResource("7_m2v4i")]
 position = Vector2(1491, 723)
 rotation = 10.9956
 collision_mask = 129
 
-[node name="enemy4" parent="nav_map/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_m2v4i")]
+[node name="enemy4" parent="nav_map/tilemaplayer" instance=ExtResource("7_m2v4i")]
 position = Vector2(285, 450)
 rotation = 12.5664
 collision_mask = 129
