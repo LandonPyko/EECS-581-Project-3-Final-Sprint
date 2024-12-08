@@ -27,7 +27,7 @@ var my_color : Color = Color.RED
 ##pink needs to reduce shot_timer and not add randomness
 ##orange needs to place mines and shoot bullets
 
-const MINE_SAFE_DIST = 400 #change how far to run from mines
+const MINE_SAFE_DIST = 400*.8 #change how far to run from mines
 const BUL_SAFE_DIST = 75 #change how far to run from bullets
 var tur_dir := 0.0
 enum DIFFICULTIES {EASY, MEDIUM, HARD}# Will retrieve the type from the menu button, then act accordingly
@@ -95,6 +95,7 @@ func hard_move():
 	vision.force_shapecast_update()
 	if vision.is_colliding():
 		for i in range(0, vision.get_collision_count()): #get colliders
+			update_dangers()
 			var collider = vision.get_collider(i) #call collider
 			if collider != null: #if its a thing
 				if collider.collision_layer == 2: #its a bullet or a mine
@@ -136,12 +137,10 @@ func hard_move():
 				if collider.collision_layer == 1:#players are on layer 1. Maybe decide a better way to check this
 					var temp_pos = collider.global_position #this is where the player is
 					target_pos = temp_pos - Vector2(1,0).rotated((temp_pos - global_position).angle()) * 150
-					update_dangers()
 					for danger in dangers:
 						if danger[2] == "mine" and danger[1] < MINE_SAFE_DIST:
 							target_pos = danger[0].global_position - Vector2(1,0).rotated((danger[0].global_position - global_position).angle()) * MINE_SAFE_DIST
 						elif danger[2] == "bullet" and danger[1] < BUL_SAFE_DIST:
-							update_dangers()
 							var bul_future = danger[0].global_position + danger[0].velocity
 							var point = Geometry2D.get_closest_point_to_segment_uncapped(global_position, danger[0].global_position, bul_future)
 							target_pos = point - Vector2(1,0).rotated((point - global_position).angle()) * BUL_SAFE_DIST
@@ -149,14 +148,11 @@ func hard_move():
 					$dummy.global_position = target_pos
 
 func update_dangers():
-	for i in range(dangers.size()):
-		if i > dangers.size()-1:
-			return
-		if dangers[i][0] == null:
-			dangers.remove_at(i)
-		else:
-			dangers[i][1] = global_position.distance_to(dangers[i][0].global_position)
-	
+	var tmp = dangers.filter(not_null)
+	dangers = tmp
+
+func not_null(item):
+	return item[0] != null
 	
 	
 func move_turret(delta):
@@ -205,7 +201,7 @@ func place_mine():
 	var mine = MINE.instantiate()
 	mine.parent = self #set parent to this instance for refrence
 	get_tree().root.add_child(mine) #add to game tree at root
-	mine.set_collision_layer(8)
+	#mine.set_collision_layer(8)
 	mine.global_position = global_position #place at center of tank #TODO Change something with the rendering so tank is on top
 
 func _on_move_timer_timeout() -> void:
@@ -225,10 +221,12 @@ func change_type(newType: String):
 	if type == "red":
 		change_color(Color.RED)
 	elif type == "orange":
+		speed = 200
 		change_color(Color.ORANGE)
 	elif type == "pink":
 		change_color(Color.PINK)
 	elif type == "yellow":
+		speed = 200
 		change_color(Color.YELLOW)
 	
 

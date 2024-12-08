@@ -91,7 +91,7 @@ tile_set = SubResource("TileSet_rspme")
 [node name="Tank" parent="nav_map/tilemaplayer" groups=["Player"] instance=ExtResource("6_snv7n")]
 position = Vector2(324, 676)
 
-[node name="enemy" parent="nav_map/tilemaplayer" groups=["Enemy"] instance=ExtResource("7_htpwl")]
+[node name="enemy" parent="nav_map/tilemaplayer" instance=ExtResource("7_htpwl")]
 position = Vector2(1469, 280)
 rotation = 3.13103
 collision_mask = 129

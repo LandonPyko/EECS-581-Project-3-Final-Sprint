@@ -25,6 +25,7 @@ noise = SubResource("FastNoiseLite_4fs3u")
 radius = 259.0
 
 [node name="explosion" type="Sprite2D" groups=["Mines"]]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_fmvf8")
 
 [node name="temp_texture" type="MeshInstance2D" parent="."]
