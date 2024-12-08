@@ -80,6 +80,9 @@ shape = SubResource("WorldBoundaryShape2D_va5vj")
 position = Vector2(-50.5, -35.6691)
 scale = Vector2(0.0507488, 0.0730178)
 
+[node name="pickup" parent="." instance=ExtResource("10_e6fkm")]
+position = Vector2(893, 477)
+
 [node name="nav_map" type="NavigationRegion2D" parent="."]
 navigation_polygon = ExtResource("3_yg6cm")
 
@@ -103,6 +106,3 @@ theme_override_colors/font_shadow_color = Color(0.400698, 0.400698, 0.400698, 1)
 theme_override_colors/font_outline_color = Color(0.396889, 0.396889, 0.396889, 1)
 theme_override_font_sizes/font_size = 32
 script = ExtResource("8_okseg")
-
-[node name="pickup" parent="." instance=ExtResource("10_e6fkm")]
-position = Vector2(893, 477)

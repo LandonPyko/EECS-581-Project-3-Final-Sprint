@@ -80,6 +80,9 @@ collision_layer = 128
 position = Vector2(124.16, 299)
 shape = SubResource("WorldBoundaryShape2D_va5vj")
 
+[node name="pickup" parent="." instance=ExtResource("10_ty1l5")]
+position = Vector2(894, 718)
+
 [node name="nav_map" type="NavigationRegion2D" parent="."]
 navigation_polygon = ExtResource("3_2t1bk")
 
@@ -103,6 +106,3 @@ theme_override_colors/font_shadow_color = Color(0.400698, 0.400698, 0.400698, 1)
 theme_override_colors/font_outline_color = Color(0.396889, 0.396889, 0.396889, 1)
 theme_override_font_sizes/font_size = 32
 script = ExtResource("8_fy076")
-
-[node name="pickup" parent="." instance=ExtResource("10_ty1l5")]
-position = Vector2(894, 718)
